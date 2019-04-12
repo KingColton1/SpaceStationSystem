@@ -55,8 +55,8 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="JSON\Docks2019.json" />
+    <None Include="JSON\FinalShips2019.json" />
     <None Include="JSON\ShipClasses.json" />
-    <None Include="JSON\Ships2019.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
