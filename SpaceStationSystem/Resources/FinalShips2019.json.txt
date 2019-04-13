@@ -1,6 +1,6 @@
-[
+﻿[
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Tyrant",
     "ShipFedId": "1000",
     "CaptainName": "Brian Aldiss",
@@ -18,7 +18,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Triumph",
     "ShipFedId": "1001",
     "CaptainName": "R.M. Meluch",
@@ -36,7 +36,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Argonaut",
     "ShipFedId": "1002",
     "CaptainName": "Colin Harvey",
@@ -54,7 +54,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Defiance",
     "ShipFedId": "1003",
     "CaptainName": "Jack Campbell",
@@ -72,7 +72,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Majestic",
     "ShipFedId": "1004",
     "CaptainName": "R.M. Meluch",
@@ -90,7 +90,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Alice",
     "ShipFedId": "1005",
     "CaptainName": "Poul Anderson",
@@ -108,7 +108,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Arcadian",
     "ShipFedId": "1006",
     "CaptainName": "L.E. Modesitt Jr.",
@@ -126,7 +126,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "New Hope",
     "ShipFedId": "1007",
     "CaptainName": "Chris Roberson",
@@ -144,7 +144,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Challenger",
     "ShipFedId": "1008",
     "CaptainName": "Norman Spinrad",
@@ -162,7 +162,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Cyclopse",
     "ShipFedId": "1009",
     "CaptainName": "Eric Frank Russell",
@@ -180,7 +180,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Retribution",
     "ShipFedId": "1010",
     "CaptainName": "M. John Harrison",
@@ -198,7 +198,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Mercenary Star",
     "ShipFedId": "1011",
     "CaptainName": "Spider Robinson",
@@ -216,7 +216,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Battalion",
     "ShipFedId": "1012",
     "CaptainName": "Lois McMaster Bujold",
@@ -234,7 +234,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Fafnir",
     "ShipFedId": "1013",
     "CaptainName": "Jack Campbell",
@@ -252,7 +252,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Archmage",
     "ShipFedId": "1014",
     "CaptainName": "Thomas Harlan",
@@ -270,7 +270,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "SS Phobos",
     "ShipFedId": "1015",
     "CaptainName": "Charles E. Gannon",
@@ -288,7 +288,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "CS Discovery",
     "ShipFedId": "1016",
     "CaptainName": "R.M. Meluch",
@@ -306,7 +306,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "SC Carthage",
     "ShipFedId": "1017",
     "CaptainName": "Brenda Cooper",
@@ -324,7 +324,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "SS Adder",
     "ShipFedId": "1018",
     "CaptainName": "Poul Anderson",
@@ -342,7 +342,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Amazon",
     "ShipFedId": "1019",
     "CaptainName": "Richard A. Lupoff",
@@ -360,7 +360,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Oblivion",
     "ShipFedId": "1020",
     "CaptainName": "Peter Watt",
@@ -378,7 +378,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Divine Intervention",
     "ShipFedId": "1021",
     "CaptainName": "Jack Campbell",
@@ -396,7 +396,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Buccaneer",
     "ShipFedId": "1022",
     "CaptainName": "China Mi�ville",
@@ -414,7 +414,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Battlestar",
     "ShipFedId": "1023",
     "CaptainName": "Alan Dean Foster",
@@ -432,7 +432,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Sparta",
     "ShipFedId": "1024",
     "CaptainName": "John Barnes",
@@ -450,7 +450,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Nihilus",
     "ShipFedId": "1025",
     "CaptainName": "David Mack",
@@ -468,7 +468,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Avius",
     "ShipFedId": "1026",
     "CaptainName": "Thomas Harlan",
@@ -486,7 +486,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Blue Whale",
     "ShipFedId": "1027",
     "CaptainName": "John Scalzi",
@@ -504,7 +504,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "USS Janissary",
     "ShipFedId": "1028",
     "CaptainName": "Michael Cobley",
@@ -522,7 +522,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "SSE Claymore",
     "ShipFedId": "1029",
     "CaptainName": "Thomas Harlan",
@@ -540,7 +540,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "STS Ohio",
     "ShipFedId": "1030",
     "CaptainName": "David Mack",
@@ -558,7 +558,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "BC Cossack",
     "ShipFedId": "1031",
     "CaptainName": "Gregory Benford",
@@ -576,7 +576,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "USS Wildcat",
     "ShipFedId": "1032",
     "CaptainName": "John Scalzi",
@@ -594,7 +594,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Griffin",
     "ShipFedId": "1033",
     "CaptainName": "David Brin",
@@ -612,7 +612,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "The Serpent",
     "ShipFedId": "1034",
     "CaptainName": "Christopher L. Bennett",
@@ -630,7 +630,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Crusher",
     "ShipFedId": "1035",
     "CaptainName": "Robert Silverberg",
@@ -648,7 +648,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Cyclopse",
     "ShipFedId": "1036",
     "CaptainName": "Poul Anderson",
@@ -666,7 +666,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Merkava",
     "ShipFedId": "1037",
     "CaptainName": "Robert Kroese",
@@ -684,7 +684,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "ISS Herminia",
     "ShipFedId": "1038",
     "CaptainName": "Stephen Baxter",
@@ -702,7 +702,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "HWSS Kryptoria",
     "ShipFedId": "1039",
     "CaptainName": "James Gunn",
@@ -720,7 +720,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "LWSS Spectator",
     "ShipFedId": "1040",
     "CaptainName": "Poul Anderson",
@@ -738,7 +738,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "ISS Fortitude",
     "ShipFedId": "1041",
     "CaptainName": "Murray Leinster",
@@ -756,7 +756,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "CS Artemis",
     "ShipFedId": "1042",
     "CaptainName": "Robert Kroese",
@@ -774,7 +774,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Horizon",
     "ShipFedId": "1043",
     "CaptainName": "David R. George III",
@@ -792,7 +792,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Dragonstar",
     "ShipFedId": "1044",
     "CaptainName": "Garth Nix",
@@ -810,7 +810,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Silent",
     "ShipFedId": "1045",
     "CaptainName": "Elizabeth Moon",
@@ -828,7 +828,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Experience",
     "ShipFedId": "1046",
     "CaptainName": "R.M. Meluch",
@@ -846,7 +846,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Verdant",
     "ShipFedId": "1047",
     "CaptainName": "John Scalzi",
@@ -864,7 +864,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "USS Hurricane",
     "ShipFedId": "1048",
     "CaptainName": "Robert Silverberg",
@@ -882,7 +882,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "HMS The Hammerhead",
     "ShipFedId": "1049",
     "CaptainName": "Jack Campbell",
@@ -900,7 +900,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "CS Sparta",
     "ShipFedId": "1050",
     "CaptainName": "Gene Roddenberry",
@@ -918,7 +918,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "BC Striker",
     "ShipFedId": "1051",
     "CaptainName": "Captain Harlock",
@@ -936,7 +936,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "SSE Nineveh",
     "ShipFedId": "1052",
     "CaptainName": "Jay Lake",
@@ -954,7 +954,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Gelish-Ophule",
     "ShipFedId": "1053",
     "CaptainName": "Iain M. Banks",
@@ -972,7 +972,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Churkon",
     "ShipFedId": "1054",
     "CaptainName": "Iain M. Bank",
@@ -990,7 +990,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Aaron Burr",
     "ShipFedId": "1055",
     "CaptainName": "Robert Silverberg",
@@ -1008,7 +1008,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Abdiel",
     "ShipFedId": "1056",
     "CaptainName": "Poul Anderson",
@@ -1026,7 +1026,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Acinonyx",
     "ShipFedId": "1057",
     "CaptainName": "Scott Westerfeld",
@@ -1044,7 +1044,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Ad Astra",
     "ShipFedId": "1058",
     "CaptainName": " Stephen Baxter",
@@ -1062,7 +1062,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Abhorrent",
     "ShipFedId": "1059",
     "CaptainName": "Robert Kroese",
@@ -1080,7 +1080,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Adastra ",
     "ShipFedId": "1060",
     "CaptainName": "James Gunn",
@@ -1098,7 +1098,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Aeakha",
     "ShipFedId": "1061",
     "CaptainName": "Poul Andersen",
@@ -1116,7 +1116,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Aesclipus ",
     "ShipFedId": "1062",
     "CaptainName": "Murray Leinster",
@@ -1134,7 +1134,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "ISS Agave Nectar",
     "ShipFedId": "1063",
     "CaptainName": "Robert Kroeseb",
@@ -1152,7 +1152,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Algonquin",
     "ShipFedId": "1064",
     "CaptainName": " David R. George III",
@@ -1170,7 +1170,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Alphane",
     "ShipFedId": "1065",
     "CaptainName": "Garth Nix",
@@ -1188,7 +1188,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Alphard",
     "ShipFedId": "1066",
     "CaptainName": "Hal Clement",
@@ -1206,7 +1206,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Altissima ",
     "ShipFedId": "1067",
     "CaptainName": "Elizabeth Moon",
@@ -1224,7 +1224,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Amber Dragonfly ",
     "ShipFedId": "1068",
     "CaptainName": "R.M. Meluch",
@@ -1242,7 +1242,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "CDFS Amerigo Vespucci ",
     "ShipFedId": "1069",
     "CaptainName": "John Scalzi",
@@ -1260,7 +1260,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Andrew Johnson ",
     "ShipFedId": "1070",
     "CaptainName": "Robert Silverberg",
@@ -1278,7 +1278,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Ardent ",
     "ShipFedId": "1071",
     "CaptainName": "Jack Campbell",
@@ -1296,7 +1296,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Andromeda Ascendant ",
     "ShipFedId": "1072",
     "CaptainName": "Gene Roddenberry",
@@ -1314,7 +1314,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Andros ",
     "ShipFedId": "1073",
     "CaptainName": "Theodore R. Cogswell",
@@ -1332,7 +1332,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Arcadia ",
     "ShipFedId": "1074",
     "CaptainName": "Captain Harlock",
@@ -1350,7 +1350,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Ardeas ",
     "ShipFedId": "1075",
     "CaptainName": "Jay Lake",
@@ -1368,7 +1368,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Argos ",
     "ShipFedId": "1076",
     "CaptainName": "Jason Argonot",
@@ -1386,7 +1386,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Argonos ",
     "ShipFedId": "1077",
     "CaptainName": "Richard Paul Russo",
@@ -1404,7 +1404,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Ariel ",
     "ShipFedId": "1078",
     "CaptainName": "Lois McMaster Bujold",
@@ -1422,7 +1422,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Ark of the Covenant",
     "ShipFedId": "1079",
     "CaptainName": "Arthur C. Clarke",
@@ -1440,7 +1440,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Argus ",
     "ShipFedId": "1080",
     "CaptainName": "Harry Harrison",
@@ -1458,7 +1458,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Argus II ",
     "ShipFedId": "1081",
     "CaptainName": "Harry B .Harrison",
@@ -1476,7 +1476,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Armitou ",
     "ShipFedId": "1082",
     "CaptainName": "Matthew Hughes",
@@ -1494,7 +1494,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Arrogant ",
     "ShipFedId": "1083",
     "CaptainName": "Jack Campbell",
@@ -1512,7 +1512,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Asgard (formerly the Einstein) ",
     "ShipFedId": "1084",
     "CaptainName": "Robert A. Heinlein",
@@ -1530,7 +1530,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "HMS Asieneuve ",
     "ShipFedId": "1085",
     "CaptainName": "Poul Anderson",
@@ -1548,7 +1548,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Asimov ",
     "ShipFedId": "1086",
     "CaptainName": "Babylon",
@@ -1566,7 +1566,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Assam Dragon ",
     "ShipFedId": "1087",
     "CaptainName": "James Blish",
@@ -1584,7 +1584,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Assimilator's Claws ",
     "ShipFedId": "1088",
     "CaptainName": "Stephen Baxter",
@@ -1602,7 +1602,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Atlantis City Ship ",
     "ShipFedId": "1089",
     "CaptainName": "A. Stargate",
@@ -1620,7 +1620,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Atropos ",
     "ShipFedId": "1090",
     "CaptainName": "Jerry Pournelle",
@@ -1638,7 +1638,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Audacious ",
     "ShipFedId": "1091",
     "CaptainName": "Jack Campbell",
@@ -1656,7 +1656,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Auriga ",
     "ShipFedId": "1092",
     "CaptainName": "Resur Rection",
@@ -1674,7 +1674,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Avant-Garde ",
     "ShipFedId": "1093",
     "CaptainName": "Robert B. Heinlein",
@@ -1692,7 +1692,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "U.N.S. Avenger",
     "ShipFedId": "1094",
     "CaptainName": "Robert C. Heinlein",
@@ -1710,7 +1710,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Anything Legal Considered ",
     "ShipFedId": "1095",
     "CaptainName": "Iain M. Banks",
@@ -1728,7 +1728,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "B Flat ",
     "ShipFedId": "1096",
     "CaptainName": "Carmen Carter",
@@ -1746,7 +1746,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Baba Yaga Stella Maris (Desert Planet) ",
     "ShipFedId": "1097",
     "CaptainName": "Una McCormack",
@@ -1764,7 +1764,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Bad Little Kitty ",
     "ShipFedId": "1098",
     "CaptainName": "Robert Kroese",
@@ -1782,7 +1782,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Balance of Judgment ",
     "ShipFedId": "1099",
     "CaptainName": "Gene Roddenberry",
@@ -1800,7 +1800,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Banshee Stalker ",
     "ShipFedId": "1100",
     "CaptainName": "David Conyers and David Kernot",
@@ -1818,7 +1818,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Baramundi ",
     "ShipFedId": "1101",
     "CaptainName": "Richard A. Lupoff",
@@ -1836,7 +1836,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Battlestar Galactica ",
     "ShipFedId": "1102",
     "CaptainName": "Hero Day",
@@ -1854,7 +1854,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Beats Working ",
     "ShipFedId": "1103",
     "CaptainName": "Iain M. Banks",
@@ -1872,7 +1872,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Bellerophon ",
     "ShipFedId": "1104",
     "CaptainName": "John C. Wright",
@@ -1890,7 +1890,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Benison of Names ",
     "ShipFedId": "1105",
     "CaptainName": "Jay Lake",
@@ -1908,7 +1908,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Bernini/Bagheera ",
     "ShipFedId": "1106",
     "CaptainName": "R.M. Meluch",
@@ -1926,7 +1926,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Bertrand ",
     "ShipFedId": "1107",
     "CaptainName": "R.M. Meluch",
@@ -1944,7 +1944,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Betty ",
     "ShipFedId": "1108",
     "CaptainName": "Alien Resur Rection",
@@ -1962,7 +1962,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Big Dog",
     "ShipFedId": "1109",
     "CaptainName": "Brian W. Aldiss",
@@ -1980,7 +1980,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Black Cockatoo",
     "ShipFedId": "1110",
     "CaptainName": "Samuel R. Delaney",
@@ -1998,7 +1998,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Black Star ",
     "ShipFedId": "1111",
     "CaptainName": "H. Beam Piper",
@@ -2016,7 +2016,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Blessed ",
     "ShipFedId": "1112",
     "CaptainName": "John Scalzi",
@@ -2034,7 +2034,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Bloodstorm ",
     "ShipFedId": "1113",
     "CaptainName": "Andy Heizeler",
@@ -2052,7 +2052,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Blue Midget ",
     "ShipFedId": "1114",
     "CaptainName": "Red Dwarf",
@@ -2070,7 +2070,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Borodino ",
     "ShipFedId": "1115",
     "CaptainName": "Charles E. Gannon",
@@ -2088,7 +2088,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Bounty ",
     "ShipFedId": "1116",
     "CaptainName": "Kristine Katherine Rusch",
@@ -2106,7 +2106,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Braveheart ",
     "ShipFedId": "1117",
     "CaptainName": "Jack Campbell",
@@ -2124,7 +2124,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Brindisi ",
     "ShipFedId": "1118",
     "CaptainName": "James Blish",
@@ -2142,7 +2142,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Brinkdale ",
     "ShipFedId": "1119",
     "CaptainName": "Brian Aldiss",
@@ -2160,7 +2160,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Brittania",
     "ShipFedId": "1120",
     "CaptainName": "E. E. Smith",
@@ -2178,7 +2178,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Brythioch",
     "ShipFedId": "1121",
     "CaptainName": "Poul Anderson",
@@ -2196,7 +2196,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "C-57D ",
     "ShipFedId": "1122",
     "CaptainName": "Forbid N. Planet",
@@ -2214,7 +2214,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Caconym ",
     "ShipFedId": "1123",
     "CaptainName": "Iain M. Banks",
@@ -2232,7 +2232,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Calamus ",
     "ShipFedId": "1124",
     "CaptainName": "Robert Reed",
@@ -2250,7 +2250,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "IMN DD-217 Calexico ",
     "ShipFedId": "1125",
     "CaptainName": "Thomas Harlan",
@@ -2268,7 +2268,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Callisto (Asimov class spaceship) ",
     "ShipFedId": "1126",
     "CaptainName": "Isaac Asimov",
@@ -2286,7 +2286,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Calm Horizons ",
     "ShipFedId": "1127",
     "CaptainName": "Stephen R. Donaldson",
@@ -2304,7 +2304,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Caltasp Princess ",
     "ShipFedId": "1128",
     "CaptainName": "Lain M. Banks",
@@ -2322,7 +2322,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "HMS Camden Lock ",
     "ShipFedId": "1129",
     "CaptainName": "Hyper Drive",
@@ -2340,7 +2340,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Castellan ",
     "ShipFedId": "1130",
     "CaptainName": "Carmen Carter",
@@ -2358,7 +2358,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Ceatl ",
     "ShipFedId": "1131",
     "CaptainName": "Una McCormack",
@@ -2376,7 +2376,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Celestial Traveller ",
     "ShipFedId": "1132",
     "CaptainName": "Robert Kroese",
@@ -2394,7 +2394,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Chancellor ",
     "ShipFedId": "1133",
     "CaptainName": "Gene Roddenberry",
@@ -2412,7 +2412,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "U.W.S. Charybdis ",
     "ShipFedId": "1134",
     "CaptainName": "David Conyers and David Kernot",
@@ -2430,7 +2430,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Chaxothal ",
     "ShipFedId": "1135",
     "CaptainName": "Richard A. Lupoff",
@@ -2448,7 +2448,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Chimney Rock ",
     "ShipFedId": "1136",
     "CaptainName": "John C. Wright",
@@ -2466,7 +2466,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Christiforo Colombo ",
     "ShipFedId": "1137",
     "CaptainName": "Jay Lake",
@@ -2484,7 +2484,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Cleaver ",
     "ShipFedId": "1138",
     "CaptainName": "R.M. Meluch",
@@ -2502,7 +2502,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Coal Sack ",
     "ShipFedId": "1139",
     "CaptainName": "Brian W. Aldiss",
@@ -2520,7 +2520,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Coast City ",
     "ShipFedId": "1140",
     "CaptainName": "H. Beam Piper",
@@ -2538,7 +2538,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Columbia ",
     "ShipFedId": "1141",
     "CaptainName": "John Scalzi",
@@ -2556,7 +2556,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Commonwealth ",
     "ShipFedId": "1142",
     "CaptainName": "Andy Heizeler",
@@ -2574,7 +2574,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "TCS Concordia ",
     "ShipFedId": "1143",
     "CaptainName": "Robert Silverberg",
@@ -2592,7 +2592,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Contents May Differ ",
     "ShipFedId": "1144",
     "CaptainName": "Poul Anderson",
@@ -2610,7 +2610,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Corisande ",
     "ShipFedId": "1145",
     "CaptainName": "Robert Kroese",
@@ -2628,7 +2628,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "U.S.S. Courageous ",
     "ShipFedId": "1146",
     "CaptainName": "Stephen Baxter",
@@ -2646,7 +2646,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Courageous ",
     "ShipFedId": "1147",
     "CaptainName": "James Gunn",
@@ -2664,7 +2664,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Creator ",
     "ShipFedId": "1148",
     "CaptainName": "Poul Anderson",
@@ -2682,7 +2682,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Croseus ",
     "ShipFedId": "1149",
     "CaptainName": "Murray Leinster",
@@ -2700,7 +2700,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "USS Cygnus ",
     "ShipFedId": "1150",
     "CaptainName": "Robert Kroese",
@@ -2718,7 +2718,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Dagger ",
     "ShipFedId": "1151",
     "CaptainName": "David R. George III",
@@ -2736,7 +2736,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Dagmar ",
     "ShipFedId": "1152",
     "CaptainName": "Garth Nix",
@@ -2754,7 +2754,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Damnthing ",
     "ShipFedId": "1153",
     "CaptainName": "Elizabeth Moon",
@@ -2772,7 +2772,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Dampier ",
     "ShipFedId": "1154",
     "CaptainName": "R.M. Meluch",
@@ -2790,7 +2790,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Dark Star ",
     "ShipFedId": "1155",
     "CaptainName": "John Scalzi",
@@ -2808,7 +2808,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Dart ",
     "ShipFedId": "1156",
     "CaptainName": "Robert Silverberg",
@@ -2826,7 +2826,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Dauntless ",
     "ShipFedId": "1157",
     "CaptainName": "Jack Campbell",
@@ -2844,7 +2844,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Dauntless ",
     "ShipFedId": "1158",
     "CaptainName": "Gene Roddenberry",
@@ -2862,7 +2862,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Davis ",
     "ShipFedId": "1159",
     "CaptainName": "Theodore R. Cogswell",
@@ -2880,7 +2880,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Dawnforce ",
     "ShipFedId": "1160",
     "CaptainName": "Captain Harlock",
@@ -2898,7 +2898,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Death of Sophonista ",
     "ShipFedId": "1161",
     "CaptainName": "Jay Lake",
@@ -2916,7 +2916,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Deathshadow ",
     "ShipFedId": "1162",
     "CaptainName": "Richard Paul Russo",
@@ -2934,7 +2934,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "DeGaulle ",
     "ShipFedId": "1163",
     "CaptainName": "Lois McMaster Bujold",
@@ -2952,7 +2952,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Deep Reverence ",
     "ShipFedId": "1164",
     "CaptainName": "Harry Harrison",
@@ -2970,7 +2970,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Defiant ",
     "ShipFedId": "1165",
     "CaptainName": "David Kernot",
@@ -2988,7 +2988,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Dentless ",
     "ShipFedId": "1166",
     "CaptainName": "Jack Campbell",
@@ -3006,7 +3006,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Dessalines ",
     "ShipFedId": "1167",
     "CaptainName": "Robert A. Heinlein",
@@ -3024,7 +3024,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Destiny ",
     "ShipFedId": "1168",
     "CaptainName": "Poul Anderson",
@@ -3042,7 +3042,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Devastator",
     "ShipFedId": "1169",
     "CaptainName": "James Blish",
@@ -3060,7 +3060,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Dever's Ark ",
     "ShipFedId": "1170",
     "CaptainName": "Jerry Pournelle",
@@ -3078,7 +3078,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Discovery One ",
     "ShipFedId": "1171",
     "CaptainName": "Jack Campbell",
@@ -3096,7 +3096,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Displacement Activity ",
     "ShipFedId": "1172",
     "CaptainName": "Robert A. Heinlein",
@@ -3114,7 +3114,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Djanggawul ",
     "ShipFedId": "1173",
     "CaptainName": "Iain M. Banks",
@@ -3132,7 +3132,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Don Quixote ",
     "ShipFedId": "1174",
     "CaptainName": "Carmen Carter",
@@ -3150,7 +3150,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Dora ",
     "ShipFedId": "1175",
     "CaptainName": "Una McCormack",
@@ -3168,7 +3168,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Dragon Zephyr ",
     "ShipFedId": "1176",
     "CaptainName": "Robert Kroese",
@@ -3186,7 +3186,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Dreadnaught ",
     "ShipFedId": "1177",
     "CaptainName": "Gene Roddenberry",
@@ -3204,7 +3204,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Dronning Magrete ",
     "ShipFedId": "1178",
     "CaptainName": "David Conyers",
@@ -3222,7 +3222,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "CNV 301",
     "ShipFedId": "1179",
     "CaptainName": "Richard A. Lupoff",
@@ -3240,7 +3240,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Earth's Hope ",
     "ShipFedId": "1180",
     "CaptainName": "Iain M. Banks",
@@ -3258,7 +3258,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Edmonton ",
     "ShipFedId": "1181",
     "CaptainName": "John C. Wright",
@@ -3276,7 +3276,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Elias of London ",
     "ShipFedId": "1182",
     "CaptainName": "Jay Lake",
@@ -3294,7 +3294,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Elizabeth Regina ",
     "ShipFedId": "1183",
     "CaptainName": "R.M. Meluch",
@@ -3312,7 +3312,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Elysium ",
     "ShipFedId": "1184",
     "CaptainName": "R.M. Meluch",
@@ -3330,7 +3330,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Emancipation ",
     "ShipFedId": "1185",
     "CaptainName": "Brian W. Aldiss",
@@ -3348,7 +3348,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Emissary ",
     "ShipFedId": "1186",
     "CaptainName": "H. Beam Piper",
@@ -3366,7 +3366,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Empiricist ",
     "ShipFedId": "1187",
     "CaptainName": "John Scalzi",
@@ -3384,7 +3384,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Empress Maia (passenger liner) ",
     "ShipFedId": "1188",
     "CaptainName": "Andy Heizeler",
@@ -3402,7 +3402,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Endeavor ",
     "ShipFedId": "1189",
     "CaptainName": "Charles E. Gannon",
@@ -3420,7 +3420,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "USS Endeavor ",
     "ShipFedId": "1190",
     "CaptainName": "Kristine Katherine Rusch",
@@ -3438,7 +3438,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Enlightenment ",
     "ShipFedId": "1191",
     "CaptainName": "Jack Campbell",
@@ -3456,7 +3456,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Envoy ",
     "ShipFedId": "1192",
     "CaptainName": "James Blish",
@@ -3474,7 +3474,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "SSS Esperanto ",
     "ShipFedId": "1193",
     "CaptainName": "Brian Aldiss",
@@ -3492,7 +3492,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Eurydice ",
     "ShipFedId": "1194",
     "CaptainName": "E. E. Smith",
@@ -3510,7 +3510,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Euterpe ",
     "ShipFedId": "1195",
     "CaptainName": "Poul Anderson",
@@ -3528,7 +3528,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Exemplar ",
     "ShipFedId": "1196",
     "CaptainName": "Iain M. Banks",
@@ -3546,7 +3546,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Exile Prince ",
     "ShipFedId": "1197",
     "CaptainName": "Robert Reed",
@@ -3564,7 +3564,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Explorer ",
     "ShipFedId": "1198",
     "CaptainName": "Thomas Harlan",
@@ -3582,7 +3582,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Exaltation-Parsimony III ",
     "ShipFedId": "1199",
     "CaptainName": "Stephen R. Donaldson",
@@ -3600,7 +3600,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Exultance ",
     "ShipFedId": "1200",
     "CaptainName": "Michael Cobley",
@@ -3618,7 +3618,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Gallivant ",
     "ShipFedId": "1201",
     "CaptainName": "Thomas Harlan",
@@ -3636,7 +3636,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Enterprise ",
     "ShipFedId": "1202",
     "CaptainName": "Jack Vances",
@@ -3654,7 +3654,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Faithful ",
     "ShipFedId": "1203",
     "CaptainName": "Don D'Ammassa",
@@ -3672,7 +3672,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Fiat Tenebris ",
     "ShipFedId": "1204",
     "CaptainName": "James C.G. Shirk",
@@ -3690,7 +3690,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Far Star ",
     "ShipFedId": "1205",
     "CaptainName": "Michael Cobley",
@@ -3708,7 +3708,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Farre ",
     "ShipFedId": "1206",
     "CaptainName": "R.M. Meluch",
@@ -3726,7 +3726,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Fat Mickey From Detroit ",
     "ShipFedId": "1207",
     "CaptainName": "Robert A. Heinlein",
@@ -3744,7 +3744,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Fearless ",
     "ShipFedId": "1208",
     "CaptainName": "Richard A. Lupoff",
@@ -3762,7 +3762,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Feather Serpent ",
     "ShipFedId": "1209",
     "CaptainName": "Andre Norton",
@@ -3780,7 +3780,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "U.S.S. Ferrel ",
     "ShipFedId": "1210",
     "CaptainName": "Adam Christopher",
@@ -3798,7 +3798,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "First Quarter of Nix ",
     "ShipFedId": "1211",
     "CaptainName": "Charles E. Gannon",
@@ -3816,7 +3816,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Flagrante Delicto ",
     "ShipFedId": "1212",
     "CaptainName": "Iain M. Banks",
@@ -3834,7 +3834,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Flame Mountain ",
     "ShipFedId": "1213",
     "CaptainName": "H. Beam Piper",
@@ -3852,7 +3852,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Fleetwing ",
     "ShipFedId": "1214",
     "CaptainName": "David R. George III",
@@ -3870,7 +3870,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Flying Cloud ",
     "ShipFedId": "1215",
     "CaptainName": "Jack Campbell",
@@ -3888,7 +3888,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Forrestal ",
     "ShipFedId": "1216",
     "CaptainName": "Brenda Cooper",
@@ -3906,7 +3906,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Fortunate ",
     "ShipFedId": "1217",
     "CaptainName": "John C. Wright",
@@ -3924,7 +3924,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Furious ",
     "ShipFedId": "1218",
     "CaptainName": "Jack Campbell",
@@ -3942,7 +3942,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Gabriel ",
     "ShipFedId": "1219",
     "CaptainName": "Poul Anderson",
@@ -3960,7 +3960,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Galactic Survey",
     "ShipFedId": "1220",
     "CaptainName": "H. Beam Piper",
@@ -3978,7 +3978,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Gantrithor ",
     "ShipFedId": "1221",
     "CaptainName": "Alan Dean Foster",
@@ -3996,7 +3996,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Garden Chernobyl ",
     "ShipFedId": "1222",
     "CaptainName": "John Carpenter",
@@ -4014,7 +4014,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Garden Hybris ",
     "ShipFedId": "1223",
     "CaptainName": "Andre Norton",
@@ -4032,7 +4032,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Garden Kiev ",
     "ShipFedId": "1224",
     "CaptainName": "\"E.E. (\"\"Doc\"\") Smith\"",
@@ -4050,7 +4050,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Garden of Hope ",
     "ShipFedId": "1225",
     "CaptainName": "Jack Campbell",
@@ -4068,7 +4068,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Gay Deceiver ",
     "ShipFedId": "1226",
     "CaptainName": "Richard A. Lupoff",
@@ -4086,7 +4086,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Geboraa ",
     "ShipFedId": "1227",
     "CaptainName": "Brenda Cooper",
@@ -4104,7 +4104,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Gegenschen ",
     "ShipFedId": "1228",
     "CaptainName": "Alastair Reynold",
@@ -4122,7 +4122,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Gemini 12 ",
     "ShipFedId": "1229",
     "CaptainName": "Captain Harlock",
@@ -4140,7 +4140,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "General Vorkraft ",
     "ShipFedId": "1230",
     "CaptainName": "L.E. Modesitt Jr.",
@@ -4158,7 +4158,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Gentle Star (General Gau's command ship) ",
     "ShipFedId": "1231",
     "CaptainName": "Greg Bear",
@@ -4176,7 +4176,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Geoffrey ",
     "ShipFedId": "1232",
     "CaptainName": "Randall Garrett",
@@ -4194,7 +4194,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "HMS Giacobbini-Zimmer ",
     "ShipFedId": "1233",
     "CaptainName": "Richard A. Lupoff",
@@ -4212,7 +4212,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Gladiator ",
     "ShipFedId": "1234",
     "CaptainName": "Iain M. Banks",
@@ -4230,7 +4230,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Glorious ",
     "ShipFedId": "1235",
     "CaptainName": "Richard A. Lupoff",
@@ -4248,7 +4248,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Glorious Fool ",
     "ShipFedId": "1236",
     "CaptainName": "Larry Niven and",
@@ -4266,7 +4266,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Goblin ",
     "ShipFedId": "1237",
     "CaptainName": "Robert Heinlein",
@@ -4284,7 +4284,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Golden Flyer ",
     "ShipFedId": "1238",
     "CaptainName": "Norman Spinrad",
@@ -4302,7 +4302,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Golden Voyager ",
     "ShipFedId": "1239",
     "CaptainName": "Jack Campbell",
@@ -4320,7 +4320,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Gnostic ",
     "ShipFedId": "1240",
     "CaptainName": "Poul Anderson",
@@ -4338,7 +4338,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Gomjar (Pakled) ",
     "ShipFedId": "1241",
     "CaptainName": "R.M. Meluch",
@@ -4356,7 +4356,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Gothlauth ",
     "ShipFedId": "1242",
     "CaptainName": "Marguerite Reed",
@@ -4374,7 +4374,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Grandon ",
     "ShipFedId": "1243",
     "CaptainName": "Robert A. Heinlein",
@@ -4392,7 +4392,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Graf Helmuth Karl Bernhard von Moltke ",
     "ShipFedId": "1244",
     "CaptainName": "John C. Wright",
@@ -4410,7 +4410,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Grantham ",
     "ShipFedId": "1245",
     "CaptainName": "Poul Anderson",
@@ -4428,7 +4428,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Grebe ",
     "ShipFedId": "1246",
     "CaptainName": "Iain M. Banks",
@@ -4446,7 +4446,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Griffin ",
     "ShipFedId": "1247",
     "CaptainName": "Poul Anderson",
@@ -4464,7 +4464,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Guadalajara ",
     "ShipFedId": "1248",
     "CaptainName": "Chris Roberson",
@@ -4482,7 +4482,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Hallowed ",
     "ShipFedId": "1249",
     "CaptainName": "Christopher L. Bennett",
@@ -4500,7 +4500,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Hammadi ",
     "ShipFedId": "1250",
     "CaptainName": "Poul Andreson",
@@ -4518,7 +4518,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Harryhausen",
     "ShipFedId": "1251",
     "CaptainName": "H. Beam Piper",
@@ -4536,7 +4536,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Headcrash ",
     "ShipFedId": "1252",
     "CaptainName": "Stanislaw Lem",
@@ -4554,7 +4554,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Heart of Gold ",
     "ShipFedId": "1253",
     "CaptainName": "Matthew Hughes",
@@ -4572,7 +4572,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Hebe G.B. ",
     "ShipFedId": "1254",
     "CaptainName": "Jack Campbell",
@@ -4590,7 +4590,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Helen of Troy ",
     "ShipFedId": "1255",
     "CaptainName": "Richard Paul Russo",
@@ -4608,7 +4608,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Henry Hudson ",
     "ShipFedId": "1256",
     "CaptainName": "Poul Anderson",
@@ -4626,7 +4626,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Henry R. Cornuelle ",
     "ShipFedId": "1257",
     "CaptainName": "Iain M. Banks",
@@ -4644,7 +4644,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Heracles ",
     "ShipFedId": "1258",
     "CaptainName": "Matthew Hughes",
@@ -4662,7 +4662,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Hermetic ",
     "ShipFedId": "1259",
     "CaptainName": "John Scalzi",
@@ -4680,7 +4680,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "The Heroism of Che Guevara ",
     "ShipFedId": "1260",
     "CaptainName": "Robert Kroese",
@@ -4698,7 +4698,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Heshgemar-Kref ",
     "ShipFedId": "1261",
     "CaptainName": "Isaac Asimov",
@@ -4716,7 +4716,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Hideyoshi ",
     "ShipFedId": "1262",
     "CaptainName": "John Scalzi",
@@ -4734,7 +4734,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "High Barbaree ",
     "ShipFedId": "1263",
     "CaptainName": "M. John Harrison",
@@ -4752,7 +4752,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Hirondelle ",
     "ShipFedId": "1264",
     "CaptainName": "Jack Campbell",
@@ -4770,7 +4770,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Holy ",
     "ShipFedId": "1265",
     "CaptainName": "Norman Spinrad",
@@ -4788,7 +4788,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Hooligan ",
     "ShipFedId": "1266",
     "CaptainName": "Carmen Carter",
@@ -4806,7 +4806,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Homghor ",
     "ShipFedId": "1267",
     "CaptainName": "Kim Stanley Robinson",
@@ -4824,7 +4824,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Hope Fire Home ",
     "ShipFedId": "1268",
     "CaptainName": "Robert Kroese",
@@ -4842,7 +4842,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Horizon ",
     "ShipFedId": "1269",
     "CaptainName": "Norman Spinrad",
@@ -4860,7 +4860,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Hot Needle of Inquiry ",
     "ShipFedId": "1270",
     "CaptainName": "Poul Anderson",
@@ -4878,7 +4878,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Hull 302 ",
     "ShipFedId": "1271",
     "CaptainName": "Poul Anderson",
@@ -4896,7 +4896,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Hunter Gratzner ",
     "ShipFedId": "1272",
     "CaptainName": "Michael Cobley",
@@ -4914,7 +4914,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Hydra ",
     "ShipFedId": "1273",
     "CaptainName": "John Scalzi",
@@ -4932,7 +4932,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Hyperion ",
     "ShipFedId": "1274",
     "CaptainName": "Jack Campbell",
@@ -4950,7 +4950,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Iberre ",
     "ShipFedId": "1275",
     "CaptainName": "Philip Jos� Farmer",
@@ -4968,7 +4968,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Infinity",
     "ShipFedId": "1276",
     "CaptainName": "Arthur C. Clarke",
@@ -4986,7 +4986,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Influx ",
     "ShipFedId": "1277",
     "CaptainName": "Matthew Hughes",
@@ -5004,7 +5004,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Invidious ",
     "ShipFedId": "1278",
     "CaptainName": "David Marusek",
@@ -5022,7 +5022,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Interpol ship 2186 ",
     "ShipFedId": "1279",
     "CaptainName": "David Marusek",
@@ -5040,7 +5040,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Intrepid ",
     "ShipFedId": "1280",
     "CaptainName": "David Marusek",
@@ -5058,7 +5058,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Irrelevant",
     "ShipFedId": "1281",
     "CaptainName": "David Marusek",
@@ -5076,7 +5076,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Jackson ",
     "ShipFedId": "1282",
     "CaptainName": "Robert Heinlein",
@@ -5094,7 +5094,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Jacob ",
     "ShipFedId": "1283",
     "CaptainName": "Brian W. Aldiss",
@@ -5112,7 +5112,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Jacob's Ladder ",
     "ShipFedId": "1284",
     "CaptainName": "Robert Silverberg",
@@ -5130,7 +5130,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "James A. Eastland ",
     "ShipFedId": "1285",
     "CaptainName": "Lois McMaster Bujold",
@@ -5148,7 +5148,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Jean Christophe ",
     "ShipFedId": "1286",
     "CaptainName": "James Gunn",
@@ -5166,7 +5166,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Jemima ",
     "ShipFedId": "1287",
     "CaptainName": "Poul Anderson",
@@ -5184,7 +5184,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Jenny Lind ",
     "ShipFedId": "1288",
     "CaptainName": "R.M. Meluch",
@@ -5202,7 +5202,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Jinn ",
     "ShipFedId": "1289",
     "CaptainName": "Theodore R. Cogswell",
@@ -5220,7 +5220,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Jupiter 2 ",
     "ShipFedId": "1290",
     "CaptainName": "Rachel Bach",
@@ -5238,7 +5238,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Kakistocrat ",
     "ShipFedId": "1291",
     "CaptainName": "Jack Campbell",
@@ -5256,7 +5256,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Karas ",
     "ShipFedId": "1292",
     "CaptainName": "Poul Anderson",
@@ -5274,7 +5274,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Karoe Star ",
     "ShipFedId": "1293",
     "CaptainName": "Greg Bear",
@@ -5292,7 +5292,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "HDS Kerris ",
     "ShipFedId": "1294",
     "CaptainName": "Neal Asher",
@@ -5310,7 +5310,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Kestrel ",
     "ShipFedId": "1295",
     "CaptainName": "David Mack",
@@ -5328,7 +5328,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "The Kestrel ",
     "ShipFedId": "1296",
     "CaptainName": "Brian Aldiss",
@@ -5346,7 +5346,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Kho-Maurz ",
     "ShipFedId": "1297",
     "CaptainName": "Poul Anderson",
@@ -5364,7 +5364,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Kiev ",
     "ShipFedId": "1298",
     "CaptainName": "Robert Holdstock",
@@ -5382,7 +5382,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Kilsat ",
     "ShipFedId": "1299",
     "CaptainName": "Geoff Nelder",
@@ -5400,7 +5400,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Kingwell's Pride ",
     "ShipFedId": "1300",
     "CaptainName": "John Scalzi",
@@ -5418,7 +5418,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Korkunov ",
     "ShipFedId": "1301",
     "CaptainName": "R.M. Meluch",
@@ -5436,7 +5436,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Kuan-Yin ",
     "ShipFedId": "1302",
     "CaptainName": "John Scalzi",
@@ -5454,7 +5454,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Kulak ",
     "ShipFedId": "1303",
     "CaptainName": "Michael P. Kube-McDowell",
@@ -5472,7 +5472,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "La Reine Louise ",
     "ShipFedId": "1304",
     "CaptainName": "Christopher L. Bennett",
@@ -5490,7 +5490,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Labrys ",
     "ShipFedId": "1305",
     "CaptainName": "Iain M. Banks",
@@ -5508,7 +5508,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Lakshmi ",
     "ShipFedId": "1306",
     "CaptainName": "The Hitchhiker",
@@ -5526,7 +5526,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Lewis and Clark ",
     "ShipFedId": "1307",
     "CaptainName": "Poul Anderson",
@@ -5544,7 +5544,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Leyenda ",
     "ShipFedId": "1308",
     "CaptainName": "Don D'Ammassa",
@@ -5562,7 +5562,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Lief Ericsson ",
     "ShipFedId": "1309",
     "CaptainName": "Robert A. Heinlein",
@@ -5580,7 +5580,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "SC Lois McKendrick ",
     "ShipFedId": "1310",
     "CaptainName": "Thomas Harlan",
@@ -5598,7 +5598,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "SDF-1 Macross ",
     "ShipFedId": "1311",
     "CaptainName": "Michael Cobley",
@@ -5616,7 +5616,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Magellan ",
     "ShipFedId": "1312",
     "CaptainName": "John C. Wright",
@@ -5634,7 +5634,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Makarata ",
     "ShipFedId": "1313",
     "CaptainName": "Allen Steele",
@@ -5652,7 +5652,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "U.E.S.C. Marathon ",
     "ShipFedId": "1314",
     "CaptainName": "Michael Cobley",
@@ -5670,7 +5670,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Malika ",
     "ShipFedId": "1315",
     "CaptainName": "Poul Anderson",
@@ -5688,7 +5688,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Manifold Destiny",
     "ShipFedId": "1316",
     "CaptainName": "John Scalzi",
@@ -5706,7 +5706,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "SS Manny Celeste ",
     "ShipFedId": "1317",
     "CaptainName": "Poul Anderson",
@@ -5724,7 +5724,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Marathon ",
     "ShipFedId": "1318",
     "CaptainName": "Clayton Ward",
@@ -5742,7 +5742,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Marco Polo ",
     "ShipFedId": "1319",
     "CaptainName": "Andy Dudak",
@@ -5760,7 +5760,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Marilee ",
     "ShipFedId": "1320",
     "CaptainName": "Christopher L. Bennett",
@@ -5778,7 +5778,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Massive ",
     "ShipFedId": "1321",
     "CaptainName": "Larry Niven",
@@ -5796,7 +5796,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Mayflower II ",
     "ShipFedId": "1322",
     "CaptainName": "Jay Lake",
@@ -5814,7 +5814,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Melancholia Enshrines All Triumph ",
     "ShipFedId": "1323",
     "CaptainName": "Kevin Dilmore",
@@ -5832,7 +5832,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "MengTian ",
     "ShipFedId": "1324",
     "CaptainName": "Michael Cobley",
@@ -5850,7 +5850,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Mercedes ",
     "ShipFedId": "1325",
     "CaptainName": "Iain M. Banks",
@@ -5868,7 +5868,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Mercury ",
     "ShipFedId": "1326",
     "CaptainName": "Robert A. Heinlein",
@@ -5886,7 +5886,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "U.S.S. Merrimack ",
     "ShipFedId": "1327",
     "CaptainName": "James L. Cambias",
@@ -5904,7 +5904,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Milano ",
     "ShipFedId": "1328",
     "CaptainName": "Jack Campbell",
@@ -5922,7 +5922,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Millennium Falcon ",
     "ShipFedId": "1329",
     "CaptainName": "R.M. Meluch",
@@ -5940,7 +5940,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Minerva ",
     "ShipFedId": "1330",
     "CaptainName": "Robert Saboroff",
@@ -5958,7 +5958,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Miranda II ",
     "ShipFedId": "1331",
     "CaptainName": "Robert A. Heinlein",
@@ -5976,7 +5976,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Mistake Not ",
     "ShipFedId": "1332",
     "CaptainName": "Richard A. Lupoff",
@@ -5994,7 +5994,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Montana ",
     "ShipFedId": "1333",
     "CaptainName": "Brian Herbert",
@@ -6012,7 +6012,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Nadesico",
     "ShipFedId": "1334",
     "CaptainName": "Richard A. Lupoff",
@@ -6030,7 +6030,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Nantes ",
     "ShipFedId": "1335",
     "CaptainName": "Phyllis Gotlieb",
@@ -6048,7 +6048,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Naranja ",
     "ShipFedId": "1336",
     "CaptainName": "Yahtzee Crosshaw",
@@ -6066,7 +6066,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Nautilus ",
     "ShipFedId": "1337",
     "CaptainName": "Robert Sheckley",
@@ -6084,7 +6084,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Nauvoo ",
     "ShipFedId": "1338",
     "CaptainName": "Jack Campbell",
@@ -6102,7 +6102,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Nauvoo Vision ",
     "ShipFedId": "1339",
     "CaptainName": "Iain M. Banks",
@@ -6120,7 +6120,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Nell ",
     "ShipFedId": "1340",
     "CaptainName": "James Blish",
@@ -6138,7 +6138,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Net Gain",
     "ShipFedId": "1341",
     "CaptainName": "Elizabeth Moon",
@@ -6156,7 +6156,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Neverdie ",
     "ShipFedId": "1342",
     "CaptainName": "Brian Herbert",
@@ -6174,7 +6174,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "New Frontiers ",
     "ShipFedId": "1343",
     "CaptainName": "Lois McMaster Bujold",
@@ -6192,7 +6192,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "New Hope",
     "ShipFedId": "1344",
     "CaptainName": "Richard Paul Russo",
@@ -6210,7 +6210,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "New Making ",
     "ShipFedId": "1345",
     "CaptainName": "Michael Cobley",
@@ -6228,7 +6228,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Newton ",
     "ShipFedId": "1346",
     "CaptainName": "Thomas Harlan",
@@ -6246,7 +6246,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Nighthawk ",
     "ShipFedId": "1347",
     "CaptainName": "James Gunn",
@@ -6264,7 +6264,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Nightingale (hospital ship) ",
     "ShipFedId": "1348",
     "CaptainName": "David Marusek",
@@ -6282,7 +6282,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Nimbus ",
     "ShipFedId": "1349",
     "CaptainName": "Thomas Harlan",
@@ -6300,7 +6300,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Nina ",
     "ShipFedId": "1350",
     "CaptainName": "James P. Hogan",
@@ -6318,7 +6318,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Nobody's Business ",
     "ShipFedId": "1351",
     "CaptainName": "David Mack",
@@ -6336,7 +6336,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Normandy Beach ",
     "ShipFedId": "1352",
     "CaptainName": "Poul Anderson",
@@ -6354,7 +6354,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Normandy SR-1 & SR-2 ",
     "ShipFedId": "1353",
     "CaptainName": "Colin Harvey",
@@ -6372,7 +6372,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Nostromo ",
     "ShipFedId": "1354",
     "CaptainName": "Tad William",
@@ -6390,7 +6390,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Nova 5 ",
     "ShipFedId": "1355",
     "CaptainName": "Robert A. Heinlein",
@@ -6408,7 +6408,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Nova Swing ",
     "ShipFedId": "1356",
     "CaptainName": "Marguerite Reed",
@@ -6426,7 +6426,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Novoe Washingtongrad ",
     "ShipFedId": "1357",
     "CaptainName": "Robert A. Heinlein",
@@ -6444,7 +6444,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Kakitsubata",
     "ShipFedId": "1358",
     "CaptainName": "Nathan Lowell",
@@ -6462,7 +6462,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Shakuyaku",
     "ShipFedId": "1359",
     "CaptainName": "Arthur C. Clarke",
@@ -6480,7 +6480,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Obin Transport 8552 ",
     "ShipFedId": "1360",
     "CaptainName": "Robert A. Heinlein",
@@ -6498,7 +6498,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Odyssey ",
     "ShipFedId": "1361",
     "CaptainName": "John Scalzi",
@@ -6516,7 +6516,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Oginga Odinga ",
     "ShipFedId": "1362",
     "CaptainName": "Richard A. Lupoff",
@@ -6534,7 +6534,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "U.S.S. Oklahoma ",
     "ShipFedId": "1363",
     "CaptainName": "Joseph L. Kellogg",
@@ -6552,7 +6552,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Opulence ",
     "ShipFedId": "1364",
     "CaptainName": "John Scalzi",
@@ -6570,7 +6570,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Orgillious (space yacht) ",
     "ShipFedId": "1365",
     "CaptainName": "Eric Frank Russell",
@@ -6588,7 +6588,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Orion ",
     "ShipFedId": "1366",
     "CaptainName": "Robert A. Heinlein",
@@ -6606,7 +6606,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Orpheus ",
     "ShipFedId": "1367",
     "CaptainName": "James L. Cambias",
@@ -6624,7 +6624,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Orval Faubus ",
     "ShipFedId": "1368",
     "CaptainName": "Jack C. Haldeman II",
@@ -6642,7 +6642,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Our Lady ",
     "ShipFedId": "1369",
     "CaptainName": "Stephen Baxter",
@@ -6660,7 +6660,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Our Moment of Triumph ",
     "ShipFedId": "1370",
     "CaptainName": "James P. Hogan",
@@ -6678,7 +6678,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Outlaw Star ",
     "ShipFedId": "1371",
     "CaptainName": "Iain M. Banks",
@@ -6696,7 +6696,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "PC-14558 ",
     "ShipFedId": "1372",
     "CaptainName": "L.E. Modesitt Jr.",
@@ -6714,7 +6714,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "USS Palamino ",
     "ShipFedId": "1373",
     "CaptainName": "M.R. Meluch",
@@ -6732,7 +6732,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Pallistre ",
     "ShipFedId": "1374",
     "CaptainName": "Robert A. Heinlein",
@@ -6750,7 +6750,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Pantopon Rose ",
     "ShipFedId": "1375",
     "CaptainName": "M.R. Meluch",
@@ -6768,7 +6768,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Passing By",
     "ShipFedId": "1376",
     "CaptainName": "Robert Heinlein",
@@ -6786,7 +6786,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Fidel Castro ",
     "ShipFedId": "1377",
     "CaptainName": "C.L. Anderson",
@@ -6804,7 +6804,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Pax Magellanic ",
     "ShipFedId": "1378",
     "CaptainName": "Iain M. Banks",
@@ -6822,7 +6822,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Pax Terra ",
     "ShipFedId": "1379",
     "CaptainName": "Tony Daniel",
@@ -6840,7 +6840,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Peccable ",
     "ShipFedId": "1380",
     "CaptainName": "Poul Anderson",
@@ -6858,7 +6858,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Pedagogue ",
     "ShipFedId": "1381",
     "CaptainName": "John Scalzi",
@@ -6876,7 +6876,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Peregrine ",
     "ShipFedId": "1382",
     "CaptainName": "Jay Lake",
@@ -6894,7 +6894,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Perez ",
     "ShipFedId": "1383",
     "CaptainName": "Robert A. Heinlein",
@@ -6912,7 +6912,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Perquisitor ",
     "ShipFedId": "1384",
     "CaptainName": "James S.A. Corey",
@@ -6930,7 +6930,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Persephone ",
     "ShipFedId": "1385",
     "CaptainName": "Jerry Pournelle",
@@ -6948,7 +6948,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Persephonya ",
     "ShipFedId": "1386",
     "CaptainName": "David Mack",
@@ -6966,7 +6966,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Peter the Great ",
     "ShipFedId": "1387",
     "CaptainName": "Yahtzee Crosshaw",
@@ -6984,7 +6984,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Phaeton ",
     "ShipFedId": "1388",
     "CaptainName": "Robert A. Heinlein",
@@ -7002,7 +7002,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Pharaon ",
     "ShipFedId": "1389",
     "CaptainName": "Andre Norton",
@@ -7020,7 +7020,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Phoenicia ",
     "ShipFedId": "1390",
     "CaptainName": "Brenda Cooper",
@@ -7038,7 +7038,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Pinta ",
     "ShipFedId": "1391",
     "CaptainName": "Richard A. Lupoff",
@@ -7056,7 +7056,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Pizza Night ",
     "ShipFedId": "1392",
     "CaptainName": "John Scalzi",
@@ -7074,7 +7074,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Pioneer ",
     "ShipFedId": "1393",
     "CaptainName": "Alastair Reynold",
@@ -7092,7 +7092,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Planet Express Ship ",
     "ShipFedId": "1394",
     "CaptainName": "Robert A. Heinlein",
@@ -7110,7 +7110,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Platinum God of the Whale Sharks ",
     "ShipFedId": "1395",
     "CaptainName": "Robert Heinlein",
@@ -7128,7 +7128,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Polaris ",
     "ShipFedId": "1396",
     "CaptainName": "M. John Harrison",
@@ -7146,7 +7146,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Polyphemus ",
     "ShipFedId": "1397",
     "CaptainName": "James Blish",
@@ -7164,7 +7164,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Pressure Drop ",
     "ShipFedId": "1398",
     "CaptainName": "John Scalzi",
@@ -7182,7 +7182,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Prestige ",
     "ShipFedId": "1399",
     "CaptainName": "Richard A. Lupoff",
@@ -7200,7 +7200,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "The Pride of Cucamonga ",
     "ShipFedId": "1400",
     "CaptainName": "Matthew Hughes",
@@ -7218,7 +7218,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Prince Serg ",
     "ShipFedId": "1401",
     "CaptainName": "Matthew Hughes",
@@ -7236,7 +7236,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Princess Karen ",
     "ShipFedId": "1402",
     "CaptainName": "Jack Campbell",
@@ -7254,7 +7254,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Procyon ",
     "ShipFedId": "1403",
     "CaptainName": "Stanislaw Lem",
@@ -7272,7 +7272,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Prohorus ",
     "ShipFedId": "1404",
     "CaptainName": "Richard A. Lupoff",
@@ -7290,7 +7290,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "X-303 Prometheus ",
     "ShipFedId": "1405",
     "CaptainName": "Poul Anderson",
@@ -7308,7 +7308,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Prometheus ",
     "ShipFedId": "1406",
     "CaptainName": "Robert Kroese",
@@ -7326,7 +7326,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Prominence ",
     "ShipFedId": "1407",
     "CaptainName": "Iain M. Banks",
@@ -7344,7 +7344,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "NSEA Protector ",
     "ShipFedId": "1408",
     "CaptainName": "Jack Campbell",
@@ -7362,7 +7362,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Puit Puit Maru ",
     "ShipFedId": "1409",
     "CaptainName": "Matthew Hughes",
@@ -7380,7 +7380,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Purifier ",
     "ShipFedId": "1410",
     "CaptainName": "M. John Harrison",
@@ -7398,7 +7398,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Queen Flavia ",
     "ShipFedId": "1411",
     "CaptainName": "Iain M. Banks",
@@ -7416,7 +7416,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Quirin ",
     "ShipFedId": "1412",
     "CaptainName": "Allen Steele",
@@ -7434,7 +7434,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Raghavendru",
     "ShipFedId": "1413",
     "CaptainName": "Gene Roddenberry",
@@ -7452,7 +7452,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Raphael ",
     "ShipFedId": "1414",
     "CaptainName": "Michael Cobley",
@@ -7470,7 +7470,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Rapier ",
     "ShipFedId": "1415",
     "CaptainName": "Robert Silverberg",
@@ -7488,7 +7488,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Raven ",
     "ShipFedId": "1416",
     "CaptainName": "Stephen Leigh",
@@ -7506,7 +7506,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Raven ",
     "ShipFedId": "1417",
     "CaptainName": "Richard A. Lupoff",
@@ -7524,7 +7524,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Realta ",
     "ShipFedId": "1418",
     "CaptainName": "Michael Cobley",
@@ -7542,7 +7542,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Red Dwarf ",
     "ShipFedId": "1419",
     "CaptainName": "Don D'Ammassa",
@@ -7560,7 +7560,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Red Rose ",
     "ShipFedId": "1420",
     "CaptainName": "L.E. Modesitt Jr.",
@@ -7578,7 +7578,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Redeemed ",
     "ShipFedId": "1421",
     "CaptainName": "Robert A. Heinlein",
@@ -7596,7 +7596,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Refreshingly Unconcerned With the Vulgar Experiences of Veracity ",
     "ShipFedId": "1422",
     "CaptainName": "R.M. Meluch",
@@ -7614,7 +7614,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Rene Magritte ",
     "ShipFedId": "1423",
     "CaptainName": "Ben Jeapes",
@@ -7632,7 +7632,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Repulse ",
     "ShipFedId": "1424",
     "CaptainName": "Robert A. Heinlein",
@@ -7650,7 +7650,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Resolution ",
     "ShipFedId": "1425",
     "CaptainName": "M. John Harrison",
@@ -7668,7 +7668,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Resolution ",
     "ShipFedId": "1426",
     "CaptainName": "Christopher L. Bennett",
@@ -7686,7 +7686,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Resolution II ",
     "ShipFedId": "1427",
     "CaptainName": "Yahtzee Crosshaw",
@@ -7704,7 +7704,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Rieskessel ",
     "ShipFedId": "1428",
     "CaptainName": "Jack McDevitt",
@@ -7722,7 +7722,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Rivgor ",
     "ShipFedId": "1429",
     "CaptainName": "Jay Lake",
@@ -7740,7 +7740,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "RG 132 ",
     "ShipFedId": "1430",
     "CaptainName": "Iain M. Banks",
@@ -7758,7 +7758,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Righteous ",
     "ShipFedId": "1431",
     "CaptainName": "Matthew Hughes",
@@ -7776,7 +7776,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Rio Grande ",
     "ShipFedId": "1432",
     "CaptainName": "Allen Steele",
@@ -7794,7 +7794,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Rolling Thunder ",
     "ShipFedId": "1433",
     "CaptainName": "Lois McMaster Bujold",
@@ -7812,7 +7812,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "USS Roosevelt ",
     "ShipFedId": "1434",
     "CaptainName": "Poul Anderson",
@@ -7830,7 +7830,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Rurik ",
     "ShipFedId": "1435",
     "CaptainName": "David R. George III",
@@ -7848,7 +7848,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "USS Sagittarius ",
     "ShipFedId": "1436",
     "CaptainName": "Raymond E. Jones",
@@ -7866,7 +7866,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "San Joaquin ",
     "ShipFedId": "1437",
     "CaptainName": "Matthew Hughes",
@@ -7884,7 +7884,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Saucy Sal ",
     "ShipFedId": "1438",
     "CaptainName": "M. John Harrison",
@@ -7902,7 +7902,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Seale ",
     "ShipFedId": "1439",
     "CaptainName": "Michael Cobley",
@@ -7920,7 +7920,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Sacred ",
     "ShipFedId": "1440",
     "CaptainName": "H. Beam Piper",
@@ -7938,7 +7938,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Sacrifice",
     "ShipFedId": "1441",
     "CaptainName": "Michael P. Kube-McDowell",
@@ -7956,7 +7956,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Sainted ",
     "ShipFedId": "1442",
     "CaptainName": "David R. George III",
@@ -7974,7 +7974,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Sandra Voi ",
     "ShipFedId": "1443",
     "CaptainName": "Phyllis Gotlieb",
@@ -7992,7 +7992,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Santa Maria ",
     "ShipFedId": "1444",
     "CaptainName": "Poul Anderson",
@@ -8010,7 +8010,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Santaerno ",
     "ShipFedId": "1445",
     "CaptainName": "Jack Campbell",
@@ -8028,7 +8028,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Schnellwind ",
     "ShipFedId": "1446",
     "CaptainName": "Poul Anderson",
@@ -8046,7 +8046,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "S.S. Schirra ",
     "ShipFedId": "1447",
     "CaptainName": "Peter David",
@@ -8064,7 +8064,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Scorpio ",
     "ShipFedId": "1448",
     "CaptainName": "Robert Holdstock",
@@ -8082,7 +8082,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Jurisdiction Fleet Ship Scylla ",
     "ShipFedId": "1449",
     "CaptainName": "John Scalzi",
@@ -8100,7 +8100,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Seedling Star ",
     "ShipFedId": "1450",
     "CaptainName": "John Scalzi",
@@ -8118,7 +8118,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "The Seeker ",
     "ShipFedId": "1451",
     "CaptainName": "Iain M. Banks",
@@ -8136,7 +8136,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Segmentation ",
     "ShipFedId": "1452",
     "CaptainName": "Lois McMaster Bujold",
@@ -8154,7 +8154,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Serenity ",
     "ShipFedId": "1453",
     "CaptainName": "Jack Campbell",
@@ -8172,7 +8172,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Serendipity ",
     "ShipFedId": "1454",
     "CaptainName": "Jack Campbell",
@@ -8190,7 +8190,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Seth ",
     "ShipFedId": "1455",
     "CaptainName": "G. David Nordley",
@@ -8208,7 +8208,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Sheffield ",
     "ShipFedId": "1456",
     "CaptainName": "G. David Nordley",
@@ -8226,7 +8226,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Shoryu ",
     "ShipFedId": "1457",
     "CaptainName": "Poul Anderson",
@@ -8244,7 +8244,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Sidonia ",
     "ShipFedId": "1458",
     "CaptainName": "Christopher L. Bennett",
@@ -8262,7 +8262,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Silago-Ekon ",
     "ShipFedId": "1459",
     "CaptainName": "Lois McMaster Bujold",
@@ -8280,7 +8280,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Silver Wings of Morning ",
     "ShipFedId": "1460",
     "CaptainName": "John Scalzi",
@@ -8298,7 +8298,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "SS Silverberg ",
     "ShipFedId": "1461",
     "CaptainName": "R.M. Meluch",
@@ -8316,7 +8316,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Sinbad ",
     "ShipFedId": "1462",
     "CaptainName": "John Varley",
@@ -8334,7 +8334,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Skidhbladnir ",
     "ShipFedId": "1463",
     "CaptainName": "Charles E. Gannon",
@@ -8352,7 +8352,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Skimmer ",
     "ShipFedId": "1464",
     "CaptainName": "Poul Anderson",
@@ -8370,7 +8370,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Skydiver",
     "ShipFedId": "1465",
     "CaptainName": "Robert A. Heinlein",
@@ -8388,7 +8388,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Skyrover ",
     "ShipFedId": "1466",
     "CaptainName": "Clayton Ward",
@@ -8406,7 +8406,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Various Skylarks ",
     "ShipFedId": "1467",
     "CaptainName": "John Scalzi",
@@ -8424,7 +8424,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Sleipnir ",
     "ShipFedId": "1468",
     "CaptainName": "M. John Harrison",
@@ -8442,7 +8442,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Slower Than Infinity ",
     "ShipFedId": "1469",
     "CaptainName": "Richard A. Lupoff",
@@ -8460,7 +8460,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Smile Tolerantly ",
     "ShipFedId": "1470",
     "CaptainName": "John Scalzi",
@@ -8478,7 +8478,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Sojourn ",
     "ShipFedId": "1471",
     "CaptainName": "Michael Cobley",
@@ -8496,7 +8496,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Sol Bianca ",
     "ShipFedId": "1472",
     "CaptainName": "John Scalzi",
@@ -8514,7 +8514,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Solar Queen ",
     "ShipFedId": "1473",
     "CaptainName": "Alastair Reynold",
@@ -8532,7 +8532,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Some Nerve! ",
     "ShipFedId": "1474",
     "CaptainName": "Robert A. Heinlein",
@@ -8550,7 +8550,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Spaceball One ",
     "ShipFedId": "1475",
     "CaptainName": "Donald Kinsbury",
@@ -8568,7 +8568,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Space Beagle ",
     "ShipFedId": "1476",
     "CaptainName": "Charles E. Gannon",
@@ -8586,7 +8586,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Space King",
     "ShipFedId": "1477",
     "CaptainName": "Charles Huntington",
@@ -8604,7 +8604,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Space Probe 6 ",
     "ShipFedId": "1478",
     "CaptainName": "Susan R. Matthews",
@@ -8622,7 +8622,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Space Scourge ",
     "ShipFedId": "1479",
     "CaptainName": "Greg Bear",
@@ -8640,7 +8640,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Spawn of Dagon ",
     "ShipFedId": "1480",
     "CaptainName": "Kristine Kathryn Rusch",
@@ -8658,7 +8658,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Spartacus ",
     "ShipFedId": "1481",
     "CaptainName": "Michael Cobley",
@@ -8676,7 +8676,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Spectre ",
     "ShipFedId": "1482",
     "CaptainName": "Robert A. Heinlein",
@@ -8694,7 +8694,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Speroancora ",
     "ShipFedId": "1483",
     "CaptainName": "Marc Peraino",
@@ -8712,7 +8712,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Spring Beauty ",
     "ShipFedId": "1484",
     "CaptainName": "Robert A. Heinlein",
@@ -8730,7 +8730,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Star of Naxos ",
     "ShipFedId": "1485",
     "CaptainName": "Thomas Harlan",
@@ -8748,7 +8748,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Starbug ",
     "ShipFedId": "1486",
     "CaptainName": "Nihei Tsutomu",
@@ -8766,7 +8766,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Starship Titanic ",
     "ShipFedId": "1487",
     "CaptainName": "David Mack",
@@ -8784,7 +8784,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "State's Rights ",
     "ShipFedId": "1488",
     "CaptainName": "Alastair Reynolds",
@@ -8802,7 +8802,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Streaker ",
     "ShipFedId": "1489",
     "CaptainName": "Jerry Pournelle",
@@ -8820,7 +8820,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Sud Qav ",
     "ShipFedId": "1490",
     "CaptainName": "Michael Cobley",
@@ -8838,7 +8838,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "U.S.S. Sulaco ",
     "ShipFedId": "1491",
     "CaptainName": "Zach Hughes",
@@ -8856,7 +8856,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Sulica ",
     "ShipFedId": "1492",
     "CaptainName": "Robert Silverberg",
@@ -8874,7 +8874,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "SunSeeker ",
     "ShipFedId": "1493",
     "CaptainName": "E. E. Smith",
@@ -8892,7 +8892,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Surprise ",
     "ShipFedId": "1494",
     "CaptainName": "Philip Jose Farmer",
@@ -8910,7 +8910,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Swift ",
     "ShipFedId": "1495",
     "CaptainName": "Larry Niven",
@@ -8928,7 +8928,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Talyn ",
     "ShipFedId": "1496",
     "CaptainName": "Iain M. Banks",
@@ -8946,7 +8946,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Tambourlaine ",
     "ShipFedId": "1497",
     "CaptainName": "Geoff Nelder",
@@ -8964,7 +8964,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Tarcza ",
     "ShipFedId": "1498",
     "CaptainName": "John Scalzi",
@@ -8982,7 +8982,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Tehuia ",
     "ShipFedId": "1499",
     "CaptainName": "A. E. van Vogt",
@@ -9000,7 +9000,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Tell me Another One ",
     "ShipFedId": "1500",
     "CaptainName": "Kristine Kathryn Rusch",
@@ -9018,7 +9018,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Tenebrosa ",
     "ShipFedId": "1501",
     "CaptainName": "Charles Huntington",
@@ -9036,7 +9036,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Tepoztecatl ",
     "ShipFedId": "1502",
     "CaptainName": "H. Beam Piper",
@@ -9054,7 +9054,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "TARDIS ",
     "ShipFedId": "1503",
     "CaptainName": "Don D'Ammassa",
@@ -9072,7 +9072,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "The Teacher ",
     "ShipFedId": "1504",
     "CaptainName": "Peter David",
@@ -9090,7 +9090,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "TCS Tiger's Claw ",
     "ShipFedId": "1505",
     "CaptainName": "Jennifer Foehner Wells",
@@ -9108,7 +9108,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "The Titan & the Valkyrie ",
     "ShipFedId": "1506",
     "CaptainName": "M.R. Meluch",
@@ -9126,7 +9126,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Theodore Bilbo ",
     "ShipFedId": "1507",
     "CaptainName": "Thomas Harlan",
@@ -9144,7 +9144,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Theseus (interstellar ramjet) ",
     "ShipFedId": "1508",
     "CaptainName": "Kevin Dilmore",
@@ -9162,7 +9162,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Titan ",
     "ShipFedId": "1509",
     "CaptainName": "David Brin",
@@ -9180,7 +9180,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Tolpuddle Martyrs' Response ",
     "ShipFedId": "1510",
     "CaptainName": "Christopher L. Bennett",
@@ -9198,7 +9198,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "SS Trojan ",
     "ShipFedId": "1511",
     "CaptainName": "David Mack",
@@ -9216,7 +9216,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Turoson ",
     "ShipFedId": "1512",
     "CaptainName": "Gregory Benford",
@@ -9234,7 +9234,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Trajan ",
     "ShipFedId": "1513",
     "CaptainName": "John Scalzi",
@@ -9252,7 +9252,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Traveler ",
     "ShipFedId": "1514",
     "CaptainName": "Jack Campbell",
@@ -9270,7 +9270,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Tranquil Hegemony ",
     "ShipFedId": "1515",
     "CaptainName": "John Barnes",
@@ -9288,7 +9288,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Trident ",
     "ShipFedId": "1516",
     "CaptainName": "David Mack",
@@ -9306,7 +9306,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Triumph ",
     "ShipFedId": "1517",
     "CaptainName": "Thomas Harlan",
@@ -9324,7 +9324,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Truculent ",
     "ShipFedId": "1518",
     "CaptainName": "John Scalzi",
@@ -9342,7 +9342,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Turan ",
     "ShipFedId": "1519",
     "CaptainName": "Michael Cobley",
@@ -9360,7 +9360,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Tyne ",
     "ShipFedId": "1520",
     "CaptainName": "Thomas Harlan",
@@ -9378,7 +9378,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Uagren (battle cruiser) ",
     "ShipFedId": "1521",
     "CaptainName": "Alan Dean Foster",
@@ -9396,7 +9396,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Uncial ",
     "ShipFedId": "1522",
     "CaptainName": "Richard A. Lupoff",
@@ -9414,7 +9414,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Under New Ownership ",
     "ShipFedId": "1523",
     "CaptainName": "Peter Watt",
@@ -9432,7 +9432,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Underspaceship Phoenix ",
     "ShipFedId": "1524",
     "CaptainName": "Jack Campbell",
@@ -9450,7 +9450,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Unicorn Garden ",
     "ShipFedId": "1525",
     "CaptainName": "China Mi�ville",
@@ -9468,7 +9468,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Upsidaisy ",
     "ShipFedId": "1526",
     "CaptainName": "Thomas Harlan",
@@ -9486,7 +9486,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Uptown Six ",
     "ShipFedId": "1527",
     "CaptainName": "Richard A. Lupoff",
@@ -9504,7 +9504,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Uriel ",
     "ShipFedId": "1528",
     "CaptainName": "R.M. Meluch",
@@ -9522,7 +9522,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "U.S.S. Valiant ",
     "ShipFedId": "1529",
     "CaptainName": "Brenda Cooper",
@@ -9540,7 +9540,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Valiant ",
     "ShipFedId": "1530",
     "CaptainName": "Poul Anderson",
@@ -9558,7 +9558,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Valley Forge",
     "ShipFedId": "1531",
     "CaptainName": "Peter David",
@@ -9576,7 +9576,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Value Judgement ",
     "ShipFedId": "1532",
     "CaptainName": "Lois McMaster Bujold",
@@ -9594,7 +9594,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Vanguard ",
     "ShipFedId": "1533",
     "CaptainName": "Jack Campbell",
@@ -9612,7 +9612,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Vasco da Gama ",
     "ShipFedId": "1534",
     "CaptainName": "Thomas Harlan",
@@ -9630,7 +9630,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Vatre Vzezda ",
     "ShipFedId": "1535",
     "CaptainName": "Charles E. Gannon",
@@ -9648,7 +9648,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Venom ",
     "ShipFedId": "1536",
     "CaptainName": "- Iain M. Banks",
@@ -9666,7 +9666,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Venturer ",
     "ShipFedId": "1537",
     "CaptainName": "Jay Lake",
@@ -9684,7 +9684,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Verwoerd ",
     "ShipFedId": "1538",
     "CaptainName": "Chris Roberson",
@@ -9702,7 +9702,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Viganli ",
     "ShipFedId": "1539",
     "CaptainName": "Norman Spinrad",
@@ -9720,7 +9720,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "The Viking's Gift ",
     "ShipFedId": "1540",
     "CaptainName": "Eric Frank Russell",
@@ -9738,7 +9738,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Villa Grande ",
     "ShipFedId": "1541",
     "CaptainName": "M. John Harrison",
@@ -9756,7 +9756,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Vindex ",
     "ShipFedId": "1542",
     "CaptainName": "Poul Anderson",
@@ -9774,7 +9774,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Imperial Klingon Cruiser Voh tak ",
     "ShipFedId": "1543",
     "CaptainName": "Jack Campbell",
@@ -9792,7 +9792,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Voortrekker",
     "ShipFedId": "1544",
     "CaptainName": "Robert A. Heinlein",
@@ -9810,7 +9810,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Voyager ",
     "ShipFedId": "1545",
     "CaptainName": "Iain M. Banks",
@@ -9828,7 +9828,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Vut-Roy ",
     "ShipFedId": "1546",
     "CaptainName": "Jack Campbell",
@@ -9846,7 +9846,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Wanderer ",
     "ShipFedId": "1547",
     "CaptainName": "James Gunn",
@@ -9864,7 +9864,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Wardben ",
     "ShipFedId": "1548",
     "CaptainName": "Robert A. Heinlein",
@@ -9882,7 +9882,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Warm Considering ",
     "ShipFedId": "1549",
     "CaptainName": "Poul Anderson",
@@ -9900,7 +9900,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Wasp of Kolkata ",
     "ShipFedId": "1550",
     "CaptainName": "Jack Campbell",
@@ -9918,7 +9918,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Wayfarer One ",
     "ShipFedId": "1551",
     "CaptainName": "Richard A. Lupoff",
@@ -9936,7 +9936,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Whiskey Bravo ",
     "ShipFedId": "1552",
     "CaptainName": "Michael Cobley",
@@ -9954,7 +9954,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "Whorl of the Long Sun",
     "ShipFedId": "1553",
     "CaptainName": "R.M. Meluch",
@@ -9972,7 +9972,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "Wicked ",
     "ShipFedId": "1554",
     "CaptainName": "H. Beam Piper",
@@ -9990,7 +9990,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Wildfire ",
     "ShipFedId": "1555",
     "CaptainName": "Clayton Ward",
@@ -10008,7 +10008,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Wilson ",
     "ShipFedId": "1556",
     "CaptainName": "Christopher L. Bennett",
@@ -10026,7 +10026,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Windward Isles ",
     "ShipFedId": "1557",
     "CaptainName": "John Scalzi",
@@ -10044,7 +10044,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Winter Song",
     "ShipFedId": "1558",
     "CaptainName": "Michael Merriam",
@@ -10062,7 +10062,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Witch ",
     "ShipFedId": "1559",
     "CaptainName": "Robert Silverberg",
@@ -10080,7 +10080,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Wolfhound ",
     "ShipFedId": "1560",
     "CaptainName": "James McKimmey",
@@ -10098,7 +10098,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Woodstead Castle ",
     "ShipFedId": "1561",
     "CaptainName": "Iain M. Banks",
@@ -10116,7 +10116,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "WuDing ",
     "ShipFedId": "1562",
     "CaptainName": "China Mi�ville",
@@ -10134,7 +10134,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "X'Klennu ",
     "ShipFedId": "1563",
     "CaptainName": "Chris Roberson",
@@ -10152,7 +10152,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "X'Ktau ",
     "ShipFedId": "1564",
     "CaptainName": "M. John Harrison",
@@ -10170,7 +10170,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 2,
+    "ShipClassId": 2,
     "ShipName": "X'Klennu ",
     "ShipFedId": "1565",
     "CaptainName": "Gene Wolfe",
@@ -10188,7 +10188,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 3,
+    "ShipClassId": 3,
     "ShipName": "X'Ktau ",
     "ShipFedId": "1566",
     "CaptainName": "John Scalzi",
@@ -10206,7 +10206,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 4,
+    "ShipClassId": 4,
     "ShipName": "Yamato ",
     "ShipFedId": "1567",
     "CaptainName": "Brian Aldiss",
@@ -10224,7 +10224,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 5,
+    "ShipClassId": 5,
     "ShipName": "Yggdrasil ",
     "ShipFedId": "1568",
     "CaptainName": "R.M. Meluch",
@@ -10242,7 +10242,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 6,
+    "ShipClassId": 6,
     "ShipName": "Ypress ",
     "ShipFedId": "1569",
     "CaptainName": "Colin Harvey",
@@ -10260,7 +10260,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 7,
+    "ShipClassId": 7,
     "ShipName": "Zarandu of Tahanaman ",
     "ShipFedId": "1570",
     "CaptainName": "Jack Campbell",
@@ -10278,7 +10278,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 8,
+    "ShipClassId": 8,
     "ShipName": "Zelbinion ",
     "ShipFedId": "1571",
     "CaptainName": "R.M. Meluch",
@@ -10296,7 +10296,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 9,
+    "ShipClassId": 9,
     "ShipName": "Zemlya ",
     "ShipFedId": "1572",
     "CaptainName": "Poul Anderson",
@@ -10314,7 +10314,7 @@
     "Race": "Human"
   },
   {
-    "ShipClass": 10,
+    "ShipClassId": 10,
     "ShipName": "Zephon ",
     "ShipFedId": "1573",
     "CaptainName": "L.E. Modesitt Jr.",
@@ -10332,7 +10332,7 @@
     "Race": "Mega"
   },
   {
-    "ShipClass": 11,
+    "ShipClassId": 11,
     "ShipName": "Zero",
     "ShipFedId": "1574",
     "CaptainName": "Robert Silverberg",
@@ -10350,7 +10350,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 12,
+    "ShipClassId": 12,
     "ShipName": "Zoologist ",
     "ShipFedId": "1575",
     "CaptainName": "David Brin",
@@ -10368,7 +10368,7 @@
     "Race": "Amphibian"
   },
   {
-    "ShipClass": 1,
+    "ShipClassId": 1,
     "ShipName": "Zophiel ",
     "ShipFedId": "1576",
     "CaptainName": "Dan Simmons",

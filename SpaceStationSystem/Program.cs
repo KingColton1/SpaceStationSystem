@@ -8,33 +8,35 @@ using Newtonsoft.Json;
 
 namespace SpaceStationSystem
 {
-    public enum ShipType
+    public enum ShipClass
     {
-        Runabout,
-        Personal,
-        Skeeter,
-        SmallShuttle,
-        MediumShuttle,
-        LargeShuttle,
-        PersonnelTransport,
-        CargoTransport,
-        CargoTransportII,
-        ScoutShip,
-        Explorer,
-        Dreadnaught
+        Runabout = 1,
+        Personal = 2,
+        Skeeter = 3,
+        SmallShuttle = 4,
+        MediumShuttle = 5,
+        LargeShuttle = 6,
+        PersonnelTransport = 7,
+        CargoTransport = 8,
+        CargoTransportII = 9,
+        ScoutShip = 10,
+        Explorer = 11,
+        Dreadnaught = 12
     }
 
     class Program
     {
         static void Main(string[] args)
         {
-            Console.Title = "Andromeda Space Station System";
-
             try
             {
+                Console.Title = "Andromeda Space Station System";
+
+                List<Ship> ships = JsonConvert.DeserializeObject<List<Ship>>(Properties.Resources.FinalShips2019_json);
+
                 // All main functions are in SpaceStation class because this Main method is static and it make everything too complicated
-                SpaceStation station = new SpaceStation("Andromeda");
-                station.ServiceShips();
+                //SpaceStation station = new SpaceStation("Andromeda");
+                //station.ServiceShips();
             }
             catch (Exception ex)
             {
@@ -43,21 +45,5 @@ namespace SpaceStationSystem
                 Console.ResetColor();
             }
         }
-
-        // JSON Method Test- focusing on only Ships2019 file (It's in JSON folder in Solution Explorer)
-        // Deserialize JSON from a file
-        public void JSONFile()
-        {
-            // Read file into string and deserialize JSON into a type (NOTE: Need to fix this part)
-            Ship shipInfo = JsonConvert.DeserializeObject<Ship>(File.ReadAllText(@"C:\Users\colto\Documents\QueueThreadDemo\QueueThreadDemo\JSON\Ships2019.json"));
-
-            // Deserialize JSON directly from a file
-            using (StreamReader file = File.OpenText(@"C:\Users\colto\Documents\QueueThreadDemo\QueueThreadDemo\JSON\Ships2019.json"))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                Ship shipInfo2 = (Ship)serializer.Deserialize(file, typeof(Ship));
-            }
-        }
-
     }
 }

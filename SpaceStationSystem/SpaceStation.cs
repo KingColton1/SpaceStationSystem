@@ -35,7 +35,7 @@ namespace SpaceStationSystem
                 // Fake data for testing purpose
                 for (int i = 1; i <= 10; i++)
                 {
-                    Ship ship = new Ship($"Explorer{i}", ShipType.Explorer);
+                    Ship ship = new Ship($"Explorer{ShipClass.Explorer}"); // The Ship constructor doesn't have any parameter, but this line somehow read as "don't take one parameter"
                     Service service = new Service(ship, true, true, false, false, true, true, false);
 
                     // Enqueue is how you add things to a Queue.
@@ -91,21 +91,21 @@ namespace SpaceStationSystem
                         // Get the next ship in line to be serviced.
                         service = _serviceQueue.Dequeue();
 
-                        Console.WriteLine($"Begin docking ship {service.Ship.Name}");
+                        Console.WriteLine($"Begin docking ship {service.Ship.ShipName}");
 
                         // Pause for the time it takes to dock the ship.
                         Thread.Sleep(service.DockTime * 1000);
 
-                        Console.WriteLine($"Ship {service.Ship.Name} is docked.");
+                        Console.WriteLine($"Ship {service.Ship.ShipName} is docked.");
                         Thread.Sleep(1000);
 
                         // Spawn a new thread to perform the service.
                         Thread performService = new Thread(() => PerformService(service));
-                        performService.Name = $"Service Ship {service.Ship.Name}";
+                        performService.Name = $"Service Ship {service.Ship.ShipName}";
                         performService.IsBackground = true;
                         performService.Start();
 
-                        lastShip = service.Ship.Name;
+                        lastShip = service.Ship.ShipName;
                     }
                     else
                     {
@@ -132,16 +132,16 @@ namespace SpaceStationSystem
         {
             try
             {
-                Console.WriteLine($"Begin service on ship {service.Ship.Name}");
+                Console.WriteLine($"Begin service on ship {service.Ship.ShipName}");
 
                 // Made-up simulating the service time for testing purpose
                 Thread.Sleep(service.ServiceTime * 1000);
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Ship {service.Ship.Name} service complete.");
+                Console.WriteLine($"Ship {service.Ship.ShipName} service complete.");
                 Console.ResetColor();
 
                 // Check to see if this was the last ship in the queue.
-                if (_lastShipServiced == service.Ship.Name)
+                if (_lastShipServiced == service.Ship.ShipName)
                 {
                     // Allow the Monitor Queue thread to complete.
                     _lastShipComplete = true;
