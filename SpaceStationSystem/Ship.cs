@@ -84,11 +84,6 @@ namespace SpaceStationSystem
 
         public int DefensesPowerLevel { get; set; }
 
-        /// <summary>
-        /// The race of the beings that inhabit the ship.
-        /// </summary>
-        public string Race { get; set; }
-
 
         public Ship()
         {
