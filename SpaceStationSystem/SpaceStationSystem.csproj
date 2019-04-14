@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Amphibian.cs" />
+    <Compile Include="Bay.cs" />
     <Compile Include="Crew.cs" />
     <Compile Include="Human.cs" />
     <Compile Include="Mega.cs" />

@@ -16,6 +16,7 @@ namespace SpaceStationSystem
         // A thread is separate process that runs outside the flow of the main code.
         // Used when you want to do multiple things at the same time.
         private Thread _monitorQueue;
+        private Dictionary<int, string> _bays; // Added as a storage
         private string _name;
         private string _lastShipServiced = "";
         private bool _lastShipComplete = false;
@@ -24,6 +25,15 @@ namespace SpaceStationSystem
         {
             get => _name;
             set => _name = value;
+        }
+
+        // I'm not sure if I did this right way, I need some more guidances from you
+        public Dictionary<int, string> Bays
+        {
+            get
+            {
+                return _bays;
+            }
         }
 
         public SpaceStation(string name)
