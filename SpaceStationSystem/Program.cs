@@ -31,12 +31,10 @@ namespace SpaceStationSystem
             try
             {
                 Console.Title = "Andromeda Space Station System";
-
-                List<Ship> ships = JsonConvert.DeserializeObject<List<Ship>>(Properties.Resources.FinalShips2019_json);
-
-                // All main functions are in SpaceStation class because this Main method is static and it make everything too complicated
-                //SpaceStation station = new SpaceStation("Andromeda");
-                //station.ServiceShips();
+                
+                // All main functions are in SpaceStation class because this Main method is static and it makes everything too complicated.
+                SpaceStation station = new SpaceStation("Andromeda");
+                station.ServiceShips();
             }
             catch (Exception ex)
             {

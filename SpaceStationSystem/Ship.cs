@@ -14,12 +14,12 @@ namespace SpaceStationSystem
         /// </summary>
         public int ShipClassId { get; set; }
 
+        /// <summary>
+        /// The name of the ship's class.
+        /// </summary>
         public ShipClass ShipClass
         {
-            get
-            {
-                return (ShipClass)ShipClassId;
-            }
+            get { return (ShipClass)ShipClassId; }
         }
 
         /// <summary>
