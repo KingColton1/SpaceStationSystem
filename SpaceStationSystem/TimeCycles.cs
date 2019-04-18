@@ -8,7 +8,9 @@ namespace SpaceStationSystem
 {
     class TimeCycles
     {
-        // Time Matrix using array
+        /// <summary>
+        /// Time Matrix is work in progress; considering to remove this class due to the complication
+        /// </summary>
         int[,] DockingTime = new int[,] { { 1, 1 }, { 1, 2 } };
     }
 }

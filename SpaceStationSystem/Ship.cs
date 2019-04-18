@@ -58,14 +58,14 @@ namespace SpaceStationSystem
         public int CargoToLoad { get; set; }
 
         /// <summary>
-        /// The amount of waste that needs to be unloaded from the ship.
+        /// The amount of waste the ship can hold.
         /// </summary>
-        public int WasteToUnload { get; set; }
+        public int WasteCapacity { get; set; }
 
         /// <summary>
-        /// The amount of waste that needs to be loaded onto the ship.
+        /// The amount of waste currently onboard the ship.
         /// </summary>
-        public int WasteToLoad { get; set; }
+        public int CurrentWaste { get; set; }
 
         /// <summary>
         /// Whether the ship is docked to the space station or not.
@@ -78,16 +78,10 @@ namespace SpaceStationSystem
 
         public int FoodCode { get; set; }
 
-
-        public int MedicalRequestCode { get; set; }
-
-
-        public int DefensesPowerLevel { get; set; }
+        // Changed the name from DefensePowerLevel to CurrentPower and updated FinalShips2019 file.
+        public int CurrentPower { get; set; }
 
 
-        public Ship()
-        {
-
-        }
+        public string Race { get; set; }
     }
 }

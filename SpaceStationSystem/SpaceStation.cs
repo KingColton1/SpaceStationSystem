@@ -9,8 +9,14 @@ using Newtonsoft.Json;
 
 namespace SpaceStationSystem
 {
+    // Declared delegate
+    public delegate void BayEventHandler(object sender, EventArgs e);
+
     class SpaceStation
     {
+        // Event Handler
+        public event EventHandler BayAvailable;
+
         // A queue is used when you want things to be removed in the order they were added.
         private Queue<Ship> _serviceQueue = new Queue<Ship>();
 
@@ -26,7 +32,7 @@ namespace SpaceStationSystem
         public string Name { get; set; }
 
         /// <summary>
-        ///  Get the list of
+        ///  Get the list of the bays
         /// </summary>
         public List<Bay> DockingBays;
 
@@ -74,6 +80,9 @@ namespace SpaceStationSystem
             }
         }
 
+        /// <summary>
+        /// The method of service ships to handle with the service
+        /// </summary>
         public void ServiceShips()
         {
             try
@@ -99,12 +108,14 @@ namespace SpaceStationSystem
             }
         }
 
-        // The method used for the Monitor Queue thread.
+        /// <summary>
+        /// The method to monitor the queue
+        /// </summary>
         private void MonitorQueue()
         {
             Ship ship;
-            Crew people;
-            Bay dock;
+            Bay dockingBay;
+            const Bay convertible = null;
             string lastShip = "";
 
             try
@@ -117,39 +128,45 @@ namespace SpaceStationSystem
                         // Get the next ship in line to be serviced.
                         ship = _serviceQueue.Dequeue();
 
-                        // Select the docking bay.
-                        // Todo: Select a compatible open docking bay.  
-                        //       If no compatible docking bays are available but a non-compatible bay is open, convert it.
-
-                        // I tried 4 ways; use Bay for current enviroment from ship name, compare race for bay's current enviroment, etc.
-                        if (people.Race == Human)
+                        // Select the docking bay. Loop unit a docking bay is available
+                        while (true)
                         {
+                            dockingBay = SelectDockingBay(ship);
 
+                            if (dockingBay != null)
+                            {
+                                break;
+                            }
+                            Thread.Sleep(2000);
                         }
-                        
 
-                        // Prepare the docking bay.
-                        Thread.Sleep(10000);
+                        // Check if the bay need to be converted
+                        if (dockingBay is convertible)
+                        {
+                            dockingBay.ConvertEnvironment = true;
+
+                            // The bay does need to be converted, allow them take 30 cycles (30 seconds) to fully converted
+                            Thread.Sleep(30000);
+                        }
+                        else
+                        {
+                            // If the bay doesn't need to be converted, take 10 cycles instead.
+                            Thread.Sleep(10000);
+                        }
+
 
                         Console.WriteLine($"Begin docking ship {ship.ShipName} (Class {ship.ShipClassId}) in docking bay {"?"}");
 
+                        // Dad - Take out the progress bar code.
+                        //       Use the techniques I showed you in method SelectDockingBay() to break down the problem.
+                        //       I suggest you use an int and keep adding time to it for every task.
+                        //       If the code to figure out the time for a task gets too long, create a new method for it.
                         // Pause for the time it takes to dock the ship based on the ship's class.
-                        // Case 1 is using ProgressBar class, but that's the only source I can find to Append text. Do you think we can simplify that class?
-                        // ProgressBar class is also used in PerformService method
                         switch (ship.ShipClassId)
                         {
                             case 1:
                                 {
-                                    // Progress bar system
-                                    Console.Write($"Ship {ship.ShipName} docking... ");
-                                    using (var progress = new ProgressBar())
-                                    {
-                                        for (int i = 0; i <= 100; i++)
-                                        {
-                                            progress.Report((double)i / 100);
-                                            Thread.Sleep(3000);
-                                        }
-                                    }
+                                    Thread.Sleep(3000);
                                     break;
                                 }
                             case 2:
@@ -241,33 +258,24 @@ namespace SpaceStationSystem
             }
         }
 
-        // Perform services that offer refuel, cargo load, cargo unload, clean waste tank, repair, and food
-        // For now I'll be using refuel and repair only to see if it's suitable
-        // I tried using time matrix (multi-dem) but I find them too advanced and complicated for this project. I want to keep it clean, simple, and easier to edit.
+        /// <summary>
+        /// // Perform services that offer refuel, cargo load, cargo unload, clean waste tank, repair, and food
+        /// </summary>
+        /// <param name="ship"></param>
         private void PerformService(Ship ship)
         {
             try
             {
                 Console.WriteLine($"Begin service on ship {ship.ShipName} (Class {ship.ShipClassId}), requesting Repair Code {ship.RepairCode}");
 
-                // Perform repairs based on the ship's classes and Repair Code (For now, we'll be using Code 1)
-                // I plan to use "progress bar" to provide real time update instead of waiting for a new line to appear
+                // Perform repairs based on the ship's classes and Repair Code (For now, use only Code 1)
                 if (ship.RepairCode == 1)
                 {
                     switch (ship.ShipClassId)
                     {
                         case 1:
                             {
-                                // Progress bar system
-                                Console.Write("Performing repair... ");
-                                using (var progress = new ProgressBar())
-                                {
-                                    for (int i = 0; i <= 100; i++)
-                                    {
-                                        progress.Report((double) i / 100);
-                                        Thread.Sleep(4000);
-                                    }
-                                }
+                                Thread.Sleep(4000);
                                 break;
                             }
                         case 2:
@@ -344,6 +352,128 @@ namespace SpaceStationSystem
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Error in SpaceStation.PerformService() - {ex.Message}");
                 Console.ResetColor();
+            }
+        }
+
+        /// <summary>
+        /// Responsible to select and verify the bay is compatible with the ship class and race
+        /// </summary>
+        /// <param name="ship"></param>
+        private Bay SelectDockingBay(Ship ship)
+        {
+            Bay dockingBay = null;
+            Bay convertibleBay = null;
+            string requiredEnvironment = "";
+            bool compatibleBay;
+
+            try
+            {
+                foreach (Bay bay in DockingBays)
+                {
+                    compatibleBay = true;
+
+                    // Check if the docking bay is compatible with the ship class.
+                    if (ship.ShipClassId < bay.ClassMin || ship.ShipClassId > bay.ClassMin)
+                    {
+                        compatibleBay = false;
+                    }
+
+                    // Check if the docking bay is compatible with the race and get the required environment.
+                    if (compatibleBay)
+                    {
+                        switch (ship.Race.ToUpper())
+                        {
+                            case "HUMAN":
+                                {
+                                    requiredEnvironment = "O";
+                                    if (!bay.SupportsHuman)
+                                    {
+                                        compatibleBay = false;
+                                    }
+                                    break;
+                                }
+                            case "MEGA":
+                                {
+                                    requiredEnvironment = "O";
+                                    if (!bay.SupportsMega)
+                                    {
+                                        compatibleBay = false;
+                                    }
+
+                                    break;
+                                }
+                            case "AMPHIBIAN":
+                                {
+                                    requiredEnvironment = "A";
+                                    if (!bay.SupportsAqua)
+                                    {
+                                        compatibleBay = false;
+                                    }
+                                    break;
+                                }
+                            default:
+                                {
+                                    throw new Exception($"Ship race {ship.Race} is not recognized");
+                                }
+                        }
+                    }
+
+                    // Check if the docking bay environment is compatible with the required environment.
+                    if (compatibleBay)
+                    {
+                        if (requiredEnvironment != bay.CurrentEnvironment)
+                        {
+                            compatibleBay = false;
+
+                            if (bay.DualEnvironment)
+                            {
+                                // Save this bay in case we need a convertible bay.
+                                convertibleBay = bay;
+                            }
+                        }
+                    }
+
+                    // If a bay is compatible to the ship and race, use this bay and exit loop
+                    if (compatibleBay)
+                    {
+                        dockingBay = bay;
+                        break;
+                    }
+                }
+
+                if (dockingBay != null)
+                {
+                    // We found a compatible docking bay.
+                    dockingBay.ConvertEnvironment = false;
+
+                    return dockingBay;
+                }
+                else if (convertibleBay != null)
+                {
+                    // We didn't find a compatible docking bay. But we did find a convertible docking bay.
+                    convertibleBay.ConvertEnvironment = true;
+
+                    return convertibleBay;
+                }
+                else
+                {
+                    // No usable docking bays are available.
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error in SpaceStation.SelectDockingBay() - {ex.Message}");
+                Console.ResetColor();
+                return null;
+            }
+
+            // Event Handler
+            void OnBayAvailable(EventArgs e)
+            {
+                EventHandler handler = BayAvailable;
+                handler?.Invoke("The dock bay is available and ready to be docked.", e);
             }
         }
     }

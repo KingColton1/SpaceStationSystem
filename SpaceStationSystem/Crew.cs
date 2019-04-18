@@ -13,8 +13,9 @@ namespace SpaceStationSystem
         /// </summary>
         public string Race { get; set; }
 
-        // I decide to move 3 classes to here because it make sense to belong here and easier to call
-        // IF you agree with this, I'll delete 3 classes
+        /// <summary>
+        /// Each races have their own needs for bay enviroment
+        /// </summary>
         public void Human()
         {
             bool useOxygen = true;
