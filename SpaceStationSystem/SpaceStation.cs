@@ -121,6 +121,7 @@ namespace SpaceStationSystem
 
                 while (!_lastShipComplete)
                 {
+
                     // Check if there are any ships in the service queue.
                     if (_serviceQueue.Count > 0)
                     {
@@ -136,7 +137,7 @@ namespace SpaceStationSystem
 
                         // Colton - That's actually a good idea, let's do that.
 
-                        message = $"Ship {ship.ShipName} (Class {ship.ShipClassId}) has been dequeued";
+                        message = $"\nShip {ship.ShipName} (Federation ID {ship.ShipFedId} | Class {ship.ShipClassId}) has been dequeued";
                         messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} {message}");
                         Console.WriteLine(message);
 
@@ -145,7 +146,7 @@ namespace SpaceStationSystem
                         {
                             dockingBay = SelectDockingBay(ship);
 
-                            if (dockingBay != null)
+                            if (dockingBay.InUse == false)
                             {
                                 break;
                             }
@@ -192,18 +193,20 @@ namespace SpaceStationSystem
                         // Start timing for a ship to dock
                         DockingTimeCycle(ship);
 
-                        //Thread.Sleep(5000);
+                        // A dock is occupied by a ship
+                        if (dockingBay.InUse == true)
+                        {
+                            // Once docking is completed, inform to the user that a ship is docked
+                            message = $"Ship {ship.ShipName} (Class {ship.ShipClassId}) is docked.";
+                            messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} {message}");
+                            Console.WriteLine(message);
 
-                        // Once docking is completed, inform to the user that a ship is docked
-                        message = $"Ship {ship.ShipName} (Class {ship.ShipClassId}) is docked.";
-                        messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} {message}");
-                        Console.WriteLine(message);
-
-                        // Spawn a new thread to perform the service.
-                        Thread performService = new Thread(() => PerformService(ship));
-                        performService.Name = $"Service Ship {ship.ShipName}";
-                        performService.IsBackground = true;
-                        performService.Start();
+                            // Spawn a new thread to perform the service.
+                            Thread performService = new Thread(() => PerformService(ship));
+                            performService.Name = $"Service Ship {ship.ShipName}";
+                            performService.IsBackground = true;
+                            performService.Start();
+                        }
 
                         lastShip = ship.ShipName;
                     }
@@ -236,7 +239,7 @@ namespace SpaceStationSystem
         {
             try
             {
-                Console.WriteLine($"Begin service on ship {ship.ShipName} (Class {ship.ShipClassId}), requesting Repair Code {ship.RepairCode}");
+                Console.WriteLine($"Begin service on ship {ship.ShipName} (Federation ID {ship.ShipFedId} | Class {ship.ShipClassId}), requesting Repair Code {ship.RepairCode}");
 
                 // Perform repairs based on the ship's classes and Repair Code (For now, use only Code 1)
                 if (ship.RepairCode == 1)
@@ -340,74 +343,77 @@ namespace SpaceStationSystem
             {
                 foreach (Bay bay in DockingBays)
                 {
-                    compatibleBay = true;
-
-                    // Check if the docking bay is compatible with the ship class.
-                    if (ship.ShipClassId < bay.ClassMin || ship.ShipClassId > bay.ClassMax)
+                    if (dockingBay.InUse == false)
                     {
-                        compatibleBay = false;
-                    }
+                        compatibleBay = true;
 
-                    // Check if the docking bay is compatible with the race and get the required environment.
-                    if (compatibleBay)
-                    {
-                        switch (ship.Race.ToUpper())
-                        {
-                            case "HUMAN":
-                                {
-                                    requiredEnvironment = "O";
-                                    if (!bay.SupportsHuman)
-                                    {
-                                        compatibleBay = false;
-                                    }
-                                    break;
-                                }
-                            case "MEGA":
-                                {
-                                    requiredEnvironment = "O";
-                                    if (!bay.SupportsMega)
-                                    {
-                                        compatibleBay = false;
-                                    }
-
-                                    break;
-                                }
-                            case "AMPHIBIAN":
-                                {
-                                    requiredEnvironment = "A";
-                                    if (!bay.SupportsAqua)
-                                    {
-                                        compatibleBay = false;
-                                    }
-                                    break;
-                                }
-                            default:
-                                {
-                                    throw new Exception($"Ship race {ship.Race} is not recognized");
-                                }
-                        }
-                    }
-
-                    // Check if the docking bay environment is compatible with the required environment.
-                    if (compatibleBay)
-                    {
-                        if (requiredEnvironment != bay.CurrentEnvironment)
+                        // Check if the docking bay is compatible with the ship class.
+                        if (ship.ShipClassId < bay.ClassMin || ship.ShipClassId > bay.ClassMax)
                         {
                             compatibleBay = false;
+                        }
 
-                            if (bay.DualEnvironment)
+                        // Check if the docking bay is compatible with the race and get the required environment.
+                        if (compatibleBay)
+                        {
+                            switch (ship.Race.ToUpper())
                             {
-                                // Save this bay in case we need a convertible bay.
-                                convertibleBay = bay;
+                                case "HUMAN":
+                                    {
+                                        requiredEnvironment = "O";
+                                        if (!bay.SupportsHuman)
+                                        {
+                                            compatibleBay = false;
+                                        }
+                                        break;
+                                    }
+                                case "MEGA":
+                                    {
+                                        requiredEnvironment = "O";
+                                        if (!bay.SupportsMega)
+                                        {
+                                            compatibleBay = false;
+                                        }
+
+                                        break;
+                                    }
+                                case "AMPHIBIAN":
+                                    {
+                                        requiredEnvironment = "A";
+                                        if (!bay.SupportsAqua)
+                                        {
+                                            compatibleBay = false;
+                                        }
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        throw new Exception($"Ship race {ship.Race} is not recognized");
+                                    }
                             }
                         }
-                    }
 
-                    // If a bay is compatible to the ship and race, use this bay and exit loop
-                    if (compatibleBay)
-                    {
-                        dockingBay = bay;
-                        break;
+                        // Check if the docking bay environment is compatible with the required environment.
+                        if (compatibleBay)
+                        {
+                            if (requiredEnvironment != bay.CurrentEnvironment)
+                            {
+                                compatibleBay = false;
+
+                                if (bay.DualEnvironment)
+                                {
+                                    // Save this bay in case we need a convertible bay.
+                                    convertibleBay = bay;
+                                }
+                            }
+                        }
+
+                        // If a bay is compatible to the ship and race, use this bay and exit loop
+                        if (compatibleBay)
+                        {
+                            dockingBay = bay;
+                            break;
+                        }
                     }
                 }
 

@@ -78,7 +78,9 @@ namespace SpaceStationSystem
         /// </summary>
         public int RepairCode { get; set; }
 
-
+        /// <summary>
+        /// Identify the code number for food to specify amount of supplies (uses cycle)
+        /// </summary>
         public int FoodCode { get; set; }
 
         /// <summary>
