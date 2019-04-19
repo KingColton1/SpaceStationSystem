@@ -72,16 +72,23 @@ namespace SpaceStationSystem
         /// </summary>
         public bool Docked { get; set; }
 
-
+        
+        /// <summary>
+        /// Identify the code number for repair to check how much cycle need to repair
+        /// </summary>
         public int RepairCode { get; set; }
 
 
         public int FoodCode { get; set; }
 
-        // Changed the name from DefensePowerLevel to CurrentPower and updated FinalShips2019 file.
+        /// <summary>
+        /// Identify the amount of current power in the ship
+        /// </summary>
         public int CurrentPower { get; set; }
 
-
+        /// <summary>
+        /// The race of the beings that inhabit the ship.
+        /// </summary>
         public string Race { get; set; }
     }
 }

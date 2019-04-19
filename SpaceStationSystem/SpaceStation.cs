@@ -9,14 +9,9 @@ using Newtonsoft.Json;
 
 namespace SpaceStationSystem
 {
-    // Declared delegate
-    public delegate void BayEventHandler(object sender, EventArgs e);
 
     class SpaceStation
     {
-        // Event Handler
-        public event EventHandler BayAvailable;
-
         // A queue is used when you want things to be removed in the order they were added.
         private Queue<Ship> _serviceQueue = new Queue<Ship>();
 
@@ -32,7 +27,7 @@ namespace SpaceStationSystem
         public string Name { get; set; }
 
         /// <summary>
-        ///  Get the list of the bays
+        /// The list of the bays in the space station.
         /// </summary>
         public List<Bay> DockingBays;
 
@@ -42,7 +37,7 @@ namespace SpaceStationSystem
         public Dictionary<int, Ship> Ships;
 
         /// <summary>
-        /// Loads the resources files into class properties and creates the queue for servicing the ships.
+        /// Loads the resource files into class properties and creates the queue for servicing the ships.
         /// </summary>
         /// <param name="name">The name of the space station.</param>
         public SpaceStation(string name)
@@ -115,11 +110,15 @@ namespace SpaceStationSystem
         {
             Ship ship;
             Bay dockingBay;
-            const Bay convertible = null;
+            // TimeCycles timing;
+            List<string> messages;
+            string message;
             string lastShip = "";
 
             try
             {
+                messages = new List<string>();
+
                 while (!_lastShipComplete)
                 {
                     // Check if there are any ships in the service queue.
@@ -128,7 +127,20 @@ namespace SpaceStationSystem
                         // Get the next ship in line to be serviced.
                         ship = _serviceQueue.Dequeue();
 
-                        // Select the docking bay. Loop unit a docking bay is available
+                        // Dad - I added the messages List and the message string variables to use for the report.
+                        //       Here's my idea:
+                        //       We'll pass these messages to the thread that performs the service.
+                        //       The thread will create a text file and write all these events to it plus the service events.
+                        //       When all ships have been serviced, a method will read all the files and put that information into a single text file.
+                        //       That single text file will be the report.
+
+                        // Colton - That's actually a good idea, let's do that.
+
+                        message = $"Ship {ship.ShipName} (Class {ship.ShipClassId}) has been dequeued";
+                        messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} {message}");
+                        Console.WriteLine(message);
+
+                        // Select the docking bay. Loop unit a docking bay is available.
                         while (true)
                         {
                             dockingBay = SelectDockingBay(ship);
@@ -140,94 +152,52 @@ namespace SpaceStationSystem
                             Thread.Sleep(2000);
                         }
 
-                        // Check if the bay need to be converted
-                        if (dockingBay is convertible)
-                        {
-                            dockingBay.ConvertEnvironment = true;
+                        // A available docking bay is selected
+                        message = $"Docking bay {dockingBay.DockId} has been selected";
+                        messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} {message}");
+                        Console.WriteLine(message);
 
-                            // The bay does need to be converted, allow them take 30 cycles (30 seconds) to fully converted
+                        // Check if the bay need to be converted.
+                        if (dockingBay.ConvertEnvironment)
+                        {
+                            message = "Converting docking bay environment";
+                            messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} {message}");
+                            Console.WriteLine(message);
+
+                            // The bay does need to be converted, allow them take 30 cycles (30 seconds) to fully converted.
                             Thread.Sleep(30000);
                         }
                         else
                         {
-                            // If the bay doesn't need to be converted, take 10 cycles instead.
+                            message = "Preparing docking bay";
+                            messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} {message}");
+                            Console.WriteLine(message);
+
+                            // The bay doesn't need to be converted, take 10 cycles instead.
                             Thread.Sleep(10000);
                         }
 
+                        // Inform to the user that the docking bay is ready for a ship to dock
+                        message = $"Docking bay ready";
+                        messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} {message}");
+                        Console.WriteLine(message);
 
-                        Console.WriteLine($"Begin docking ship {ship.ShipName} (Class {ship.ShipClassId}) in docking bay {"?"}");
+                        Thread.Sleep(1000); // 1 cycle (1 second)
 
-                        // Dad - Take out the progress bar code.
-                        //       Use the techniques I showed you in method SelectDockingBay() to break down the problem.
-                        //       I suggest you use an int and keep adding time to it for every task.
-                        //       If the code to figure out the time for a task gets too long, create a new method for it.
-                        // Pause for the time it takes to dock the ship based on the ship's class.
-                        switch (ship.ShipClassId)
-                        {
-                            case 1:
-                                {
-                                    Thread.Sleep(3000);
-                                    break;
-                                }
-                            case 2:
-                                {
-                                    Thread.Sleep(3000);
-                                    break;
-                                }
-                            case 3:
-                                {
-                                    Thread.Sleep(4000);
-                                    break;
-                                }
-                            case 4:
-                                {
-                                    Thread.Sleep(4000);
-                                    break;
-                                }
-                            case 5:
-                                {
-                                    Thread.Sleep(5000);
-                                    break;
-                                }
-                            case 6:
-                                {
-                                    Thread.Sleep(7000);
-                                    break;
-                                }
-                            case 7:
-                                {
-                                    Thread.Sleep(9000);
-                                    break;
-                                }
-                            case 8:
-                                {
-                                    Thread.Sleep(7000);
-                                    break;
-                                }
-                            case 9:
-                                {
-                                    Thread.Sleep(9000);
-                                    break;
-                                }
-                            case 10:
-                                {
-                                    Thread.Sleep(8000);
-                                    break;
-                                }
-                            case 11:
-                                {
-                                    Thread.Sleep(11000);
-                                    break;
-                                }
-                            case 12:
-                                {
-                                    Thread.Sleep(15000);
-                                    break;
-                                }
-                        }
+                        // Begin dock a ship
+                        message = $"Begin docking ship {ship.ShipName} (Class {ship.ShipClassId}) in docking bay {dockingBay.DockId}";
+                        messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} {message}");
+                        Console.WriteLine(message);
 
-                        Console.WriteLine($"Ship {ship.ShipName} (Class {ship.ShipClassId}) is docked.");
-                        Thread.Sleep(1000);
+                        // Start timing for a ship to dock
+                        DockingTimeCycle(ship);
+
+                        //Thread.Sleep(5000);
+
+                        // Once docking is completed, inform to the user that a ship is docked
+                        message = $"Ship {ship.ShipName} (Class {ship.ShipClassId}) is docked.";
+                        messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} {message}");
+                        Console.WriteLine(message);
 
                         // Spawn a new thread to perform the service.
                         Thread performService = new Thread(() => PerformService(ship));
@@ -247,7 +217,7 @@ namespace SpaceStationSystem
                     Thread.Sleep(2000);
                 }
 
-                Console.WriteLine("All ships have been serviced.  Press enter exit.");
+                Console.WriteLine("All ships have been serviced. Press enter exit.");
                 Console.ReadLine();
             }
             catch (Exception ex)
@@ -373,7 +343,7 @@ namespace SpaceStationSystem
                     compatibleBay = true;
 
                     // Check if the docking bay is compatible with the ship class.
-                    if (ship.ShipClassId < bay.ClassMin || ship.ShipClassId > bay.ClassMin)
+                    if (ship.ShipClassId < bay.ClassMin || ship.ShipClassId > bay.ClassMax)
                     {
                         compatibleBay = false;
                     }
@@ -468,12 +438,78 @@ namespace SpaceStationSystem
                 Console.ResetColor();
                 return null;
             }
+        }
 
-            // Event Handler
-            void OnBayAvailable(EventArgs e)
+        /// <summary>
+        /// Time cycle required to dock a ship
+        /// </summary>
+        /// <param name="ship"></param>
+        public void DockingTimeCycle(Ship ship)
+        {
+            // Originally I was attempting to put this method in TimeCycles class for easy to find and maintainability.
+            // It was successful but I couldn't implenement them in this class because it need to be assigned. So I put this method back to here.
+            switch (ship.ShipClass)
             {
-                EventHandler handler = BayAvailable;
-                handler?.Invoke("The dock bay is available and ready to be docked.", e);
+                case ShipClass.Runabout:
+                    {
+                        Thread.Sleep(3000);
+                        break;
+                    }
+                case ShipClass.Personal:
+                    {
+                        Thread.Sleep(3000);
+                        break;
+                    }
+                case ShipClass.Skeeter:
+                    {
+                        Thread.Sleep(4000);
+                        break;
+                    }
+                case ShipClass.SmallShuttle:
+                    {
+                        Thread.Sleep(4000);
+                        break;
+                    }
+                case ShipClass.MediumShuttle:
+                    {
+                        Thread.Sleep(5000);
+                        break;
+                    }
+                case ShipClass.LargeShuttle:
+                    {
+                        Thread.Sleep(7000);
+                        break;
+                    }
+                case ShipClass.PersonnelTransport:
+                    {
+                        Thread.Sleep(9000);
+                        break;
+                    }
+                case ShipClass.CargoTransport:
+                    {
+                        Thread.Sleep(7000);
+                        break;
+                    }
+                case ShipClass.CargoTransportII:
+                    {
+                        Thread.Sleep(9000);
+                        break;
+                    }
+                case ShipClass.ScoutShip:
+                    {
+                        Thread.Sleep(8000);
+                        break;
+                    }
+                case ShipClass.Explorer:
+                    {
+                        Thread.Sleep(11000);
+                        break;
+                    }
+                case ShipClass.Dreadnaught:
+                    {
+                        Thread.Sleep(15000);
+                        break;
+                    }
             }
         }
     }

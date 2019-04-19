@@ -9,11 +9,6 @@ namespace SpaceStationSystem
     class Crew : Ship
     {
         /// <summary>
-        /// The race of the beings that inhabit the ship.
-        /// </summary>
-        public string Race { get; set; }
-
-        /// <summary>
         /// Each races have their own needs for bay enviroment
         /// </summary>
         public void Human()
