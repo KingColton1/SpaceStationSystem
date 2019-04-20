@@ -114,10 +114,12 @@ namespace SpaceStationSystem
             List<string> messages;
             string message;
             string lastShip = "";
+            int shipIndex;
 
             try
             {
                 messages = new List<string>();
+                shipIndex = 1;  // Dad - I added this variable to use in the filename for the files created in PerformService().
 
                 while (!_lastShipComplete)
                 {
@@ -127,15 +129,6 @@ namespace SpaceStationSystem
                     {
                         // Get the next ship in line to be serviced.
                         ship = _serviceQueue.Dequeue();
-
-                        // Dad - I added the messages List and the message string variables to use for the report.
-                        //       Here's my idea:
-                        //       We'll pass these messages to the thread that performs the service.
-                        //       The thread will create a text file and write all these events to it plus the service events.
-                        //       When all ships have been serviced, a method will read all the files and put that information into a single text file.
-                        //       That single text file will be the report.
-
-                        // Colton - That's actually a good idea, let's do that.
 
                         message = $"\nShip {ship.ShipName} (Federation ID {ship.ShipFedId} | Class {ship.ShipClassId}) has been dequeued";
                         messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} {message}");
@@ -193,22 +186,31 @@ namespace SpaceStationSystem
                         // Start timing for a ship to dock
                         DockingTimeCycle(ship);
 
+                        // Dad - You don't need this because you will never return a Bay object with InUse == true from SelectDockingBay().
+                        //       Because of the if statement you added to that method (good job on that BTW).
                         // A dock is occupied by a ship
-                        if (dockingBay.InUse == true)
-                        {
-                            // Once docking is completed, inform to the user that a ship is docked
-                            message = $"Ship {ship.ShipName} (Class {ship.ShipClassId}) is docked.";
-                            messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} {message}");
-                            Console.WriteLine(message);
+                        //if (dockingBay.InUse == true)
 
-                            // Spawn a new thread to perform the service.
-                            Thread performService = new Thread(() => PerformService(ship));
-                            performService.Name = $"Service Ship {ship.ShipName}";
-                            performService.IsBackground = true;
-                            performService.Start();
-                        }
+                        // Dad - This is the same Bay object that is in the DockingBays List.  Because we got it from the DockingBays List in SelectDockingBay().
+                        //       That is a feature of C#.  When you get something from a list it's not a copy.  It's the same object instance that's in the List.
+                        //       Setting this to true will update the Bay object in the list. So the next time SelectDockingBay() is called.  This bay will not be available.
+                        dockingBay.InUse = true;
+
+                        // Once docking is completed, inform to the user that a ship is docked
+                        message = $"Ship {ship.ShipName} (Class {ship.ShipClassId}) is docked.";
+                        messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} {message}");
+                        Console.WriteLine(message);
+
+                        // Dad - You need to add parameters messages and shipIndex to the call to PerforService() below. 
+                        //       Example: Thread performService = new Thread(() => PerformService(ship, messages, shipIndex)
+                        // Spawn a new thread to perform the service.
+                        Thread performService = new Thread(() => PerformService(ship, messages, shipIndex));
+                        performService.Name = $"Service Ship {ship.ShipName}";
+                        performService.IsBackground = true;
+                        performService.Start();
 
                         lastShip = ship.ShipName;
+                        shipIndex += 1;  // Dad - I added this variable to use in the filename for the files created in PerformService().
                     }
                     else
                     {
@@ -232,41 +234,38 @@ namespace SpaceStationSystem
         }
 
         /// <summary>
-        /// // Perform services that offer refuel, cargo load, cargo unload, clean waste tank, repair, and food
+        /// Perform services that offer refuel, cargo load, cargo unload, clean waste tank, repair, and food
         /// </summary>
         /// <param name="ship"></param>
-        private void PerformService(Ship ship)
+        private void PerformService(Ship ship, List<string> messages, int shipIndex)
         {
+            // Dad - Add parameters "List<string> messages, int shipIndex" to this method.
+            //       Next we'll work on creating the files that use those variables.
             try
             {
+                // Dad - Add a using block here to 
                 Console.WriteLine($"Begin service on ship {ship.ShipName} (Federation ID {ship.ShipFedId} | Class {ship.ShipClassId}), requesting Repair Code {ship.RepairCode}");
 
-                // Perform repairs based on the ship's classes and Repair Code (For now, use only Code 1)
+                // Perform repairs based on the ship's classes and Repair Code using combined switch (For now, use only Code 1)
+                // Dad - Look at how I combined the cases in method DockingTimeCycle().  Do the same thing here.
                 if (ship.RepairCode == 1)
                 {
                     switch (ship.ShipClassId)
                     {
                         case 1:
-                            {
-                                Thread.Sleep(4000);
-                                break;
-                            }
-                        case 2:
-                            {
-                                Thread.Sleep(5000);
-                                break;
-                            }
                         case 3:
                             {
                                 Thread.Sleep(4000);
                                 break;
                             }
+                        case 2:
                         case 4:
                             {
                                 Thread.Sleep(5000);
                                 break;
                             }
                         case 5:
+                        case 10:
                             {
                                 Thread.Sleep(7000);
                                 break;
@@ -282,18 +281,9 @@ namespace SpaceStationSystem
                                 break;
                             }
                         case 8:
-                            {
-                                Thread.Sleep(11000);
-                                break;
-                            }
                         case 9:
                             {
                                 Thread.Sleep(11000);
-                                break;
-                            }
-                        case 10:
-                            {
-                                Thread.Sleep(7000);
                                 break;
                             }
                         case 11:
@@ -343,7 +333,9 @@ namespace SpaceStationSystem
             {
                 foreach (Bay bay in DockingBays)
                 {
-                    if (dockingBay.InUse == false)
+                    // Dad - We are using variable bay that comes from DockingBays in the foreach loop.  Not variable dockingBay.
+                    //if (dockingBay.InUse == false)     
+                    if (bay.InUse == false)
                     {
                         compatibleBay = true;
 
@@ -454,23 +446,18 @@ namespace SpaceStationSystem
         {
             // Originally I was attempting to put this method in TimeCycles class for easy to find and maintainability.
             // It was successful but I couldn't implenement them in this class because it need to be assigned. So I put this method back to here.
+            // Dad - This is good.  But you should combine the ships that have the same docking time (see below).  Always go for less code.
+
+            // Check for the ship class's time cycle using Enum and combined switch to maximize time-effiency and shorter code
             switch (ship.ShipClass)
             {
                 case ShipClass.Runabout:
-                    {
-                        Thread.Sleep(3000);
-                        break;
-                    }
                 case ShipClass.Personal:
                     {
                         Thread.Sleep(3000);
                         break;
                     }
                 case ShipClass.Skeeter:
-                    {
-                        Thread.Sleep(4000);
-                        break;
-                    }
                 case ShipClass.SmallShuttle:
                     {
                         Thread.Sleep(4000);
@@ -482,28 +469,20 @@ namespace SpaceStationSystem
                         break;
                     }
                 case ShipClass.LargeShuttle:
-                    {
-                        Thread.Sleep(7000);
-                        break;
-                    }
-                case ShipClass.PersonnelTransport:
-                    {
-                        Thread.Sleep(9000);
-                        break;
-                    }
                 case ShipClass.CargoTransport:
                     {
                         Thread.Sleep(7000);
                         break;
                     }
-                case ShipClass.CargoTransportII:
-                    {
-                        Thread.Sleep(9000);
-                        break;
-                    }
                 case ShipClass.ScoutShip:
                     {
                         Thread.Sleep(8000);
+                        break;
+                    }
+                case ShipClass.PersonnelTransport:
+                case ShipClass.CargoTransportII:
+                    {
+                        Thread.Sleep(9000);
                         break;
                     }
                 case ShipClass.Explorer:
