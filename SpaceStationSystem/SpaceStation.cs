@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,29 +13,25 @@ namespace SpaceStationSystem
 
     class SpaceStation
     {
-        // A queue is used when you want things to be removed in the order they were added.
+        // Create a queue for the ship to wait for their turn
         private Queue<Ship> _serviceQueue = new Queue<Ship>();
 
-        // A thread is separate process that runs outside the flow of the main code.
-        // Used when you want to do multiple things at the same time.
+        // Establish thread to allow the program to operate the service for the ship on its own
         private Thread _monitorQueue;
+
+        // Store information into a list and dictionary
+        private List<Bay> _dockingBays;
+        private Dictionary<int, Ship> _ships;
+
         private string _lastShipServiced = "";
         private bool _lastShipComplete = false;
+
+        
 
         /// <summary>
         /// The name of the space station.
         /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// The list of the bays in the space station.
-        /// </summary>
-        public List<Bay> DockingBays;
-
-        /// <summary>
-        /// The ships that need to be serviced.
-        /// </summary>
-        public Dictionary<int, Ship> Ships;
+        public string Name { get; set; }        
 
         /// <summary>
         /// Loads the resource files into class properties and creates the queue for servicing the ships.
@@ -44,17 +41,17 @@ namespace SpaceStationSystem
         {
             try
             {
-                Ships = new Dictionary<int, Ship>();
                 Name = name;
+                _ships = new Dictionary<int, Ship>();
 
                 // Needed for null values in JSON files. Ignores null values.
                 var settings = new JsonSerializerSettings
                                     {
                                         NullValueHandling = NullValueHandling.Ignore
                                     };
-
+                
                 // Load the docking bay information from file Docks2019.json into class property DockingBays.
-                DockingBays = JsonConvert.DeserializeObject<List<Bay>>(Properties.Resources.Docks2019_json, settings);
+                _dockingBays = JsonConvert.DeserializeObject<List<Bay>>(Properties.Resources.Docks2019_json, settings);
 
                 // Load the ship information from file FinalShips2019.json into a List.
                 List<Ship> ships = JsonConvert.DeserializeObject<List<Ship>>(Properties.Resources.FinalShips2019_json, settings);
@@ -62,10 +59,18 @@ namespace SpaceStationSystem
                 // Use the ship information to load the Ships dictionary and the service queue.
                 foreach (Ship ship in ships)
                 {
-                    Ships.Add(ship.ShipFedId, ship);
+                    _ships.Add(ship.ShipFedId, ship);
                     _serviceQueue.Enqueue(ship);
                 }
 
+                // Dad - Make a folder name Reports in the folder that the program is running in.
+                //       Use System.Environment.CurrentDirectory and append Reports to that path.
+                //       Then make a folder inside Reports named Temp.  That is where we'll create the files in method PerformService()
+                //       Use an if statement to check if the folders exist before creating them. Directory.Exists(System.Environment.CurrentDirectory + @"\Reports")
+                if (Directory.Exists(System.Environment.CurrentDirectory + @"\Reports\Temp"))
+                {
+                    File.AppendText("Temp.txt");
+                }
             }
             catch (Exception ex)
             {
@@ -186,14 +191,6 @@ namespace SpaceStationSystem
                         // Start timing for a ship to dock
                         DockingTimeCycle(ship);
 
-                        // Dad - You don't need this because you will never return a Bay object with InUse == true from SelectDockingBay().
-                        //       Because of the if statement you added to that method (good job on that BTW).
-                        // A dock is occupied by a ship
-                        //if (dockingBay.InUse == true)
-
-                        // Dad - This is the same Bay object that is in the DockingBays List.  Because we got it from the DockingBays List in SelectDockingBay().
-                        //       That is a feature of C#.  When you get something from a list it's not a copy.  It's the same object instance that's in the List.
-                        //       Setting this to true will update the Bay object in the list. So the next time SelectDockingBay() is called.  This bay will not be available.
                         dockingBay.InUse = true;
 
                         // Once docking is completed, inform to the user that a ship is docked
@@ -201,8 +198,6 @@ namespace SpaceStationSystem
                         messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} {message}");
                         Console.WriteLine(message);
 
-                        // Dad - You need to add parameters messages and shipIndex to the call to PerforService() below. 
-                        //       Example: Thread performService = new Thread(() => PerformService(ship, messages, shipIndex)
                         // Spawn a new thread to perform the service.
                         Thread performService = new Thread(() => PerformService(ship, messages, shipIndex));
                         performService.Name = $"Service Ship {ship.ShipName}";
@@ -210,7 +205,7 @@ namespace SpaceStationSystem
                         performService.Start();
 
                         lastShip = ship.ShipName;
-                        shipIndex += 1;  // Dad - I added this variable to use in the filename for the files created in PerformService().
+                        shipIndex += 1;
                     }
                     else
                     {
@@ -237,77 +232,438 @@ namespace SpaceStationSystem
         /// Perform services that offer refuel, cargo load, cargo unload, clean waste tank, repair, and food
         /// </summary>
         /// <param name="ship"></param>
+        /// <param name="messages"></param>
+        /// <param name="shipIndex"></param>
         private void PerformService(Ship ship, List<string> messages, int shipIndex)
         {
-            // Dad - Add parameters "List<string> messages, int shipIndex" to this method.
-            //       Next we'll work on creating the files that use those variables.
             try
             {
-                // Dad - Add a using block here to 
-                Console.WriteLine($"Begin service on ship {ship.ShipName} (Federation ID {ship.ShipFedId} | Class {ship.ShipClassId}), requesting Repair Code {ship.RepairCode}");
-
-                // Perform repairs based on the ship's classes and Repair Code using combined switch (For now, use only Code 1)
-                // Dad - Look at how I combined the cases in method DockingTimeCycle().  Do the same thing here.
-                if (ship.RepairCode == 1)
+                string fileName = shipIndex.ToString("000") + "Temp.txt";
+                // Dad - Add a using block here with StreamWriter and put everything in method inside it.
+                //       Make StreamWriter create a file in the Temp folder you created in the constructor.
+                //       Name the new file starting with shipIndex with two leading zeros (e.g., fileName = shipIndex.ToString("000") + "Temp.txt"
+                //       Loop through variable messages and write each message to a line in the text file.
+                //       Then for every task in this method write out to the console and the file.
+                //       Go ahead and code more tasks in this method.
+                using (StreamWriter writer = new StreamWriter(@"\Reports\Temp\Temp.txt"))
                 {
-                    switch (ship.ShipClassId)
-                    {
-                        case 1:
-                        case 3:
-                            {
-                                Thread.Sleep(4000);
-                                break;
-                            }
-                        case 2:
-                        case 4:
-                            {
-                                Thread.Sleep(5000);
-                                break;
-                            }
-                        case 5:
-                        case 10:
-                            {
-                                Thread.Sleep(7000);
-                                break;
-                            }
-                        case 6:
-                            {
-                                Thread.Sleep(8000);
-                                break;
-                            }
-                        case 7:
-                            {
-                                Thread.Sleep(9000);
-                                break;
-                            }
-                        case 8:
-                        case 9:
-                            {
-                                Thread.Sleep(11000);
-                                break;
-                            }
-                        case 11:
-                            {
-                                Thread.Sleep(12000);
-                                break;
-                            }
-                        case 12:
-                            {
-                                Thread.Sleep(15000);
-                                break;
-                            }
-                    }
-                }
+                    //foreach (writer = File.AppendText(fileName))
+                    //{
 
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Ship {ship.ShipName} service complete.");
-                Console.ResetColor();
+                        Console.WriteLine($"Begin service on ship {ship.ShipName} (Federation ID {ship.ShipFedId} | Class {ship.ShipClassId}), requesting Repair Code {ship.RepairCode}");
+                        writer.Write(fileName);
 
-                // Check to see if this was the last ship in the queue.
-                if (_lastShipServiced == ship.ShipName)
-                {
-                    // Allow the Monitor Queue thread to complete.
-                    _lastShipComplete = true;
+                        // Perform repairs based on the ship's classes and Repair Code using combined switch
+
+                        // The Load Food Code have exact same time cycles as Repair Code, but I don't want to make it incredibly long code for computer to read.
+                        // Should I add '&&' in the if statement, e.g. if (ship.RepairCode == 1 && ship.FoodCode == 1)?
+
+                        // Repair Code 1
+                        if (ship.RepairCode == 1)
+                        {
+                            switch (ship.ShipClassId)
+                            {
+                                case 1:
+                                case 3:
+                                    {
+                                        Console.WriteLine("Repairing... (4 Cycles)"); // Added these WriteLine to record them into the file.
+                                        writer.Write(fileName);
+                                        Thread.Sleep(4000);
+                                        break;
+                                    }
+                                case 2:
+                                case 4:
+                                    {
+                                        Console.WriteLine("Repairing... (5 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(5000);
+                                        break;
+                                    }
+                                case 5:
+                                case 10:
+                                    {
+                                        Console.WriteLine("Repairing... (7 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(7000);
+                                        break;
+                                    }
+                                case 6:
+                                    {
+                                        Console.WriteLine("Repairing... (8 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(8000);
+                                        break;
+                                    }
+                                case 7:
+                                    {
+                                        Console.WriteLine("Repairing... (9 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(9000);
+                                        break;
+                                    }
+                                case 8:
+                                case 9:
+                                    {
+                                        Console.WriteLine("Repairing... (11 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(11000);
+                                        break;
+                                    }
+                                case 11:
+                                    {
+                                        Console.WriteLine("Repairing... (12 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(12000);
+                                        break;
+                                    }
+                                case 12:
+                                    {
+                                        Console.WriteLine("Repairing... (15 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(15000);
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        Console.WriteLine("No repair is needed for this ship.");
+                                        writer.Write(fileName);
+                                        break;
+                                    }
+                            }
+                        }
+
+                        // Repair Code 2
+                        if (ship.RepairCode == 2)
+                        {
+                            switch (ship.ShipClassId)
+                            {
+                                case 1:
+                                case 2:
+                                case 4:
+                                    {
+                                        Console.WriteLine("Repairing... (5 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(5000);
+                                        break;
+                                    }
+                                case 3:
+                                    {
+                                        Console.WriteLine("Repairing... (6 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(6000);
+                                        break;
+                                    }
+                                case 5:
+                                    {
+                                        Console.WriteLine("Repairing... (9 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(9000);
+                                        break;
+                                    }
+                                case 6:
+                                    {
+                                        Console.WriteLine("Repairing... (10 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(10000);
+                                        break;
+                                    }
+                                case 7:
+                                    {
+                                        Console.WriteLine("Repairing... (11 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(11000);
+                                        break;
+                                    }
+                                case 8:
+                                case 9:
+                                    {
+                                        Console.WriteLine("Repairing... (13 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(13000);
+                                        break;
+                                    }
+                                case 10:
+                                    {
+                                        Console.WriteLine("Repairing... (7 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(7000);
+                                        break;
+                                    }
+                                case 11:
+                                    {
+                                        Console.WriteLine("Repairing... (14 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(14000);
+                                        break;
+                                    }
+                                case 12:
+                                    {
+                                        Console.WriteLine("Repairing... (18 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(18000);
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        Console.WriteLine("No repair is needed for this ship.");
+                                        writer.Write(fileName);
+                                        break;
+                                    }
+                            }
+                        }
+
+                        // Repair Code 3
+                        if (ship.RepairCode == 3)
+                        {
+                            switch (ship.ShipClassId)
+                            {
+                                case 1:
+                                case 3:
+                                    {
+                                        Console.WriteLine("Repairing... (6 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(6000);
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        Console.WriteLine("Repairing... (5 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(5000);
+                                        break;
+                                    }
+                                case 4:
+                                case 10:
+                                    {
+                                        Console.WriteLine("Repairing... (7 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(7000);
+                                        break;
+                                    }
+                                case 5:
+                                    {
+                                        Console.WriteLine("Repairing... (10 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(10000);
+                                        break;
+                                    }
+                                case 6:
+                                    {
+                                        Console.WriteLine("Repairing... (11 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(11000);
+                                        break;
+                                    }
+                                case 7:
+                                    {
+                                        Console.WriteLine("Repairing... (13 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(13000);
+                                        break;
+                                    }
+                                case 8:
+                                    {
+                                        Console.WriteLine("Repairing... (15 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(15000);
+                                        break;
+                                    }
+                                case 9:
+                                    {
+                                        Console.WriteLine("Repairing... (17 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(17000);
+                                        break;
+                                    }
+                                case 11:
+                                    {
+                                        Console.WriteLine("Repairing... (19 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(19000);
+                                        break;
+                                    }
+                                case 12:
+                                    {
+                                        Console.WriteLine("Repairing... (21 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(21000);
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        Console.WriteLine("No repair is needed for this ship.");
+                                        writer.Write(fileName);
+                                        break;
+                                    }
+                            }
+                        }
+
+                        // Repair Code 4
+                        if (ship.RepairCode == 4)
+                        {
+                            switch (ship.ShipClassId)
+                            {
+                                case 1:
+                                case 3:
+                                case 4:
+                                case 10:
+                                    {
+                                        Console.WriteLine("Repairing... (9 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(9000);
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        Console.WriteLine("Repairing... (8 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(8000);
+                                        break;
+                                    }
+                                case 5:
+                                    {
+                                        Console.WriteLine("Repairing... (10 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(10000);
+                                        break;
+                                    }
+                                case 6:
+                                    {
+                                        Console.WriteLine("Repairing... (12 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(12000);
+                                        break;
+                                    }
+                                case 7:
+                                    {
+                                        Console.WriteLine("Repairing... (14 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(14000);
+                                        break;
+                                    }
+                                case 8:
+                                    {
+                                        Console.WriteLine("Repairing... (17 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(17000);
+                                        break;
+                                    }
+                                case 9:
+                                    {
+                                        Console.WriteLine("Repairing... (18 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(18000);
+                                        break;
+                                    }
+                                case 11:
+                                    {
+                                        Console.WriteLine("Repairing... (20 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(20000);
+                                        break;
+                                    }
+                                case 12:
+                                    {
+                                        Console.WriteLine("Repairing... (24 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(24000);
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        Console.WriteLine("No repair is needed for this ship.");
+                                        writer.Write(fileName);
+                                        break;
+                                    }
+                            }
+                        }
+
+                        // Repair Code 5
+                        if (ship.RepairCode == 5)
+                        {
+                            switch (ship.ShipClassId)
+                            {
+                                case 1:
+                                    {
+                                        Console.WriteLine("Repairing... (10 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(10000);
+                                        break;
+                                    }
+                                case 2:
+                                case 3:
+                                case 10:
+                                    {
+                                        Console.WriteLine("Repairing... (9 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(9000);
+                                        break;
+                                    }
+                                case 4:
+                                case 11:
+                                    {
+                                        Console.WriteLine("Repairing... (11 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(11000);
+                                        break;
+                                    }
+                                case 5:
+                                    {
+                                        Console.WriteLine("Repairing... (12 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(12000);
+                                        break;
+                                    }
+                                case 6:
+                                    {
+                                        Console.WriteLine("Repairing... (14 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(14000);
+                                        break;
+                                    }
+                                case 7:
+                                    {
+                                        Console.WriteLine("Repairing... (16 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(16000);
+                                        break;
+                                    }
+                                case 8:
+                                case 9:
+                                    {
+                                        Console.WriteLine("Repairing... (19 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(19000);
+                                        break;
+                                    }
+                                case 12:
+                                    {
+                                        Console.WriteLine("Repairing... (30 Cycles)");
+                                        writer.Write(fileName);
+                                        Thread.Sleep(30000);
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        Console.WriteLine("No repair is needed for this ship.");
+                                        writer.Write(fileName);
+                                        break;
+                                    }
+                            }
+                        }
+
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"Ship {ship.ShipName} service complete.");
+                        writer.Write(fileName);
+                        Console.ResetColor();
+
+                        // Check to see if this was the last ship in the queue.
+                        if (_lastShipServiced == ship.ShipName)
+                        {
+                            // Allow the Monitor Queue thread to complete.
+                            _lastShipComplete = true;
+                        }
+                    //}
                 }
             }
             catch (Exception ex)
@@ -331,10 +687,8 @@ namespace SpaceStationSystem
 
             try
             {
-                foreach (Bay bay in DockingBays)
+                foreach (Bay bay in _dockingBays)
                 {
-                    // Dad - We are using variable bay that comes from DockingBays in the foreach loop.  Not variable dockingBay.
-                    //if (dockingBay.InUse == false)     
                     if (bay.InUse == false)
                     {
                         compatibleBay = true;
