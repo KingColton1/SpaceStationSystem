@@ -66,6 +66,9 @@ namespace SpaceStationSystem
             {
                 case 1:
                     {
+                        Console.WriteLine("List of dock bays (Grey is not available, red is taken, green is available)");
+
+
                         break;
                     }
                 case 2:
