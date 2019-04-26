@@ -72,6 +72,10 @@ namespace SpaceStationSystem
         /// </summary>
         public bool Docked { get; set; }
 
+        /// <summary>
+        /// The dock the ship is docking in.
+        /// </summary>
+        public int DockId { get; set; }
         
         /// <summary>
         /// Identify the code number for repair to check how much cycle need to repair
@@ -92,5 +96,10 @@ namespace SpaceStationSystem
         /// The race of the beings that inhabit the ship.
         /// </summary>
         public string Race { get; set; }
+
+        /// <summary>
+        /// Has the ship been serviced by the space station?
+        /// </summary>
+        public bool ServiceComplete { get; set; }
     }
 }

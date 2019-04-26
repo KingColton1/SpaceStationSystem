@@ -55,8 +55,13 @@ namespace SpaceStationSystem
         public bool ConvertEnvironment { get; set; }
 
         /// <summary>
-        /// Are the dock(s) in use by another ship?
+        /// Is a ship currently docked?
         /// </summary>
         public bool InUse { get; set; }
+
+        /// <summary>
+        /// The name of the ship that is currenctly docked.
+        /// </summary>
+        public string ShipName { get; set; }
     }
 }

@@ -44,44 +44,5 @@ namespace SpaceStationSystem
                 Console.ResetColor();
             }
         }
-
-        /// <summary>
-        /// Display menu output for Captain of a ship to choose a bay and assign to it
-        /// </summary>
-        /// <param name="ship"></param>
-        public void MenuOutput(Ship ship)
-        {
-            int choice;
-
-            Console.WriteLine($"Greeting Captain of {ship.ShipName} Ship, how can we help you?" +
-                              $"\nYour ship Federation ID: {ship.ShipFedId}" +
-                              $"\nYour ship class: {ship.ShipClassId}, {ship.ShipClass}");
-
-            Console.WriteLine($"1. Select Docking Bay" +
-                              $"\n2. Statuses of Docking Bay" +
-                              $"\n3. Exit");
-            int.TryParse(Console.ReadLine(), out choice);
-
-            switch (choice)
-            {
-                case 1:
-                    {
-                        Console.WriteLine("List of dock bays (Grey is not available, red is taken, green is available)");
-
-
-                        break;
-                    }
-                case 2:
-                    {
-                        break;
-                    }
-                case 3:
-                    {
-                        Console.WriteLine("You decided to depart from the Space Station, good bye!");
-                        Environment.Exit(1000);
-                        break;
-                    }
-            }
-        }
     }
 }
