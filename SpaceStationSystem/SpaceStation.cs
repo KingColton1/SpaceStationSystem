@@ -13,7 +13,7 @@ namespace SpaceStationSystem
     /// <summary>
     /// The main function to run thread in the background and display menu
     /// </summary>
-    class SpaceStation
+    public class SpaceStation
     {
         // Create a queue for the ship to wait for their turn
         private Queue<Ship> _serviceQueue = new Queue<Ship>();
@@ -30,12 +30,13 @@ namespace SpaceStationSystem
         // Define a delegate for the Service Complete event.
         private delegate void ServiceCompleteEventHandler(int dockId, int shipFedId);
 
-        // Dad - Use the delegate definition created above to set the delegate definition of the event.
+        // Dad - Use the delegate definition created above for the event.
         // Define an event object for the Service Complete event.
         private event ServiceCompleteEventHandler ServiceComplete;
 
         private DateTime _startTime;
         private string _lastShipServiced = "";
+        private int _initialDockingBayID;
         private bool _lastShipComplete = false;
 
         /// <summary>
@@ -54,7 +55,6 @@ namespace SpaceStationSystem
                 Name = name;
                 _ships = new Dictionary<int, Ship>();
 
-                // Dad - Event handler method names should always start with "On" and then the name of the event.
                 // Assign method OnServiceComplete as a delegate to handle the Service Complete event.
                 ServiceComplete += new ServiceCompleteEventHandler(OnServiceComplete);
 
@@ -119,7 +119,7 @@ namespace SpaceStationSystem
                 Console.WriteLine($"Start docking service for space station {Name}");
                 Thread.Sleep(2000);
 
-                // Dad - This is the UI for the ship coordinator to start servicing ships.
+                // Display the UI for the ship coordinator to start service for ship
                 InitializeService();
 
                 // Spawn a thread that will monitor the ship queue.
@@ -127,6 +127,10 @@ namespace SpaceStationSystem
                 _monitorQueue.Name = "Monitor Queue";
                 _monitorQueue.IsBackground = true;
                 _monitorQueue.Start();
+
+                Thread.Sleep(1500);
+                Console.WriteLine("Ship service procedures have started.  Press enter to view menu.");
+                Console.ReadLine();
 
                 // Dad - I removed this because it was what was stopping the program from ending.
                 //       Now we're going to have a menu so we don't need to block the Monitor Queue thread that is spawned above.
@@ -139,12 +143,17 @@ namespace SpaceStationSystem
                 // Release and queued ship aren't practical option, considering it would fill the program with 500 ships. The FinalShip JSON file have 500 ships by the way.
                 // I renamed View open docking bays to Select docking bays, and renamed View occupied docking bays to View docking bays status.
                 // On the first comment I made above, I think we should just show only 4 closest to the front of the line that are soon to be docked (View queued ships)
+
+                // Select means to pick something. So it's the wrong word to use here because the user is only viewing things.
+                // "View docking bays status" implies you are going to view the status of all the docking bays.  The wording should stay as I made unless you change the functionality of the command.
+                // I agree about the queued ships.  You should only show four ships in the queue.
+
                 while (true)
                 {                     
                     Console.WriteLine("\n1. View docked ships" +
-                                      "\n2. Select docking bays" +
-                                      "\n3. View docking bays status" +
-                                      "\n4. View queued ships" +
+                                      "\n2. View available docking bays" +
+                                      "\n3. View occupied docking bays" +
+                                      "\n4. View next four queued ships" +
                                       "\n5. Exit");
 
                     Console.Write("Option: ");
@@ -154,6 +163,8 @@ namespace SpaceStationSystem
                     {
                         case 1:
                             {
+                                // View docked ships
+
                                 bool shipDocked = false;
 
                                 Console.WriteLine("\nCurrently Docked Ships:\n");
@@ -162,7 +173,7 @@ namespace SpaceStationSystem
                                 foreach (KeyValuePair<int, Ship> item in _ships)
                                 {
                                     ship = item.Value;
-                                    if (ship.Docked)
+                                    if (ship.Docked) // If any ship is docked, output message
                                     {
                                         shipDocked = true;
                                         Console.WriteLine($"Ship Name: {ship.ShipName} | Class: {ship.ShipClass} | Crew: {ship.Race} | Dock ID: {ship.DockId}");
@@ -170,6 +181,7 @@ namespace SpaceStationSystem
                                 }
                                 Console.ResetColor();
 
+                                // Nope, it wasn't docked. Can I have a free day, Commander David?
                                 if (!shipDocked)
                                 {
                                     Console.ForegroundColor = ConsoleColor.Yellow;
@@ -182,94 +194,95 @@ namespace SpaceStationSystem
                             }
                         case 2:
                             {
-                                Bay bay;
+                                // View avaliable docking bays
 
-                                bool occupied = false;
-                                int bayChoice;
+                                bool available = false;
 
                                 Console.WriteLine("\nAvailable docking bay(s)\n");
 
-                                while (true)
+                                foreach (Bay bay in _dockingBays)
                                 {
-                                    // Struggling this part
-                                    foreach (KeyValuePair<int, Bay> id in _dockingBays)
+                                    // If bay is not occupied by a ship, output message
+                                    if (!bay.InUse)
                                     {
-                                        Console.WriteLine($"Docking Bay {ship.DockId}");
-                                    }
-
-                                    Console.WriteLine("Option: ");
-                                    int.TryParse(Console.ReadLine(), out bayChoice);
-
-                                    if (bayChoice)
-                                    {
-                                        occupied = true;
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("Invalid input");
+                                        Console.WriteLine($"Docking Bay {bay.DockId} | Environment: {bay.CurrentEnvironment}; Dual? {bay.DualEnvironment} | Human? {bay.SupportsHuman} | Aqua? {bay.SupportsAqua} | Mega? {bay.SupportsMega} | Class Min: {bay.ClassMin} | Class Max: {bay.ClassMax}");
                                     }
                                 }
 
-                                if (!occupied)
+                                // If a bay is occupied, output message
+                                if (!available)
                                 {
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("No docking bay are available or compatible for your ship.");
+                                    Console.ForegroundColor = ConsoleColor.Yellow;
+                                    Console.WriteLine("No docking bays are currently available.");
                                     Console.ResetColor();
                                 }
-
+                                Console.WriteLine("\nPress enter to continue");
+                                Console.ReadLine();
                                 break;
                             }
                         case 3:
                             {
-                                Console.WriteLine("\nDocking Bay Statuses");
-                                Console.WriteLine("Green = available | Red = not available\n");
+                                // View occupied docking bays.
 
-                                // This part is pretty hard to think
-                                for (_dockingBays != null && ship.Docked = true)
+                                //bool avaliable = true;
+
+                                Console.WriteLine("\nOccupied docking bays\n");
+
+                                // Dad - Make this exactly like case 2.  Except show the information for bay.InUse = true.
+                                foreach (Bay bay in _dockingBays)
                                 {
-                                    if (_dockingBays != null)
+                                    if (bay.InUse == true)
                                     {
-                                        Console.ForegroundColor = ConsoleColor.Green;
-                                        Console.WriteLine($"Docking Bay {ship.DockId}");
-                                        Console.ResetColor();
+                                        Console.WriteLine($"Docking Bay {bay.DockId} | Environment: {bay.CurrentEnvironment} | Class Min: {bay.ClassMin}; Class Max: {bay.ClassMax} | Occupied by {bay.ShipName} Ship");
                                     }
-                                    if (ship.Docked)
+                                    else
                                     {
-                                        Console.ForegroundColor = ConsoleColor.Red;
-                                        Console.WriteLine($"Docking Bay {ship.DockId}");
+                                        Console.ForegroundColor = ConsoleColor.Yellow;
+                                        Console.WriteLine($"Docking Bay {bay.DockId} is not occupied.");
                                         Console.ResetColor();
                                     }
                                 }
+
+                                /*
+                                if (avaliable == false)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Yellow;
+                                    Console.WriteLine("No docking bays are occupied currently.");
+                                    Console.ResetColor();
+                                }*/
+
 
                                 break;
                             }
                         case 4:
                             {
+                                // View next four queued ships
+
                                 Console.WriteLine("\nCurrent 5 queued ships pending for the service\n");
 
-                                foreach (KeyValuePair<int, Ship> item in _ships)
+                                for (int i = 0; i < 5; i++)
                                 {
-                                    ship = item.Value;
-                                    if (_serviceQueue.Count > 5) // I know this is wrong but it actually show the whole list of queued ships, instead of limiting to only 5.
-                                    {
-                                        Console.WriteLine($"Ship Name: {ship.ShipName} | FedID: {ship.ShipFedId} | Class: {ship.ShipClass}" +
-                                                          $"\nCaptain: {ship.CaptainName} | Crew: {ship.Race}" +
-                                                          $"\nCurrent Fuel: {ship.FuelOnBoard} | Maximum Fuel: {ship.FuelCapacity}" +
-                                                          $"\nOn-Board Cargo: {ship.CargoToUnload} | Expected Cargo: {ship.CargoToLoad}" +
-                                                          $"\nCurrent Waste: {ship.CurrentWaste} | Total Waste Capacity: {ship.WasteCapacity}" +
-                                                          $"\nDefense Power: {ship.CurrentPower}" +
-                                                          $"\nRepair Code: {ship.RepairCode}" +
-                                                          $"\nFood Code: {ship.FoodCode}\n");
-                                    }
+                                    // Dad - Use .ElementAt() to get items from the queue without removing them from the queue.
+                                    ship = _serviceQueue.ElementAt(i);
+
+                                    Console.WriteLine($"Ship Name: {ship.ShipName} | FedID: {ship.ShipFedId} | Class: {ship.ShipClass}" +
+                                                        $"\nCaptain: {ship.CaptainName} | Crew: {ship.Race}" +
+                                                        $"\nCurrent Fuel: {ship.FuelOnBoard} | Maximum Fuel: {ship.FuelCapacity}" +
+                                                        $"\nOn-Board Cargo: {ship.CargoToUnload} | Expected Cargo: {ship.CargoToLoad}" +
+                                                        $"\nCurrent Waste: {ship.CurrentWaste} | Total Waste Capacity: {ship.WasteCapacity}" +
+                                                        $"\nDefense Power: {ship.CurrentPower}" +
+                                                        $"\nRepair Code: {ship.RepairCode}" +
+                                                        $"\nFood Code: {ship.FoodCode}\n");
                                 }
 
                                 break;
                             }
                         case 5:
                             {
-                                Console.WriteLine("You decided to depart from the Space Station, good bye!");
-                                Environment.Exit(1000);
+                                Thread.Sleep(1500);
+                                Console.WriteLine("\nShutting down Space Station system, good bye Commander David!");
+                                Thread.Sleep(1500);
+                                Environment.Exit(0);
                                 break;
                             }
                         default:
@@ -295,27 +308,116 @@ namespace SpaceStationSystem
         /// </summary>
         private void InitializeService()
         {
+            Dictionary<int, int> compatibleBays = new Dictionary<int, int>();
+            int option;
+            int choice;
+
             try
             {
+                Console.WriteLine("\nVerifying command and control credentials.");
+                Thread.Sleep(1000);
+                Console.Write("Please wait");
+                Thread.Sleep(1500);
+                Console.Write(".");
+                Thread.Sleep(1500);
+                Console.Write(".");
+                Thread.Sleep(1500);
+                Console.Write(".");
+                Thread.Sleep(2000);
+                Console.WriteLine("\rCommander Lawence David Identified.\n"); // Replace "Please wait" with new message
+                Thread.Sleep(1500);
+                Console.WriteLine("Press Enter to view the first ship in the queue");
+                Console.ReadLine();
+
+                // It's a ship's turn! Yay!
                 Ship ship = _serviceQueue.Dequeue();
 
-                Console.Write("\nShip ");
+                Console.Write("Ship ");
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write($"{ship.ShipName} ");
                 Console.ResetColor();
                 Console.WriteLine("is first in queue.");
                 Console.WriteLine($"Federation ID: {ship.ShipFedId} | Class: {ship.ShipClass} | Crew: {ship.Race}\n");
-                Console.WriteLine("Press Enter to view the Space Station menu");
+                Thread.Sleep(1500);
+                Console.WriteLine("Press Enter to view compatible docking bays");
                 Console.ReadLine();
 
-                /* Moved to the switch menu in Case 2 and Case 3.
-                for (_dockingBays != null)
-                {
+                option = 0;
 
-                } */
-                // Dad - You finish this.  Loop through the docking bays and display only docking bays that are compatible with the ship.
-                //       Each compatible docking bay should be a menu item.
-                //       When the user selects a docking bay do the docking cycle, set the Bay and Ship properties, and spawn a thread the same way it's done in method MonitorQueue.
+                foreach (Bay bay in _dockingBays)
+                {
+                    bool compatible = true;
+
+                    // Check if the docking bay is compatible with the ship class.
+                    if (ship.ShipClassId < bay.ClassMin || ship.ShipClassId > bay.ClassMax)
+                    {
+                        compatible = false;
+                    }
+
+                    switch (ship.Race.ToUpper())
+                    {
+                        case "HUMAN":
+                            {
+                                if (!bay.SupportsHuman)
+                                {
+                                    compatible = false;
+                                }
+                                break;
+                            }
+                        case "MEGA":
+                            {
+                                if (!bay.SupportsMega)
+                                {
+                                    compatible = false;
+                                }
+                                break;
+                            }
+                        case "AMPHIBIAN":
+                            {
+                                if (!bay.SupportsAqua)
+                                {
+                                    compatible = false;
+                                }
+                                break;
+                            }
+                        default:
+                            {
+                                throw new Exception($"Ship race {ship.Race} is not recognized");
+                            }
+                    }
+
+                    if (compatible)
+                    {
+                        option += 1;
+                        Console.WriteLine($"Bay {option}. Dock ID: {bay.DockId} | Environment: {bay.CurrentEnvironment} | Class Min: {bay.ClassMin} | Class Max: {bay.ClassMax}");
+                        compatibleBays.Add(option, bay.DockId);
+                    }
+                }
+
+                while (true)
+                {
+                    Console.WriteLine("Enter Bay number.");
+                    int.TryParse(Console.ReadLine(), out choice);
+
+                    if (choice > 0 && choice <= option)
+                    {
+                        // Dad - This is how method MonitorQueue knows which docking bay to use for the first ship.
+                        //       Variable _initialDockingBay holds the DockId of the dock that the user selected.
+                        //       Notice how Dictionary compatibleBays is populated in the loop above.
+                        _initialDockingBayID = compatibleBays[choice];
+
+                        Thread.Sleep(1000);
+                        Console.WriteLine($"\nDocking bay {compatibleBays[choice]} ready.  Press enter to begin ship service procedures.");
+                        Console.ReadLine();
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid Entry");
+                    }
+                }
+
+
                 
             }
             catch (Exception ex)
@@ -352,17 +454,36 @@ namespace SpaceStationSystem
                         message = $"Ship {ship.ShipName} (Federation ID: {ship.ShipFedId} | Class: {ship.ShipClass} | Crew: {ship.Race}) has been dequeued.";
                         messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - {message}");
 
-                        // Select the docking bay. Loop unit a docking bay is available.
-                        while (true)
+                        // Dad - I set variable _initialDockingBayID in method InitializeService.
+                        if (_initialDockingBayID > 0)
                         {
-                            dockingBay = SelectDockingBay(ship);
+                            dockingBay = null;
 
-                            // Check if the bay is available.
-                            if (dockingBay != null)
+                            // This is the first ship in the queue.  Use Commander David's bay selection;
+                            foreach (Bay bay in _dockingBays)
                             {
-                                break;
+                                if (bay.DockId == _initialDockingBayID)
+                                {
+                                    dockingBay = bay;
+                                }
                             }
-                            Thread.Sleep(2000);
+
+                            _initialDockingBayID = 0;
+                        }
+                        else
+                        {
+                            // Select the docking bay. Loop unit a docking bay is available.
+                            while (true)
+                            {
+                                dockingBay = SelectDockingBay(ship);
+
+                                // Check if the bay is available.
+                                if (dockingBay != null)
+                                {
+                                    break;
+                                }
+                                Thread.Sleep(2000);
+                            }
                         }
 
                         // A available docking bay is selected.
@@ -599,9 +720,10 @@ namespace SpaceStationSystem
         {
             try
             {
-                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Begin service on ship {ship.ShipName}");
+                // Dad - I changed class Service from static to normal.  So now you have to instantiate an object of class Service.
+                Service service = new Service();
 
-                // Had to clean this comment so I can read this easy
+                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Begin service on ship {ship.ShipName}");
 
                 // Refuel ship
                 if (ship.FuelOnBoard > ship.FuelCapacity)
@@ -691,7 +813,7 @@ namespace SpaceStationSystem
                 if (ship.RepairCode > 0)
                 {
                     messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Ship {ship.ShipName}'s repair code = {ship.RepairCode} beginning repairs.");
-                    Service.RepairShip(ship, ref messages);
+                    service.RepairShip(ship, ref messages);
                 }
                 else
                 {
@@ -701,7 +823,7 @@ namespace SpaceStationSystem
                 // Recharge defense power
                 if (ship.CurrentPower > 0)
                 {
-                    Service.DefensePowerService(ship, ref messages);
+                    service.DefensePowerService(ship, ref messages);
                 }
                 else
                 {
@@ -712,7 +834,7 @@ namespace SpaceStationSystem
                 if (ship.FoodCode > 0)
                 {
                     messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Ship {ship.ShipName}'s food code = {ship.FoodCode} beginning food resupply.");
-                    Service.FoodService(ship, ref messages);
+                    service.FoodSupply(ship, ref messages);
                 }
                 else
                 {

@@ -7,415 +7,213 @@ using System.Threading;
 namespace SpaceStationSystem
 {
     /// <summary>
-    /// Contains static methods to calculate time cycles for the ship services.
+    /// Contains dictionaries for Food and Repair codes from Lookup tables, Defense Power recharge calculation, and
+    /// Food/Repair Code's time cycles calculation.
     /// </summary>
-    static class Service
+    class Service
     {
-        /// <summary>
-        /// Identify the Repair Code using array instead of if and switch statements, shorten and easiest to maintain
-        /// </summary>
-        /// <param name="ship"></param>
-        /// <param name="messages"></param>
-        public static void ArrayRepairShip(Ship ship, ref List<string> messages)
+        // Dad - I believe the best way to do this is to make a List of Dictionaries.
+        //       It's just like a 2 dimensional array but the second dimension is a dictionary.
+        //       The fist dimension is the repair code.  We will use the repair code as the index of the List.
+        //       Zero will be an invalid index value.  So we will have to validate the repair code before using it to make sure we don't try to use zero.
+        private List<Dictionary<ShipClass, int>> _repairTimeCycles;
+        private List<Dictionary<ShipClass, int>> _foodSupplyTimeCycles;
+
+        public Service()
         {
-            try
-            {
-                int[,] repairCode = new int[12, 5]
-                {
-                { 4, 5, 6, 9, 10 }, // Class 1 - Runabout
-                { 5, 5, 5, 8, 9 }, // Class 2 - Personal
-                { 4, 6, 6, 9, 9 }, // Class 3 - Skeeter
-                { 5, 5, 7, 9, 11 }, // Class 4 - Small Shuttle
-                { 7, 9, 10, 10, 12 }, // Class 5 - Medium Shuttle
-                { 8, 10, 11, 12, 14 }, // Class 6 - Large Shuttle
-                { 9, 11, 13, 14, 16 }, // Class 7 - Personnel Transport
-                { 11, 13, 15, 17, 19 }, // Class 8 - Cargo Transport
-                { 11, 13, 17, 18, 19 }, // Class 9 - Cargo Transport II
-                { 7, 7, 7, 9, 9 }, // Class 10 - Scout Ship
-                { 12, 14, 19, 20, 11 }, // Class 11 - Explorer
-                { 15, 18, 21, 24, 30 }, // Class 12 - Dreadnaught
-                };
+            // Dad - Read the comments in this constructor and make sure you understand what I did.
+            //       If you don't understand, ask me questions.  
+            //       It seems you're not studying my work.  You're just using/copying my code without studying it.
+            //       You'll eventually fall very far behind if you don't understand what I'm showing you.
 
-                // Calculate time
-                // I'm not very well knowledgable of using math with array, it confuse me a lot.
-                int timeCycle = repairCode[0] + repairCode [1];
+            // List of Dictionaries; it used ship class as the key of the dictionary. The value is the time cycle for the ship class.
+            _repairTimeCycles = new List<Dictionary<ShipClass, int>>();
+            _foodSupplyTimeCycles = new List<Dictionary<ShipClass, int>>();
+            _repairTimeCycles.Add(null); // There is no repair code zero. So we can't use this item in the array.
+            _foodSupplyTimeCycles.Add(null);
 
-                // Thread.Sleep will depend on array's data. The message will have different number of cycle each time.
-                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... ({repairCode} Cycles)");
-                Thread.Sleep(timeCycle);
+            // Time cycles for repair code 1
+            Dictionary<ShipClass, int> repairCode1 = new Dictionary<ShipClass, int>();
+            repairCode1.Add(ShipClass.Runabout, 4);
+            repairCode1.Add(ShipClass.Personal, 5);
+            repairCode1.Add(ShipClass.Skeeter, 4);
+            repairCode1.Add(ShipClass.SmallShuttle, 5);
+            repairCode1.Add(ShipClass.MediumShuttle, 7);
+            repairCode1.Add(ShipClass.LargeShuttle, 8);
+            repairCode1.Add(ShipClass.PersonnelTransport, 9);
+            repairCode1.Add(ShipClass.CargoTransport, 11);
+            repairCode1.Add(ShipClass.CargoTransportII, 11);
+            repairCode1.Add(ShipClass.ScoutShip, 7);
+            repairCode1.Add(ShipClass.Explorer, 12);
+            repairCode1.Add(ShipClass.Dreadnaught, 15);
+            _repairTimeCycles.Add(repairCode1);  // Add repair code 1 time cycles to index 1 of the List.
 
-                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairs complete.");
-            }
-            catch (Exception ex)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Error in SpaceStation.RepairShip() - {ex.Message}");
-                Console.ResetColor();
-            }
+            // Time cycles for repair code 2
+            Dictionary<ShipClass, int> repairCode2 = new Dictionary<ShipClass, int>();
+            repairCode2.Add(ShipClass.Runabout, 5);
+            repairCode2.Add(ShipClass.Personal, 5);
+            repairCode2.Add(ShipClass.Skeeter, 6);
+            repairCode2.Add(ShipClass.SmallShuttle, 5);
+            repairCode2.Add(ShipClass.MediumShuttle, 9);
+            repairCode2.Add(ShipClass.LargeShuttle, 10);
+            repairCode2.Add(ShipClass.PersonnelTransport, 11);
+            repairCode2.Add(ShipClass.CargoTransport, 13);
+            repairCode2.Add(ShipClass.CargoTransportII, 13);
+            repairCode2.Add(ShipClass.ScoutShip, 7);
+            repairCode2.Add(ShipClass.Explorer, 14);
+            repairCode2.Add(ShipClass.Dreadnaught, 18);
+            _repairTimeCycles.Add(repairCode2);
+
+            // Time cycles for repair code 3
+            Dictionary<ShipClass, int> repairCode3 = new Dictionary<ShipClass, int>();
+            repairCode3.Add(ShipClass.Runabout, 6);
+            repairCode3.Add(ShipClass.Personal, 5);
+            repairCode3.Add(ShipClass.Skeeter, 6);
+            repairCode3.Add(ShipClass.SmallShuttle, 7);
+            repairCode3.Add(ShipClass.MediumShuttle, 10);
+            repairCode3.Add(ShipClass.LargeShuttle, 11);
+            repairCode3.Add(ShipClass.PersonnelTransport, 13);
+            repairCode3.Add(ShipClass.CargoTransport, 15);
+            repairCode3.Add(ShipClass.CargoTransportII, 17);
+            repairCode3.Add(ShipClass.ScoutShip, 7);
+            repairCode3.Add(ShipClass.Explorer, 19);
+            repairCode3.Add(ShipClass.Dreadnaught, 21);
+            _repairTimeCycles.Add(repairCode3);
+
+            // Time cycles for repair code 4
+            Dictionary<ShipClass, int> repairCode4 = new Dictionary<ShipClass, int>();
+            repairCode4.Add(ShipClass.Runabout, 9);
+            repairCode4.Add(ShipClass.Personal, 8);
+            repairCode4.Add(ShipClass.Skeeter, 9);
+            repairCode4.Add(ShipClass.SmallShuttle, 9);
+            repairCode4.Add(ShipClass.MediumShuttle, 10);
+            repairCode4.Add(ShipClass.LargeShuttle, 12);
+            repairCode4.Add(ShipClass.PersonnelTransport, 14);
+            repairCode4.Add(ShipClass.CargoTransport, 17);
+            repairCode4.Add(ShipClass.CargoTransportII, 18);
+            repairCode4.Add(ShipClass.ScoutShip, 9);
+            repairCode4.Add(ShipClass.Explorer, 20);
+            repairCode4.Add(ShipClass.Dreadnaught, 24);
+            _repairTimeCycles.Add(repairCode4);
+
+            // Time cycles for repair code 5
+            Dictionary<ShipClass, int> repairCode5 = new Dictionary<ShipClass, int>();
+            repairCode5.Add(ShipClass.Runabout, 10);
+            repairCode5.Add(ShipClass.Personal, 9);
+            repairCode5.Add(ShipClass.Skeeter, 9);
+            repairCode5.Add(ShipClass.SmallShuttle, 11);
+            repairCode5.Add(ShipClass.MediumShuttle, 12);
+            repairCode5.Add(ShipClass.LargeShuttle, 14);
+            repairCode5.Add(ShipClass.PersonnelTransport, 16);
+            repairCode5.Add(ShipClass.CargoTransport, 19);
+            repairCode5.Add(ShipClass.CargoTransportII, 19);
+            repairCode5.Add(ShipClass.ScoutShip, 9);
+            repairCode5.Add(ShipClass.Explorer, 11);
+            repairCode5.Add(ShipClass.Dreadnaught, 30);
+            _repairTimeCycles.Add(repairCode5);
+
+            // Repair Code above
+            // ------------------------------------------------------
+            // Food Code below
+
+            // Time cycles for food code 1
+            Dictionary<ShipClass, int> foodCode1 = new Dictionary<ShipClass, int>();
+            foodCode1.Add(ShipClass.Runabout, 4);
+            foodCode1.Add(ShipClass.Personal, 5);
+            foodCode1.Add(ShipClass.Skeeter, 4);
+            foodCode1.Add(ShipClass.SmallShuttle, 5);
+            foodCode1.Add(ShipClass.MediumShuttle, 7);
+            foodCode1.Add(ShipClass.LargeShuttle, 8);
+            foodCode1.Add(ShipClass.PersonnelTransport, 9);
+            foodCode1.Add(ShipClass.CargoTransport, 11);
+            foodCode1.Add(ShipClass.CargoTransportII, 11);
+            foodCode1.Add(ShipClass.ScoutShip, 7);
+            foodCode1.Add(ShipClass.Explorer, 12);
+            foodCode1.Add(ShipClass.Dreadnaught, 15);
+            _foodSupplyTimeCycles.Add(foodCode1);
+
+            // Time cycles for food code 2
+            Dictionary<ShipClass, int> foodCode2 = new Dictionary<ShipClass, int>();
+            foodCode2.Add(ShipClass.Runabout, 5);
+            foodCode2.Add(ShipClass.Personal, 5);
+            foodCode2.Add(ShipClass.Skeeter, 6);
+            foodCode2.Add(ShipClass.SmallShuttle, 5);
+            foodCode2.Add(ShipClass.MediumShuttle, 9);
+            foodCode2.Add(ShipClass.LargeShuttle, 10);
+            foodCode2.Add(ShipClass.PersonnelTransport, 11);
+            foodCode2.Add(ShipClass.CargoTransport, 13);
+            foodCode2.Add(ShipClass.CargoTransportII, 13);
+            foodCode2.Add(ShipClass.ScoutShip, 7);
+            foodCode2.Add(ShipClass.Explorer, 14);
+            foodCode2.Add(ShipClass.Dreadnaught, 18);
+            _foodSupplyTimeCycles.Add(foodCode2);
+
+            // Time cycles for food code 3
+            Dictionary<ShipClass, int> foodCode3 = new Dictionary<ShipClass, int>();
+            foodCode3.Add(ShipClass.Runabout, 6);
+            foodCode3.Add(ShipClass.Personal, 5);
+            foodCode3.Add(ShipClass.Skeeter, 6);
+            foodCode3.Add(ShipClass.SmallShuttle, 7);
+            foodCode3.Add(ShipClass.MediumShuttle, 10);
+            foodCode3.Add(ShipClass.LargeShuttle, 11);
+            foodCode3.Add(ShipClass.PersonnelTransport, 13);
+            foodCode3.Add(ShipClass.CargoTransport, 15);
+            foodCode3.Add(ShipClass.CargoTransportII, 17);
+            foodCode3.Add(ShipClass.ScoutShip, 7);
+            foodCode3.Add(ShipClass.Explorer, 19);
+            foodCode3.Add(ShipClass.Dreadnaught, 21);
+            _foodSupplyTimeCycles.Add(foodCode3);
+
+            // Time cycles for food code 4
+            Dictionary<ShipClass, int> foodCode4 = new Dictionary<ShipClass, int>();
+            foodCode4.Add(ShipClass.Runabout, 9);
+            foodCode4.Add(ShipClass.Personal, 8);
+            foodCode4.Add(ShipClass.Skeeter, 9);
+            foodCode4.Add(ShipClass.SmallShuttle, 9);
+            foodCode4.Add(ShipClass.MediumShuttle, 10);
+            foodCode4.Add(ShipClass.LargeShuttle, 12);
+            foodCode4.Add(ShipClass.PersonnelTransport, 14);
+            foodCode4.Add(ShipClass.CargoTransport, 17);
+            foodCode4.Add(ShipClass.CargoTransportII, 18);
+            foodCode4.Add(ShipClass.ScoutShip, 9);
+            foodCode4.Add(ShipClass.Explorer, 20);
+            foodCode4.Add(ShipClass.Dreadnaught, 24);
+            _foodSupplyTimeCycles.Add(foodCode4);
+
+            // Time cycles for food code 5
+            Dictionary<ShipClass, int> foodCode5 = new Dictionary<ShipClass, int>();
+            foodCode5.Add(ShipClass.Runabout, 10);
+            foodCode5.Add(ShipClass.Personal, 9);
+            foodCode5.Add(ShipClass.Skeeter, 9);
+            foodCode5.Add(ShipClass.SmallShuttle, 11);
+            foodCode5.Add(ShipClass.MediumShuttle, 12);
+            foodCode5.Add(ShipClass.LargeShuttle, 14);
+            foodCode5.Add(ShipClass.PersonnelTransport, 16);
+            foodCode5.Add(ShipClass.CargoTransport, 19);
+            foodCode5.Add(ShipClass.CargoTransportII, 19);
+            foodCode5.Add(ShipClass.ScoutShip, 9);
+            foodCode5.Add(ShipClass.Explorer, 11);
+            foodCode5.Add(ShipClass.Dreadnaught, 30);
+            _foodSupplyTimeCycles.Add(foodCode5);
         }
-
-        // Once we're done with array, I'll remove these methods with if and switch.
-
         /// <summary>
-        /// Repair service for a ship based on their Repair Code.
+        /// Extract from the RepairCode dictionary and calculate the time cycles to find out how long it take to repair a ship
         /// </summary>
-        /// <param name="ship">The ship that is being serviced.</param>
-        /// <param name="messages">The log messages for the events that have already happened to the ship.</param>
-        public static void RepairShip(Ship ship, ref List<string> messages)
+        /// <param name="ship">The ship that is being repaired</param>
+        /// <param name="messages">Display messages in Temp.txt</param>
+        public void RepairShip(Ship ship, ref List<string> messages)
         {
-            string message;
-
             try
             {
-                // Repair Code 1
-                if (ship.RepairCode == 1)
-                {
-                    switch (ship.ShipClass)
-                    {
-                        case ShipClass.Runabout:
-                        case ShipClass.Skeeter:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (4 Cycles)");
-                                Thread.Sleep(4000);
-                                break;
-                            }
-                        case ShipClass.Personal:
-                        case ShipClass.SmallShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (5 Cycles)");
-                                Thread.Sleep(5000);
-                                break;
-                            }
-                        case ShipClass.MediumShuttle:
-                        case ShipClass.ScoutShip:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (7 Cycles)");
-                                Thread.Sleep(7000);
-                                break;
-                            }
-                        case ShipClass.LargeShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (8 Cycles)");
-                                Thread.Sleep(8000);
-                                break;
-                            }
-                        case ShipClass.PersonnelTransport:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (9 Cycles)");
-                                Thread.Sleep(9000);
-                                break;
-                            }
-                        case ShipClass.CargoTransport:
-                        case ShipClass.CargoTransportII:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (11 Cycles)");
-                                Thread.Sleep(11000);
-                                break;
-                            }
-                        case ShipClass.Explorer:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (12 Cycles)");
-                                Thread.Sleep(12000);
-                                break;
-                            }
-                        case ShipClass.Dreadnaught:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (15 Cycles)");
-                                Thread.Sleep(15000);
-                                break;
-                            }
-                        default:
-                            {
-                                message = $"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - ERROR: Ship class {ship.ShipClass} was not recognized.  Repair aborted!";
-                                messages.Add(message);
-                                throw new Exception(message);
-                            }
-                    }
-                }
+                int timeCycle;
 
-                // Repair Code 2
-                if (ship.RepairCode == 2)
-                {
-                    switch (ship.ShipClass)
-                    {
-                        case ShipClass.Runabout:
-                        case ShipClass.Personal:
-                        case ShipClass.SmallShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (5 Cycles)");
-                                Thread.Sleep(5000);
-                                break;
-                            }
-                        case ShipClass.Skeeter:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (6 Cycles)");
-                                Thread.Sleep(6000);
-                                break;
-                            }
-                        case ShipClass.MediumShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (9 Cycles)");
-                                Thread.Sleep(9000);
-                                break;
-                            }
-                        case ShipClass.LargeShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (10 Cycles)");
-                                Thread.Sleep(10000);
-                                break;
-                            }
-                        case ShipClass.PersonnelTransport:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (11 Cycles)");
-                                Thread.Sleep(11000);
-                                break;
-                            }
-                        case ShipClass.CargoTransport:
-                        case ShipClass.CargoTransportII:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (13 Cycles)");
-                                Thread.Sleep(13000);
-                                break;
-                            }
-                        case ShipClass.ScoutShip:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (7 Cycles)");
-                                Thread.Sleep(7000);
-                                break;
-                            }
-                        case ShipClass.Explorer:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (14 Cycles)");
-                                Thread.Sleep(14000);
-                                break;
-                            }
-                        case ShipClass.Dreadnaught:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (18 Cycles)");
-                                Thread.Sleep(18000);
-                                break;
-                            }
-                        default:
-                            {
-                                message = $"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - ERROR: Ship class {ship.ShipClass} was not recognized.  Repair aborted!";
-                                messages.Add(message);
-                                throw new Exception(message);
-                            }
-                    }
-                }
+                // Extract information from repairTimeCycles dictionary and ship's RepairCode
+                Dictionary<ShipClass, int> timeCycles = _repairTimeCycles[ship.RepairCode];
 
-                // Repair Code 3
-                if (ship.RepairCode == 3)
-                {
-                    switch (ship.ShipClass)
-                    {
-                        case ShipClass.Runabout:
-                        case ShipClass.Skeeter:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (6 Cycles)");
-                                Thread.Sleep(6000);
-                                break;
-                            }
-                        case ShipClass.Personal:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (5 Cycles)");
-                                Thread.Sleep(5000);
-                                break;
-                            }
-                        case ShipClass.SmallShuttle:
-                        case ShipClass.ScoutShip:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (7 Cycles)");
-                                Thread.Sleep(7000);
-                                break;
-                            }
-                        case ShipClass.MediumShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (10 Cycles)");
-                                Thread.Sleep(10000);
-                                break;
-                            }
-                        case ShipClass.LargeShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (11 Cycles)");
-                                Thread.Sleep(11000);
-                                break;
-                            }
-                        case ShipClass.PersonnelTransport:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (13 Cycles)");
-                                Thread.Sleep(13000);
-                                break;
-                            }
-                        case ShipClass.CargoTransport:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (15 Cycles)");
-                                Thread.Sleep(15000);
-                                break;
-                            }
-                        case ShipClass.CargoTransportII:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (17 Cycles)");
-                                Thread.Sleep(17000);
-                                break;
-                            }
-                        case ShipClass.Explorer:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (19 Cycles)");
-                                Thread.Sleep(19000);
-                                break;
-                            }
-                        case ShipClass.Dreadnaught:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (21 Cycles)");
-                                Thread.Sleep(21000);
-                                break;
-                            }
-                        default:
-                            {
-                                message = $"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - ERROR: Ship class {ship.ShipClass} was not recognized.  Repair aborted!";
-                                messages.Add(message);
-                                throw new Exception(message);
-                            }
-                    }
-                }
+                timeCycle = timeCycles[ship.ShipClass];
 
-                // Repair Code 4
-                if (ship.RepairCode == 4)
-                {
-                    switch (ship.ShipClass)
-                    {
-                        case ShipClass.Runabout:
-                        case ShipClass.Skeeter:
-                        case ShipClass.SmallShuttle:
-                        case ShipClass.ScoutShip:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (9 Cycles)");
-                                Thread.Sleep(9000);
-                                break;
-                            }
-                        case ShipClass.Personal:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (8 Cycles)");
-                                Thread.Sleep(8000);
-                                break;
-                            }
-                        case ShipClass.MediumShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (10 Cycles)");
-                                Thread.Sleep(10000);
-                                break;
-                            }
-                        case ShipClass.LargeShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (12 Cycles)");
-                                Thread.Sleep(12000);
-                                break;
-                            }
-                        case ShipClass.PersonnelTransport:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (14 Cycles)");
-                                Thread.Sleep(14000);
-                                break;
-                            }
-                        case ShipClass.CargoTransport:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (17 Cycles)");
-                                Thread.Sleep(17000);
-                                break;
-                            }
-                        case ShipClass.CargoTransportII:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (18 Cycles)");
-                                Thread.Sleep(18000);
-                                break;
-                            }
-                        case ShipClass.Explorer:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (20 Cycles)");
-                                Thread.Sleep(20000);
-                                break;
-                            }
-                        case ShipClass.Dreadnaught:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (24 Cycles)");
-                                Thread.Sleep(24000);
-                                break;
-                            }
-                        default:
-                            {
-                                message = $"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - ERROR: Ship class {ship.ShipClass} was not recognized.  Repair aborted!";
-                                messages.Add(message);
-                                throw new Exception(message);
-                            }
-                    }
-                }
-
-                // Repair Code 5
-                if (ship.RepairCode == 5)
-                {
-                    switch (ship.ShipClass)
-                    {
-                        case ShipClass.Runabout:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (10 Cycles)");
-                                Thread.Sleep(10000);
-                                break;
-                            }
-                        case ShipClass.Personal:
-                        case ShipClass.Skeeter:
-                        case ShipClass.ScoutShip:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (9 Cycles)");
-                                Thread.Sleep(9000);
-                                break;
-                            }
-                        case ShipClass.SmallShuttle:
-                        case ShipClass.Explorer:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (11 Cycles)");
-                                Thread.Sleep(11000);
-                                break;
-                            }
-                        case ShipClass.MediumShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (12 Cycles)");
-                                Thread.Sleep(12000);
-                                break;
-                            }
-                        case ShipClass.LargeShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (14 Cycles)");
-                                Thread.Sleep(14000);
-                                break;
-                            }
-                        case ShipClass.PersonnelTransport:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (16 Cycles)");
-                                Thread.Sleep(16000);
-                                break;
-                            }
-                        case ShipClass.CargoTransport:
-                        case ShipClass.CargoTransportII:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (19 Cycles)");
-                                Thread.Sleep(19000);
-                                break;
-                            }
-                        case ShipClass.Dreadnaught:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... (30 Cycles)");
-                                Thread.Sleep(30000);
-                                break;
-                            }
-                        default:
-                            {
-                                message = $"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - ERROR: Ship class {ship.ShipClass} was not recognized.  Repair aborted!";
-                                messages.Add(message);
-                                throw new Exception(message);
-                            }
-                    }
-                }
+                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairing... ({timeCycle} Cycles)");
+                Thread.Sleep(timeCycle * 1000); // Ship's own time cycle multiply by 1000
 
                 messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Repairs complete.");
             }
@@ -428,372 +226,30 @@ namespace SpaceStationSystem
         }
 
         /// <summary>
-        /// Food service to resupply food into the ship based on the ship's Food Code.
+        /// Calculate the time cycles to find out how long it take to resupply food into ship
         /// </summary>
-        /// <param name="ship">The ship that is being serviced.</param>
-        /// <param name="messages">The log messages for the events that have already happened to the ship.</param>
-        public static void FoodService(Ship ship, ref List<string> messages)
+        /// <param name="ship">The ship that is being resupplied with foods</param>
+        /// <param name="messages">Display messages in Temp.txt</param>
+        public void FoodSupply(Ship ship, ref List<string> messages)
         {
-            string message;
-
             try
             {
-                // Food Code 1
-                if (ship.FoodCode == 1)
-                {
-                    switch (ship.ShipClass)
-                    {
-                        case ShipClass.Runabout:
-                        case ShipClass.Skeeter:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (4 Cycles)");
-                                Thread.Sleep(4000);
-                                break;
-                            }
-                        case ShipClass.Personal:
-                        case ShipClass.SmallShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (5 Cycles)");
-                                Thread.Sleep(5000);
-                                break;
-                            }
-                        case ShipClass.MediumShuttle:
-                        case ShipClass.ScoutShip:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (7 Cycles)");
-                                Thread.Sleep(7000);
-                                break;
-                            }
-                        case ShipClass.LargeShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (8 Cycles)");
-                                Thread.Sleep(8000);
-                                break;
-                            }
-                        case ShipClass.PersonnelTransport:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (9 Cycles)");
-                                Thread.Sleep(9000);
-                                break;
-                            }
-                        case ShipClass.CargoTransport:
-                        case ShipClass.CargoTransportII:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (11 Cycles)");
-                                Thread.Sleep(11000);
-                                break;
-                            }
-                        case ShipClass.Explorer:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (12 Cycles)");
-                                Thread.Sleep(12000);
-                                break;
-                            }
-                        case ShipClass.Dreadnaught:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (15 Cycles)");
-                                Thread.Sleep(15000);
-                                break;
-                            }
-                        default:
-                            {
-                                message = $"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - ERROR: Ship class {ship.ShipClass} was not recognized. Food Service aborted!";
-                                messages.Add(message);
-                                throw new Exception(message);
-                            }
-                    }
-                }
+                int timeCycle;
 
-                // Food Code 2
-                if (ship.FoodCode == 2)
-                {
-                    switch (ship.ShipClass)
-                    {
-                        case ShipClass.Runabout:
-                        case ShipClass.Personal:
-                        case ShipClass.SmallShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (5 Cycles)");
-                                Thread.Sleep(5000);
-                                break;
-                            }
-                        case ShipClass.Skeeter:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (6 Cycles)");
-                                Thread.Sleep(6000);
-                                break;
-                            }
-                        case ShipClass.MediumShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (9 Cycles)");
-                                Thread.Sleep(9000);
-                                break;
-                            }
-                        case ShipClass.LargeShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (10 Cycles)");
-                                Thread.Sleep(10000);
-                                break;
-                            }
-                        case ShipClass.PersonnelTransport:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (11 Cycles)");
-                                Thread.Sleep(11000);
-                                break;
-                            }
-                        case ShipClass.CargoTransport:
-                        case ShipClass.CargoTransportII:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (13 Cycles)");
-                                Thread.Sleep(13000);
-                                break;
-                            }
-                        case ShipClass.ScoutShip:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (7 Cycles)");
-                                Thread.Sleep(7000);
-                                break;
-                            }
-                        case ShipClass.Explorer:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (14 Cycles)");
-                                Thread.Sleep(14000);
-                                break;
-                            }
-                        case ShipClass.Dreadnaught:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (18 Cycles)");
-                                Thread.Sleep(18000);
-                                break;
-                            }
-                        default:
-                            {
-                                message = $"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - ERROR: Ship class {ship.ShipClass} was not recognized. Food Service aborted!";
-                                messages.Add(message);
-                                throw new Exception(message);
-                            }
-                    }
-                }
+                // Extract information from repairTimeCycles dictionary and ship's RepairCode
+                Dictionary<ShipClass, int> timeCycles = _foodSupplyTimeCycles[ship.FoodCode];
 
-                // Food Code 3
-                if (ship.FoodCode == 3)
-                {
-                    switch (ship.ShipClass)
-                    {
-                        case ShipClass.Runabout:
-                        case ShipClass.Skeeter:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (6 Cycles)");
-                                Thread.Sleep(6000);
-                                break;
-                            }
-                        case ShipClass.Personal:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (5 Cycles)");
-                                Thread.Sleep(5000);
-                                break;
-                            }
-                        case ShipClass.SmallShuttle:
-                        case ShipClass.ScoutShip:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (7 Cycles)");
-                                Thread.Sleep(7000);
-                                break;
-                            }
-                        case ShipClass.MediumShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (10 Cycles)");
-                                Thread.Sleep(10000);
-                                break;
-                            }
-                        case ShipClass.LargeShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (11 Cycles)");
-                                Thread.Sleep(11000);
-                                break;
-                            }
-                        case ShipClass.PersonnelTransport:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (13 Cycles)");
-                                Thread.Sleep(13000);
-                                break;
-                            }
-                        case ShipClass.CargoTransport:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (15 Cycles)");
-                                Thread.Sleep(15000);
-                                break;
-                            }
-                        case ShipClass.CargoTransportII:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (17 Cycles)");
-                                Thread.Sleep(17000);
-                                break;
-                            }
-                        case ShipClass.Explorer:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (19 Cycles)");
-                                Thread.Sleep(19000);
-                                break;
-                            }
-                        case ShipClass.Dreadnaught:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (21 Cycles)");
-                                Thread.Sleep(21000);
-                                break;
-                            }
-                        default:
-                            {
-                                message = $"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - ERROR: Ship class {ship.ShipClass} was not recognized. Food Service aborted!";
-                                messages.Add(message);
-                                throw new Exception(message);
-                            }
-                    }
-                }
+                timeCycle = timeCycles[ship.ShipClass];
 
-                // Food Code 4
-                if (ship.FoodCode == 4)
-                {
-                    switch (ship.ShipClass)
-                    {
-                        case ShipClass.Runabout:
-                        case ShipClass.Skeeter:
-                        case ShipClass.SmallShuttle:
-                        case ShipClass.ScoutShip:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (9 Cycles)");
-                                Thread.Sleep(9000);
-                                break;
-                            }
-                        case ShipClass.Personal:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (8 Cycles)");
-                                Thread.Sleep(8000);
-                                break;
-                            }
-                        case ShipClass.MediumShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (10 Cycles)");
-                                Thread.Sleep(10000);
-                                break;
-                            }
-                        case ShipClass.LargeShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (12 Cycles)");
-                                Thread.Sleep(12000);
-                                break;
-                            }
-                        case ShipClass.PersonnelTransport:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (14 Cycles)");
-                                Thread.Sleep(14000);
-                                break;
-                            }
-                        case ShipClass.CargoTransport:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (17 Cycles)");
-                                Thread.Sleep(17000);
-                                break;
-                            }
-                        case ShipClass.CargoTransportII:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (18 Cycles)");
-                                Thread.Sleep(18000);
-                                break;
-                            }
-                        case ShipClass.Explorer:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (20 Cycles)");
-                                Thread.Sleep(20000);
-                                break;
-                            }
-                        case ShipClass.Dreadnaught:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (24 Cycles)");
-                                Thread.Sleep(24000);
-                                break;
-                            }
-                        default:
-                            {
-                                message = $"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - ERROR: Ship class {ship.ShipClass} was not recognized. Food Service aborted!";
-                                messages.Add(message);
-                                throw new Exception(message);
-                            }
-                    }
-                }
+                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... ({timeCycle} Cycles)");
+                Thread.Sleep(timeCycle * 1000); // Ship's own time cycle multiply by 1000
 
-                // Food Code 5
-                if (ship.FoodCode == 5)
-                {
-                    switch (ship.ShipClass)
-                    {
-                        case ShipClass.Runabout:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (10 Cycles)");
-                                Thread.Sleep(10000);
-                                break;
-                            }
-                        case ShipClass.Personal:
-                        case ShipClass.Skeeter:
-                        case ShipClass.ScoutShip:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (9 Cycles)");
-                                Thread.Sleep(9000);
-                                break;
-                            }
-                        case ShipClass.SmallShuttle:
-                        case ShipClass.Explorer:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (11 Cycles)");
-                                Thread.Sleep(11000);
-                                break;
-                            }
-                        case ShipClass.MediumShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (12 Cycles)");
-                                Thread.Sleep(12000);
-                                break;
-                            }
-                        case ShipClass.LargeShuttle:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (14 Cycles)");
-                                Thread.Sleep(14000);
-                                break;
-                            }
-                        case ShipClass.PersonnelTransport:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (16 Cycles)");
-                                Thread.Sleep(16000);
-                                break;
-                            }
-                        case ShipClass.CargoTransport:
-                        case ShipClass.CargoTransportII:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (19 Cycles)");
-                                Thread.Sleep(19000);
-                                break;
-                            }
-                        case ShipClass.Dreadnaught:
-                            {
-                                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupplying foods... (30 Cycles)");
-                                Thread.Sleep(30000);
-                                break;
-                            }
-                        default:
-                            {
-                                message = $"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - ERROR: Ship class {ship.ShipClass} was not recognized. Food Service aborted!";
-                                messages.Add(message);
-                                throw new Exception(message);
-                            }
-                    }
-                }
-
-                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Food Service complete.");
+                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Resupply foods complete.");
             }
             catch (Exception ex)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Error in SpaceStation.FoodService() - {ex.Message}");
+                Console.WriteLine($"Error in SpaceStation.RepairShip() - {ex.Message}");
                 Console.ResetColor();
             }
         }
@@ -803,7 +259,7 @@ namespace SpaceStationSystem
         /// </summary>
         /// <param name="ship">The ship that is being serviced.</param>
         /// <param name="messages">The log messages for the events that have already happened to the ship.</param>
-        public static void DefensePowerService(Ship ship, ref List<string> messages)
+        public void DefensePowerService(Ship ship, ref List<string> messages)
         {
             string message;
             int defensePower;
