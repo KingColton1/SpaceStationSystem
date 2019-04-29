@@ -12,20 +12,12 @@ namespace SpaceStationSystem
     /// </summary>
     class Service
     {
-        // Dad - I believe the best way to do this is to make a List of Dictionaries.
-        //       It's just like a 2 dimensional array but the second dimension is a dictionary.
-        //       The fist dimension is the repair code.  We will use the repair code as the index of the List.
-        //       Zero will be an invalid index value.  So we will have to validate the repair code before using it to make sure we don't try to use zero.
+        // Define List of Dictionaries for RepairTime and FoodSupply time cycles array
         private List<Dictionary<ShipClass, int>> _repairTimeCycles;
         private List<Dictionary<ShipClass, int>> _foodSupplyTimeCycles;
 
         public Service()
         {
-            // Dad - Read the comments in this constructor and make sure you understand what I did.
-            //       If you don't understand, ask me questions.  
-            //       It seems you're not studying my work.  You're just using/copying my code without studying it.
-            //       You'll eventually fall very far behind if you don't understand what I'm showing you.
-
             // List of Dictionaries; it used ship class as the key of the dictionary. The value is the time cycle for the ship class.
             _repairTimeCycles = new List<Dictionary<ShipClass, int>>();
             _foodSupplyTimeCycles = new List<Dictionary<ShipClass, int>>();
@@ -46,7 +38,7 @@ namespace SpaceStationSystem
             repairCode1.Add(ShipClass.ScoutShip, 7);
             repairCode1.Add(ShipClass.Explorer, 12);
             repairCode1.Add(ShipClass.Dreadnaught, 15);
-            _repairTimeCycles.Add(repairCode1);  // Add repair code 1 time cycles to index 1 of the List.
+            _repairTimeCycles.Add(repairCode1); // Add repair code 1 time cycles to index 1 of the List.
 
             // Time cycles for repair code 2
             Dictionary<ShipClass, int> repairCode2 = new Dictionary<ShipClass, int>();
@@ -62,7 +54,7 @@ namespace SpaceStationSystem
             repairCode2.Add(ShipClass.ScoutShip, 7);
             repairCode2.Add(ShipClass.Explorer, 14);
             repairCode2.Add(ShipClass.Dreadnaught, 18);
-            _repairTimeCycles.Add(repairCode2);
+            _repairTimeCycles.Add(repairCode2); // Add repair code 2 time cycles to index 2 of the List.
 
             // Time cycles for repair code 3
             Dictionary<ShipClass, int> repairCode3 = new Dictionary<ShipClass, int>();
@@ -78,7 +70,7 @@ namespace SpaceStationSystem
             repairCode3.Add(ShipClass.ScoutShip, 7);
             repairCode3.Add(ShipClass.Explorer, 19);
             repairCode3.Add(ShipClass.Dreadnaught, 21);
-            _repairTimeCycles.Add(repairCode3);
+            _repairTimeCycles.Add(repairCode3); // Add repair code 3 time cycles to index 3 of the List.
 
             // Time cycles for repair code 4
             Dictionary<ShipClass, int> repairCode4 = new Dictionary<ShipClass, int>();
@@ -340,9 +332,6 @@ namespace SpaceStationSystem
                 // Calculate power needed for full charge.
                 powerNeeded = defensePower - ship.CurrentPower;
 
-                // Dad - Remember that dividing integers results in an integer with the remainder stipped off.
-                //       Here we want to keep the remainder.  So we have to cast at least one of the integers to a decimal.
-                //       For the time cycle calculation
                 // Calculate how many 100 units of charge are needed. Cast int to decimal to keep the remainder.
                 timeCyclesRaw = (decimal)powerNeeded / 100;
 

@@ -25,12 +25,9 @@ namespace SpaceStationSystem
         private List<Bay> _dockingBays;
         private Dictionary<int, Ship> _ships;
         
-        // Dad - Defines the definition of the method used to handle an event.
-        //       The items it defines are the method's return type (here it's void) and the method's parameters (here there are two parameters named dockId and shipFedId).
         // Define a delegate for the Service Complete event.
         private delegate void ServiceCompleteEventHandler(int dockId, int shipFedId);
 
-        // Dad - Use the delegate definition created above for the event.
         // Define an event object for the Service Complete event.
         private event ServiceCompleteEventHandler ServiceComplete;
 
@@ -77,8 +74,6 @@ namespace SpaceStationSystem
                     _serviceQueue.Enqueue(ship);
                 }
 
-                // Dad - You need to create the required folders here not files.  So check if the directory does NOT exist.
-                //       If the required directories don't exist, create them.
                 // Create required folders for reports.
                 if (!Directory.Exists(System.Environment.CurrentDirectory + @"\Reports"))
                 {
@@ -132,29 +127,13 @@ namespace SpaceStationSystem
                 Console.WriteLine("Ship service procedures have started.  Press enter to view menu.");
                 Console.ReadLine();
 
-                // Dad - I removed this because it was what was stopping the program from ending.
-                //       Now we're going to have a menu so we don't need to block the Monitor Queue thread that is spawned above.
-                // Wait until the thread is complete.
-                //_monitorQueue.Join();
-
-                // Dad - This menu loop is now what will keep the program from ending.
-                //       You're good with menus.  I started a basic menu.  You need to enhance it.
-
-                // Release and queued ship aren't practical option, considering it would fill the program with 500 ships. The FinalShip JSON file have 500 ships by the way.
-                // I renamed View open docking bays to Select docking bays, and renamed View occupied docking bays to View docking bays status.
-                // On the first comment I made above, I think we should just show only 4 closest to the front of the line that are soon to be docked (View queued ships)
-
-                // Select means to pick something. So it's the wrong word to use here because the user is only viewing things.
-                // "View docking bays status" implies you are going to view the status of all the docking bays.  The wording should stay as I made unless you change the functionality of the command.
-                // I agree about the queued ships.  You should only show four ships in the queue.
-
                 while (true)
                 {                     
                     Console.WriteLine("\n1. View docked ships" +
                                       "\n2. View available docking bays" +
                                       "\n3. View occupied docking bays" +
                                       "\n4. View next four queued ships" +
-                                      "\n5. Exit");
+                                      "\n6. Exit");
 
                     Console.Write("Option: ");
                     int.TryParse(Console.ReadLine(), out choice);
@@ -181,13 +160,14 @@ namespace SpaceStationSystem
                                 }
                                 Console.ResetColor();
 
-                                // Nope, it wasn't docked. Can I have a free day, Commander David?
+                                // Ship aren't docked to any bay, output message
                                 if (!shipDocked)
                                 {
                                     Console.ForegroundColor = ConsoleColor.Yellow;
                                     Console.WriteLine("There are currently no ships docked.");
                                     Console.ResetColor();
                                 }
+
                                 Console.WriteLine("\nPress enter to continue");
                                 Console.ReadLine();
                                 break;
@@ -196,19 +176,22 @@ namespace SpaceStationSystem
                             {
                                 // View avaliable docking bays
 
-                                bool available = false;
+                                bool available = true;
 
                                 Console.WriteLine("\nAvailable docking bay(s)\n");
 
+                                Console.ForegroundColor = ConsoleColor.Green;
                                 foreach (Bay bay in _dockingBays)
                                 {
                                     // If bay is not occupied by a ship, output message
                                     if (!bay.InUse)
                                     {
+                                        available = true;
                                         Console.WriteLine($"Docking Bay {bay.DockId} | Environment: {bay.CurrentEnvironment}; Dual? {bay.DualEnvironment} | Human? {bay.SupportsHuman} | Aqua? {bay.SupportsAqua} | Mega? {bay.SupportsMega} | Class Min: {bay.ClassMin} | Class Max: {bay.ClassMax}");
                                     }
                                 }
-
+                                Console.ResetColor();
+                                
                                 // If a bay is occupied, output message
                                 if (!available)
                                 {
@@ -216,6 +199,7 @@ namespace SpaceStationSystem
                                     Console.WriteLine("No docking bays are currently available.");
                                     Console.ResetColor();
                                 }
+
                                 Console.WriteLine("\nPress enter to continue");
                                 Console.ReadLine();
                                 break;
@@ -224,34 +208,33 @@ namespace SpaceStationSystem
                             {
                                 // View occupied docking bays.
 
-                                //bool avaliable = true;
+                                bool occupy = true;
 
                                 Console.WriteLine("\nOccupied docking bays\n");
 
-                                // Dad - Make this exactly like case 2.  Except show the information for bay.InUse = true.
                                 foreach (Bay bay in _dockingBays)
                                 {
                                     if (bay.InUse == true)
                                     {
-                                        Console.WriteLine($"Docking Bay {bay.DockId} | Environment: {bay.CurrentEnvironment} | Class Min: {bay.ClassMin}; Class Max: {bay.ClassMax} | Occupied by {bay.ShipName} Ship");
-                                    }
-                                    else
-                                    {
-                                        Console.ForegroundColor = ConsoleColor.Yellow;
-                                        Console.WriteLine($"Docking Bay {bay.DockId} is not occupied.");
+                                        occupy = true;
+                                        Console.ForegroundColor = ConsoleColor.Green;
+                                        Console.Write($"Docking Bay {bay.DockId} | Environment: {bay.CurrentEnvironment} | Class Min: {bay.ClassMin}; Class Max: {bay.ClassMax} | ");
+                                        Console.ResetColor();
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.Write($"Occupied by {bay.ShipName} Ship\n");
                                         Console.ResetColor();
                                     }
                                 }
 
-                                /*
-                                if (avaliable == false)
+                                if (!occupy)
                                 {
                                     Console.ForegroundColor = ConsoleColor.Yellow;
                                     Console.WriteLine("No docking bays are occupied currently.");
                                     Console.ResetColor();
-                                }*/
+                                }
 
-
+                                Console.WriteLine("\nPress enter to continue");
+                                Console.ReadLine();
                                 break;
                             }
                         case 4:
@@ -260,6 +243,7 @@ namespace SpaceStationSystem
 
                                 Console.WriteLine("\nCurrent 5 queued ships pending for the service\n");
 
+                                // Dad - This output should probably be green to just to be consistant.
                                 for (int i = 0; i < 5; i++)
                                 {
                                     // Dad - Use .ElementAt() to get items from the queue without removing them from the queue.
@@ -275,6 +259,8 @@ namespace SpaceStationSystem
                                                         $"\nFood Code: {ship.FoodCode}\n");
                                 }
 
+                                Console.WriteLine("\nPress enter to continue");
+                                Console.ReadLine();
                                 break;
                             }
                         case 5:
@@ -448,18 +434,17 @@ namespace SpaceStationSystem
                         List<string> messages = new List<string>();
 
                         // Get the next ship in line to be serviced.
-                        Ship ship = _serviceQueue.Dequeue();
-                        ship.ServiceComplete = false;  // Dad - Added this property so we can use it in the menu.
+                        Ship ship = _serviceQueue.Dequeue(); // I suspect this caused to skip first ship and let second ship take over. Because this part is already used in InitializeService.
+                        ship.ServiceComplete = false;
 
                         message = $"Ship {ship.ShipName} (Federation ID: {ship.ShipFedId} | Class: {ship.ShipClass} | Crew: {ship.Race}) has been dequeued.";
                         messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - {message}");
 
-                        // Dad - I set variable _initialDockingBayID in method InitializeService.
                         if (_initialDockingBayID > 0)
                         {
                             dockingBay = null;
 
-                            // This is the first ship in the queue.  Use Commander David's bay selection;
+                            // This is the first ship in the queue. Use Commander David's bay selection;
                             foreach (Bay bay in _dockingBays)
                             {
                                 if (bay.DockId == _initialDockingBayID)
@@ -522,9 +507,7 @@ namespace SpaceStationSystem
                         DockingTimeCycle(ship);
 
                         dockingBay.InUse = true;
-                        // Dad - I added property ShipName to class Bay so we can have a menu item to show docking bays in use and what ship is docked.
                         dockingBay.ShipName = ship.ShipName;
-                        // Dad - I added property DockId to class Shi so we can have a menu item to show docked ships and the dock they're in.
                         ship.Docked = true;
                         ship.DockId = dockingBay.DockId;
 
@@ -547,7 +530,6 @@ namespace SpaceStationSystem
                     }
                 }
 
-                // Dad
                 // Create the report using the temp files.
                 string fileName = $"{DateTime.Now.ToString("yyyyMMdd_hhmmss")} Station {Name} Service Report.txt";
                 using (StreamWriter writer = new StreamWriter(System.Environment.CurrentDirectory + @"\Reports\" + fileName))
@@ -562,7 +544,6 @@ namespace SpaceStationSystem
                         // Write the contents of each temp file to the report.
                         using (StreamReader reader = new StreamReader(file))
                         {
-                            // Dad - This is how you read an entire file.  You loop until EndofStream is false.
                             while (!reader.EndOfStream)
                             {
                                 writer.WriteLine(reader.ReadLine());
@@ -720,7 +701,6 @@ namespace SpaceStationSystem
         {
             try
             {
-                // Dad - I changed class Service from static to normal.  So now you have to instantiate an object of class Service.
                 Service service = new Service();
 
                 messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Begin service on ship {ship.ShipName}");
@@ -955,6 +935,9 @@ namespace SpaceStationSystem
                 {
                     if (dockingBay.DockId == dockId)
                     {
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.WriteLine($"\n{dockingBay.ShipName} has completed service, left Dock Bay {dockingBay.DockId}");
+                        Console.ResetColor();
                         dockingBay.InUse = false;
                         break;
                     }
@@ -962,7 +945,6 @@ namespace SpaceStationSystem
                 
                 // Update ship information.
                 _ships[shipFedId].Docked = false;
-                // Dad - I added properties DockId and ServiceComplete to class Ship so we can use them in the menu;
                 _ships[shipFedId].DockId = 0;
                 _ships[shipFedId].ServiceComplete = true;
             }
