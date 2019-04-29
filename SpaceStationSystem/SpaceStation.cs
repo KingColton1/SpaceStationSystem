@@ -243,10 +243,10 @@ namespace SpaceStationSystem
 
                                 Console.WriteLine("\nCurrent 5 queued ships pending for the service\n");
 
-                                // Dad - This output should probably be green to just to be consistant.
+                                Console.ForegroundColor = ConsoleColor.Green;
                                 for (int i = 0; i < 5; i++)
                                 {
-                                    // Dad - Use .ElementAt() to get items from the queue without removing them from the queue.
+                                    // Used ElementAt to get items from the queue without removing them from the queue.
                                     ship = _serviceQueue.ElementAt(i);
 
                                     Console.WriteLine($"Ship Name: {ship.ShipName} | FedID: {ship.ShipFedId} | Class: {ship.ShipClass}" +
@@ -258,6 +258,7 @@ namespace SpaceStationSystem
                                                         $"\nRepair Code: {ship.RepairCode}" +
                                                         $"\nFood Code: {ship.FoodCode}\n");
                                 }
+                                Console.ResetColor();
 
                                 Console.WriteLine("\nPress enter to continue");
                                 Console.ReadLine();
@@ -315,8 +316,8 @@ namespace SpaceStationSystem
                 Console.WriteLine("Press Enter to view the first ship in the queue");
                 Console.ReadLine();
 
-                // It's a ship's turn! Yay!
-                Ship ship = _serviceQueue.Dequeue();
+                // Colton - Fixed, it did pass but didn't assign to the docking bay
+                Ship ship = _serviceQueue.ElementAt(0);
 
                 Console.Write("Ship ");
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -390,6 +391,8 @@ namespace SpaceStationSystem
                         // Dad - This is how method MonitorQueue knows which docking bay to use for the first ship.
                         //       Variable _initialDockingBay holds the DockId of the dock that the user selected.
                         //       Notice how Dictionary compatibleBays is populated in the loop above.
+
+                        // Colton - This part didn't apply to the MonitorQueue, I pressed number 1 and the Bay 1 is still open afterward.
                         _initialDockingBayID = compatibleBays[choice];
 
                         Thread.Sleep(1000);
@@ -419,7 +422,11 @@ namespace SpaceStationSystem
         /// </summary>
         private void MonitorQueue()
         {
-            
+            // Colton - Remember the Page 5, Operational Scenario; Step 5 say repeat from Step 3
+            // (Manually assign ship to the bay) until all ships processed
+            // Also, my professor want me to use ShipQueue2019.json.txt so
+            // she can compare my work to all other students' works for grading.
+
             string message;
             string lastShip = "";
 
@@ -434,7 +441,7 @@ namespace SpaceStationSystem
                         List<string> messages = new List<string>();
 
                         // Get the next ship in line to be serviced.
-                        Ship ship = _serviceQueue.Dequeue(); // I suspect this caused to skip first ship and let second ship take over. Because this part is already used in InitializeService.
+                        Ship ship = _serviceQueue.Dequeue();
                         ship.ServiceComplete = false;
 
                         message = $"Ship {ship.ShipName} (Federation ID: {ship.ShipFedId} | Class: {ship.ShipClass} | Crew: {ship.Race}) has been dequeued.";
