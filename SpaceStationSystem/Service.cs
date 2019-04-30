@@ -214,6 +214,8 @@ namespace SpaceStationSystem
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Error in SpaceStation.RepairShip() - {ex.Message}");
                 Console.ResetColor();
+                Console.WriteLine("Press Enter to continue");
+                Console.ReadLine();
             }
         }
 
@@ -243,6 +245,8 @@ namespace SpaceStationSystem
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Error in SpaceStation.RepairShip() - {ex.Message}");
                 Console.ResetColor();
+                Console.WriteLine("Press Enter to continue");
+                Console.ReadLine();
             }
         }
 
@@ -256,8 +260,8 @@ namespace SpaceStationSystem
             string message;
             int defensePower;
             int powerNeeded;
-            int timeCycles;
-            decimal timeCyclesRaw;
+            int time;
+            decimal timeCycles;
 
             try
             {
@@ -332,17 +336,20 @@ namespace SpaceStationSystem
                 // Calculate power needed for full charge.
                 powerNeeded = defensePower - ship.CurrentPower;
 
-                // Calculate how many 100 units of charge are needed. Cast int to decimal to keep the remainder.
-                timeCyclesRaw = (decimal)powerNeeded / 100;
+                // It takes 5 time cycles for each 100 units of charge.
+                // Calculate how many times 100 goes into the amount of charge needed. Cast int to decimal to keep the remainder.
+                timeCycles = (decimal)ship.CargoToUnload / 100;
 
-                // Round the remainder up to make sure we calculate enough time for full charge.
-                timeCycles = (int)Math.Ceiling(timeCyclesRaw);
-
-                // There are 5 time cycles required for every 100 units of charge needed.
+                // Multiply by 5 to get the number of time cycles required.
                 timeCycles = timeCycles * 5;
 
-                messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Charging defenses... ({timeCycles} Cycles)");
-                Thread.Sleep(timeCycles * 1000);
+                // Multiply by 1000 to convert time cycles to seconds
+                timeCycles = timeCycles * 1000;
+
+                // Round up to make sure we calculate enough time for entire recharge.
+                time = (int)Math.Ceiling(timeCycles);
+
+                Thread.Sleep(time);
 
                 messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - Defense Power Service complete.");
             }
@@ -351,6 +358,8 @@ namespace SpaceStationSystem
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Error in SpaceStation.DefensePowerService() - {ex.Message}");
                 Console.ResetColor();
+                Console.WriteLine("Press Enter to continue");
+                Console.ReadLine();
             }
         }
     }

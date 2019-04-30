@@ -42,6 +42,8 @@ namespace SpaceStationSystem
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Error in Program.Main() - {ex.Message}");
                 Console.ResetColor();
+                Console.WriteLine("Press Enter to continue");
+                Console.ReadLine();
             }
         }
     }
