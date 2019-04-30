@@ -18,9 +18,6 @@ namespace SpaceStationSystem
         // Create a queue for the ship to wait for their turn
         private Queue<Ship> _serviceQueue = new Queue<Ship>();
 
-        // Establish thread to allow the program to operate the service for the ship on its own
-        private Thread _monitorQueue;
-
         // Store information into a list and dictionary
         private List<Bay> _dockingBays;
         private Dictionary<int, Ship> _ships;
@@ -32,9 +29,6 @@ namespace SpaceStationSystem
         private event ServiceCompleteEventHandler ServiceComplete;
 
         private DateTime _startTime;
-        private string _lastShipServiced = "";
-        private int _initialDockingBayID;
-        private bool _lastShipComplete = false;
 
         /// <summary>
         /// The name of the space station.
@@ -67,6 +61,22 @@ namespace SpaceStationSystem
                 // Load the ship information from file FinalShips2019.json into a List.
                 List<Ship> ships = JsonConvert.DeserializeObject<List<Ship>>(Properties.Resources.FinalShips2019_json, settings);
 
+                // Terribly wrong
+                using (StreamReader reader = new StreamReader("ShipQueue2019.txt"))
+                {
+                    int fedID;
+
+                    reader.ReadLine();
+
+                    foreach (Ship ship in ships)
+                    {
+                        _ships.Add(ship.ShipFedId, ship);
+
+                        _serviceQueue.Enqueue(ship);
+                    }
+                }
+
+                
                 // Use the ship information to load the Ships dictionary and the service queue.
                 foreach (Ship ship in ships)
                 {
@@ -101,12 +111,14 @@ namespace SpaceStationSystem
         }
 
         /// <summary>
-        /// The method of service ships to handle with the service
+        /// The method of service ships to handle with the service.
         /// </summary>
         public void ServiceShips()
         {
-            Ship ship;
-            int choice;
+            string message;
+            int choice = 0;
+            bool mainLoop;
+            bool menuLoop;
 
             try
             {
@@ -114,193 +126,6 @@ namespace SpaceStationSystem
                 Console.WriteLine($"Start docking service for space station {Name}");
                 Thread.Sleep(2000);
 
-                // Display the UI for the ship coordinator to start service for ship
-                InitializeService();
-
-                // Spawn a thread that will monitor the ship queue.
-                _monitorQueue = new Thread(new ThreadStart(MonitorQueue)); // Here the start method is MonitorQueue().
-                _monitorQueue.Name = "Monitor Queue";
-                _monitorQueue.IsBackground = true;
-                _monitorQueue.Start();
-
-                Thread.Sleep(1500);
-                Console.WriteLine("Ship service procedures have started.  Press enter to view menu.");
-                Console.ReadLine();
-
-                while (true)
-                {                     
-                    Console.WriteLine("\n1. View docked ships" +
-                                      "\n2. View available docking bays" +
-                                      "\n3. View occupied docking bays" +
-                                      "\n4. View next four queued ships" +
-                                      "\n6. Exit");
-
-                    Console.Write("Option: ");
-                    int.TryParse(Console.ReadLine(), out choice);
-
-                    switch (choice)
-                    {
-                        case 1:
-                            {
-                                // View docked ships
-
-                                bool shipDocked = false;
-
-                                Console.WriteLine("\nCurrently Docked Ships:\n");
-
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                foreach (KeyValuePair<int, Ship> item in _ships)
-                                {
-                                    ship = item.Value;
-                                    if (ship.Docked) // If any ship is docked, output message
-                                    {
-                                        shipDocked = true;
-                                        Console.WriteLine($"Ship Name: {ship.ShipName} | Class: {ship.ShipClass} | Crew: {ship.Race} | Dock ID: {ship.DockId}");
-                                    }
-                                }
-                                Console.ResetColor();
-
-                                // Ship aren't docked to any bay, output message
-                                if (!shipDocked)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Yellow;
-                                    Console.WriteLine("There are currently no ships docked.");
-                                    Console.ResetColor();
-                                }
-
-                                Console.WriteLine("\nPress enter to continue");
-                                Console.ReadLine();
-                                break;
-                            }
-                        case 2:
-                            {
-                                // View avaliable docking bays
-
-                                bool available = true;
-
-                                Console.WriteLine("\nAvailable docking bay(s)\n");
-
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                foreach (Bay bay in _dockingBays)
-                                {
-                                    // If bay is not occupied by a ship, output message
-                                    if (!bay.InUse)
-                                    {
-                                        available = true;
-                                        Console.WriteLine($"Docking Bay {bay.DockId} | Environment: {bay.CurrentEnvironment}; Dual? {bay.DualEnvironment} | Human? {bay.SupportsHuman} | Aqua? {bay.SupportsAqua} | Mega? {bay.SupportsMega} | Class Min: {bay.ClassMin} | Class Max: {bay.ClassMax}");
-                                    }
-                                }
-                                Console.ResetColor();
-                                
-                                // If a bay is occupied, output message
-                                if (!available)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Yellow;
-                                    Console.WriteLine("No docking bays are currently available.");
-                                    Console.ResetColor();
-                                }
-
-                                Console.WriteLine("\nPress enter to continue");
-                                Console.ReadLine();
-                                break;
-                            }
-                        case 3:
-                            {
-                                // View occupied docking bays.
-
-                                bool occupy = true;
-
-                                Console.WriteLine("\nOccupied docking bays\n");
-
-                                foreach (Bay bay in _dockingBays)
-                                {
-                                    if (bay.InUse == true)
-                                    {
-                                        occupy = true;
-                                        Console.ForegroundColor = ConsoleColor.Green;
-                                        Console.Write($"Docking Bay {bay.DockId} | Environment: {bay.CurrentEnvironment} | Class Min: {bay.ClassMin}; Class Max: {bay.ClassMax} | ");
-                                        Console.ResetColor();
-                                        Console.ForegroundColor = ConsoleColor.Red;
-                                        Console.Write($"Occupied by {bay.ShipName} Ship\n");
-                                        Console.ResetColor();
-                                    }
-                                }
-
-                                if (!occupy)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Yellow;
-                                    Console.WriteLine("No docking bays are occupied currently.");
-                                    Console.ResetColor();
-                                }
-
-                                Console.WriteLine("\nPress enter to continue");
-                                Console.ReadLine();
-                                break;
-                            }
-                        case 4:
-                            {
-                                // View next four queued ships
-
-                                Console.WriteLine("\nCurrent 5 queued ships pending for the service\n");
-
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                for (int i = 0; i < 5; i++)
-                                {
-                                    // Used ElementAt to get items from the queue without removing them from the queue.
-                                    ship = _serviceQueue.ElementAt(i);
-
-                                    Console.WriteLine($"Ship Name: {ship.ShipName} | FedID: {ship.ShipFedId} | Class: {ship.ShipClass}" +
-                                                        $"\nCaptain: {ship.CaptainName} | Crew: {ship.Race}" +
-                                                        $"\nCurrent Fuel: {ship.FuelOnBoard} | Maximum Fuel: {ship.FuelCapacity}" +
-                                                        $"\nOn-Board Cargo: {ship.CargoToUnload} | Expected Cargo: {ship.CargoToLoad}" +
-                                                        $"\nCurrent Waste: {ship.CurrentWaste} | Total Waste Capacity: {ship.WasteCapacity}" +
-                                                        $"\nDefense Power: {ship.CurrentPower}" +
-                                                        $"\nRepair Code: {ship.RepairCode}" +
-                                                        $"\nFood Code: {ship.FoodCode}\n");
-                                }
-                                Console.ResetColor();
-
-                                Console.WriteLine("\nPress enter to continue");
-                                Console.ReadLine();
-                                break;
-                            }
-                        case 5:
-                            {
-                                Thread.Sleep(1500);
-                                Console.WriteLine("\nShutting down Space Station system, good bye Commander David!");
-                                Thread.Sleep(1500);
-                                Environment.Exit(0);
-                                break;
-                            }
-                        default:
-                            {
-                                Console.WriteLine("Invalid entry");
-                                break;
-                            }
-                    }
-
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Error in SpaceStation.ServiceShips() - {ex.Message}");
-                Console.ResetColor();
-            }
-        }
-
-        /// <summary>
-        /// User interface for ship and personnel coordinaor to start servicing ships.
-        /// </summary>
-        private void InitializeService()
-        {
-            Dictionary<int, int> compatibleBays = new Dictionary<int, int>();
-            int option;
-            int choice;
-
-            try
-            {
                 Console.WriteLine("\nVerifying command and control credentials.");
                 Thread.Sleep(1000);
                 Console.Write("Please wait");
@@ -311,181 +136,251 @@ namespace SpaceStationSystem
                 Thread.Sleep(1500);
                 Console.Write(".");
                 Thread.Sleep(2000);
-                Console.WriteLine("\rCommander Lawence David Identified.\n"); // Replace "Please wait" with new message
+                Console.WriteLine("\rCommander Lawence David Identified.\n");
                 Thread.Sleep(1500);
-                Console.WriteLine("Press Enter to view the first ship in the queue");
+                Console.WriteLine("Press Enter to view the ship queue");
                 Console.ReadLine();
 
-                // Colton - Fixed, it did pass but didn't assign to the docking bay
-                Ship ship = _serviceQueue.ElementAt(0);
-
-                Console.Write("Ship ");
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write($"{ship.ShipName} ");
-                Console.ResetColor();
-                Console.WriteLine("is first in queue.");
-                Console.WriteLine($"Federation ID: {ship.ShipFedId} | Class: {ship.ShipClass} | Crew: {ship.Race}\n");
-                Thread.Sleep(1500);
-                Console.WriteLine("Press Enter to view compatible docking bays");
-                Console.ReadLine();
-
-                option = 0;
-
-                foreach (Bay bay in _dockingBays)
-                {
-                    bool compatible = true;
-
-                    // Check if the docking bay is compatible with the ship class.
-                    if (ship.ShipClassId < bay.ClassMin || ship.ShipClassId > bay.ClassMax)
-                    {
-                        compatible = false;
-                    }
-
-                    switch (ship.Race.ToUpper())
-                    {
-                        case "HUMAN":
-                            {
-                                if (!bay.SupportsHuman)
-                                {
-                                    compatible = false;
-                                }
-                                break;
-                            }
-                        case "MEGA":
-                            {
-                                if (!bay.SupportsMega)
-                                {
-                                    compatible = false;
-                                }
-                                break;
-                            }
-                        case "AMPHIBIAN":
-                            {
-                                if (!bay.SupportsAqua)
-                                {
-                                    compatible = false;
-                                }
-                                break;
-                            }
-                        default:
-                            {
-                                throw new Exception($"Ship race {ship.Race} is not recognized");
-                            }
-                    }
-
-                    if (compatible)
-                    {
-                        option += 1;
-                        Console.WriteLine($"Bay {option}. Dock ID: {bay.DockId} | Environment: {bay.CurrentEnvironment} | Class Min: {bay.ClassMin} | Class Max: {bay.ClassMax}");
-                        compatibleBays.Add(option, bay.DockId);
-                    }
-                }
-
-                while (true)
-                {
-                    Console.WriteLine("Enter Bay number.");
-                    int.TryParse(Console.ReadLine(), out choice);
-
-                    if (choice > 0 && choice <= option)
-                    {
-                        // Dad - This is how method MonitorQueue knows which docking bay to use for the first ship.
-                        //       Variable _initialDockingBay holds the DockId of the dock that the user selected.
-                        //       Notice how Dictionary compatibleBays is populated in the loop above.
-
-                        // Colton - This part didn't apply to the MonitorQueue, I pressed number 1 and the Bay 1 is still open afterward.
-                        _initialDockingBayID = compatibleBays[choice];
-
-                        Thread.Sleep(1000);
-                        Console.WriteLine($"\nDocking bay {compatibleBays[choice]} ready.  Press enter to begin ship service procedures.");
-                        Console.ReadLine();
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid Entry");
-                    }
-                }
-
-
-                
-            }
-            catch (Exception ex)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Error in SpaceStation.InitializeService() - {ex.Message}");
-                Console.ResetColor();
-            }
-        }
-
-        /// <summary>
-        /// The method to monitor the queue
-        /// </summary>
-        private void MonitorQueue()
-        {
-            // Colton - Remember the Page 5, Operational Scenario; Step 5 say repeat from Step 3
-            // (Manually assign ship to the bay) until all ships processed
-            // Also, my professor want me to use ShipQueue2019.json.txt so
-            // she can compare my work to all other students' works for grading.
-
-            string message;
-            string lastShip = "";
-
-            try
-            {
-                while (!_lastShipComplete)
+                mainLoop = true;
+                while (mainLoop)
                 {
                     // Check if there are any ships in the service queue.
                     if (_serviceQueue.Count > 0)
                     {
-                        Bay dockingBay;
+                        Bay selectedBay = null;
                         List<string> messages = new List<string>();
 
                         // Get the next ship in line to be serviced.
                         Ship ship = _serviceQueue.Dequeue();
                         ship.ServiceComplete = false;
-
                         message = $"Ship {ship.ShipName} (Federation ID: {ship.ShipFedId} | Class: {ship.ShipClass} | Crew: {ship.Race}) has been dequeued.";
                         messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - {message}");
 
-                        if (_initialDockingBayID > 0)
+                        menuLoop = true;
+                        while (menuLoop)
                         {
-                            dockingBay = null;
+                            Console.Write($"Next ship in the queue is ");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine($"{ship.ShipName}.");
+                            Console.ResetColor();
+                            Console.WriteLine($"Federation ID: {ship.ShipFedId} | Class: {ship.ShipClass} | Crew: {ship.Race}");
+                            Console.WriteLine("");
 
-                            // This is the first ship in the queue. Use Commander David's bay selection;
-                            foreach (Bay bay in _dockingBays)
+                            Console.WriteLine("1. View compatible docking bays" +
+                                      "\n2. View convertible docking bays" +
+                                      "\n3. View occupied docking bays" +
+                                      "\n4. View docked ships" +
+                                      "\n5. View next five queued ships " +
+                                      "\n6. Exit");
+
+                            Console.Write("Option: ");
+                            int.TryParse(Console.ReadLine(), out choice);
+
+                            switch (choice)
                             {
-                                if (bay.DockId == _initialDockingBayID)
-                                {
-                                    dockingBay = bay;
-                                }
+                                case 1:
+                                    {
+                                        // View compatible docking bays.
+                                        Console.WriteLine("\nCompatible docking bay(s):");
+
+                                        Dictionary<int, string> compatibleBays = new Dictionary<int, string>();
+                                        foreach (Bay bay in _dockingBays)
+                                        {
+                                            if (!bay.InUse)
+                                            {
+                                                // If bay is compatible with the ship, add menu option.
+                                                if (IsBayCompatible(bay, ship))
+                                                {
+                                                    compatibleBays.Add(bay.DockId, $"Dock ID: {bay.DockId} | Environment: {bay.CurrentEnvironment}; Dual? {bay.DualEnvironment} | Human? {bay.SupportsHuman} | Aqua? {bay.SupportsAqua} | Mega? {bay.SupportsMega} | Class Min: {bay.ClassMin} | Class Max: {bay.ClassMax}");
+                                                }
+                                            }
+                                        }
+
+                                        // If a compatible bay is available, allow to select.
+                                        if (compatibleBays.Count > 0)
+                                        {
+                                            selectedBay = SelectDockingBay(compatibleBays);
+                                            if (selectedBay != null)
+                                            {
+                                                // Tell the system the bay's environment does not need to be converted.
+                                                selectedBay.ConvertEnvironment = false;
+
+                                                // Exit menu loop.
+                                                menuLoop = false;
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.Yellow;
+                                            Console.WriteLine("No compatible docking bays are currently available.");
+                                            Console.ResetColor();
+                                            Console.WriteLine("\nPress enter to continue");
+                                            Console.ReadLine();
+                                        }
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        // View convertible docking bays.
+                                        Console.WriteLine("\nConvertible docking bay(s):");
+
+                                        Dictionary<int, string> convertibleBays = new Dictionary<int, string>();
+                                        foreach (Bay bay in _dockingBays)
+                                        {
+                                            if (!bay.InUse)
+                                            {
+                                                // If bay is compatible with the ship, add menu option.
+                                                if (IsBayConvertible(bay, ship))
+                                                {
+                                                    convertibleBays.Add(bay.DockId, $"Dock ID: {bay.DockId} | Environment: {bay.CurrentEnvironment}; Dual? {bay.DualEnvironment} | Human? {bay.SupportsHuman} | Aqua? {bay.SupportsAqua} | Mega? {bay.SupportsMega} | Class Min: {bay.ClassMin} | Class Max: {bay.ClassMax}");
+                                                }
+                                            }
+                                        }
+
+                                        // If a convertible bay is available, allow to select.
+                                        if (convertibleBays.Count > 0)
+                                        {
+                                            selectedBay = SelectDockingBay(convertibleBays);
+                                            if (selectedBay != null)
+                                            {
+                                                // Tell the system to convert the bay's environment.
+                                                selectedBay.ConvertEnvironment = true;
+
+                                                // Exit menu loop.
+                                                menuLoop = false;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.Yellow;
+                                            Console.WriteLine("No convertibleBays docking bays are currently available.");
+                                            Console.ResetColor();
+                                            Console.WriteLine("\nPress enter to continue");
+                                            Console.ReadLine();
+                                        }
+                                        break;
+                                    }
+                                case 3:
+                                    {
+                                        // View docked ships.
+                                        bool shipDocked = false;
+
+                                        Console.WriteLine("\nCurrently Docked Ships:\n");
+
+                                        Console.ForegroundColor = ConsoleColor.Green;
+                                        foreach (KeyValuePair<int, Ship> item in _ships)
+                                        {
+                                            ship = item.Value;
+                                            if (ship.Docked) // If any ship is docked, output message.
+                                            {
+                                                shipDocked = true;
+                                                Console.WriteLine($"Ship Name: {ship.ShipName} | Class: {ship.ShipClass} | Crew: {ship.Race} | Dock ID: {ship.DockId}");
+                                            }
+                                        }
+                                        Console.ResetColor();
+
+                                        // Ship aren't docked to any bay, output message.
+                                        if (!shipDocked)
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.Yellow;
+                                            Console.WriteLine("There are currently no ships docked.");
+                                            Console.ResetColor();
+                                        }
+
+                                        Console.WriteLine("\nPress enter to continue");
+                                        Console.ReadLine();
+                                        break;
+                                    }
+                                case 4:
+                                    {
+                                        // View occupied docking bays.
+                                        bool occupy = true;
+
+                                        Console.WriteLine("\nOccupied docking bays\n");
+
+                                        foreach (Bay bay in _dockingBays)
+                                        {
+                                            if (bay.InUse == true)
+                                            {
+                                                occupy = true;
+                                                Console.ForegroundColor = ConsoleColor.Green;
+                                                Console.Write($"Docking Bay {bay.DockId} | Environment: {bay.CurrentEnvironment} | Class Min: {bay.ClassMin}; Class Max: {bay.ClassMax} | ");
+                                                Console.ResetColor();
+                                                Console.ForegroundColor = ConsoleColor.Red;
+                                                Console.Write($"Occupied by {bay.ShipName} Ship\n");
+                                                Console.ResetColor();
+                                            }
+                                        }
+
+                                        if (!occupy)
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.Yellow;
+                                            Console.WriteLine("No docking bays are occupied currently.");
+                                            Console.ResetColor();
+                                        }
+
+                                        Console.WriteLine("\nPress enter to continue");
+                                        Console.ReadLine();
+                                        break;
+                                    }
+                                case 5:
+                                    {
+                                        // View next five queued ships.
+                                        Console.WriteLine("\nCurrent 5 queued ships pending for the service\n");
+
+                                        Console.ForegroundColor = ConsoleColor.Green;
+                                        for (int i = 0; i < 5; i++)
+                                        {
+                                            // Used ElementAt to get items from the queue without removing them from the queue.
+                                            ship = _serviceQueue.ElementAt(i);
+
+                                            Console.WriteLine($"Ship Name: {ship.ShipName} | FedID: {ship.ShipFedId} | Class: {ship.ShipClass}" +
+                                                                $"\nCaptain: {ship.CaptainName} | Crew: {ship.Race}" +
+                                                                $"\nCurrent Fuel: {ship.FuelOnBoard} | Maximum Fuel: {ship.FuelCapacity}" +
+                                                                $"\nOn-Board Cargo: {ship.CargoToUnload} | Expected Cargo: {ship.CargoToLoad}" +
+                                                                $"\nCurrent Waste: {ship.CurrentWaste} | Total Waste Capacity: {ship.WasteCapacity}" +
+                                                                $"\nDefense Power: {ship.CurrentPower}" +
+                                                                $"\nRepair Code: {ship.RepairCode}" +
+                                                                $"\nFood Code: {ship.FoodCode}\n");
+                                        }
+                                        Console.ResetColor();
+
+                                        Console.WriteLine("\nPress enter to continue");
+                                        Console.ReadLine();
+                                        break;
+                                    }
+                                case 6:
+                                    {
+                                        Thread.Sleep(1500);
+                                        Console.WriteLine("\nShutting down Space Station system, good bye Commander David!");
+                                        Thread.Sleep(1500);
+                                        Environment.Exit(0);
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("Invalid entry");
+                                        Console.ResetColor();
+                                        Console.WriteLine("Press Enter to continue");
+                                        Console.ReadLine();
+                                        break;
+                                    }
                             }
-
-                            _initialDockingBayID = 0;
-                        }
-                        else
-                        {
-                            // Select the docking bay. Loop unit a docking bay is available.
-                            while (true)
-                            {
-                                dockingBay = SelectDockingBay(ship);
-
-                                // Check if the bay is available.
-                                if (dockingBay != null)
-                                {
-                                    break;
-                                }
-                                Thread.Sleep(2000);
-                            }
                         }
 
-                        // A available docking bay is selected.
-                        message = $"Docking bay {dockingBay.DockId} has been selected.";
+                        // An available docking bay is selected.
+                        message = $"\nDocking bay {selectedBay.DockId} has been selected.";
+                        Console.WriteLine($"{message}");
                         messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - {message}");
+                        Thread.Sleep(1000);
 
                         // Check if the bay need to be converted.
-                        if (dockingBay.ConvertEnvironment)
+                        if (selectedBay.ConvertEnvironment)
                         {
                             message = "Converting docking bay environment";
+                            Console.WriteLine(message);
                             messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - {message}");
 
                             // The bay does need to be converted, allow them take 30 cycles (30 seconds) to fully converted.
@@ -493,7 +388,8 @@ namespace SpaceStationSystem
                         }
                         else
                         {
-                            message = $"Preparing docking bay {dockingBay.DockId}.";
+                            message = $"Preparing docking bay {selectedBay.DockId}";
+                            Console.WriteLine(message);
                             messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - {message}");
 
                             // The bay doesn't need to be converted, take 10 cycles (10 seconds) instead.
@@ -501,39 +397,58 @@ namespace SpaceStationSystem
                         }
 
                         // Inform to the user that the docking bay is ready for a ship to dock
-                        message = $"Docking bay {dockingBay.DockId} ready.";
+                        message = $"Docking bay {selectedBay.DockId} ready.";
+                        Console.WriteLine($"{message}\n");
                         messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - {message}");
 
                         Thread.Sleep(1000); // 1 cycle (1 second)
 
                         // Begin dock a ship
-                        message = $"Begin docking ship {ship.ShipName} in docking bay {dockingBay.DockId}.";
+                        message = $"Begin docking ship {ship.ShipName} in docking bay {selectedBay.DockId}.";
+                        Console.WriteLine(message);
                         messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - {message}");
 
                         // Start timing for a ship to dock
                         DockingTimeCycle(ship);
 
-                        dockingBay.InUse = true;
-                        dockingBay.ShipName = ship.ShipName;
+                        // Update the bay information.
+                        foreach (Bay item in _dockingBays)
+                        {
+                            if (item.DockId == selectedBay.DockId)
+                            {
+                                item.InUse = true;
+                                item.ShipName = ship.ShipName;
+                            }
+                        }
+
+                        // Update the ship information;
                         ship.Docked = true;
-                        ship.DockId = dockingBay.DockId;
+                        ship.DockId = selectedBay.DockId;
+
+                        // Attempt to prevent the menu from switching another ship
+                        if (ship.Docked == true)
+                        {
+                            ship = _serviceQueue.Dequeue();
+                        }
 
                         // Once docking is completed, inform to the user that a ship is docked.
                         message = $"Ship {ship.ShipName} is docked.";
+                        Console.WriteLine($"{message}\n");
                         messages.Add($"{DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss")} - {message}");
 
+                        Thread.Sleep(1500);
+                        Console.WriteLine($"Start service on ship {ship.ShipName}.\n");
+                        Thread.Sleep(1500);
+
                         // Spawn a new thread to perform the service.
-                        Thread performService = new Thread(() => PerformService(ship, dockingBay, messages));
+                        Thread performService = new Thread(() => PerformService(ship, selectedBay, messages));
                         performService.Name = $"Service Ship {ship.ShipName}";
                         performService.IsBackground = true;
                         performService.Start();
-
-                        lastShip = ship.ShipName;
                     }
                     else
                     {
-                        // Used in method PerformService() to detect when the last ship has been completed.
-                        _lastShipServiced = lastShip;
+                        mainLoop = false;
                     }
                 }
 
@@ -563,137 +478,215 @@ namespace SpaceStationSystem
 
                 Console.WriteLine("");
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("All ships have been serviced. Press enter exit and view report.");
+                Console.WriteLine("All ships have been serviced. Press enter to exit and view report.");
                 Console.ResetColor();
                 Console.ReadLine();
 
                 // Open the service report in Notepad.
                 Process.Start("notepad.exe", System.Environment.CurrentDirectory + @"\Reports\" + fileName);
+
             }
             catch (Exception ex)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Error in SpaceStation.MonitorQueue() - {ex.Message}");
+                Console.WriteLine($"Error in SpaceStation.ServiceShips() - {ex.Message}");
                 Console.ResetColor();
-                Console.WriteLine("Press Enter to exit");
-                Console.ReadLine();
             }
         }
 
         /// <summary>
-        /// Responsible to select and verify the bay is compatible with the ship class and race
+        /// Check if the bay is compatible with the ship.
         /// </summary>
-        /// <param name="ship">The ship that is waiting a bay</param>
-        private Bay SelectDockingBay(Ship ship)
+        /// <param name="bay">The bay to check.</param>
+        /// <param name="ship">The ship used to check the bay.</param>
+        /// <returns>True if the bay is compatible with the ship.</returns>
+        private bool IsBayCompatible(Bay bay, Ship ship)
         {
-            Bay dockingBay = null;
-            Bay convertibleBay = null;
-            string requiredEnvironment = "";
-            bool compatibleBay;
+            bool compatibleBay = true;
 
             try
             {
-                foreach (Bay bay in _dockingBays)
+                // Check if the docking bay is compatible with the ship class.
+                if (ship.ShipClassId < bay.ClassMin || ship.ShipClassId > bay.ClassMax)
                 {
-                    if (bay.InUse == false)
-                    {
-                        compatibleBay = true;
+                    compatibleBay = false;
+                }
 
-                        // Check if the docking bay is compatible with the ship class.
-                        if (ship.ShipClassId < bay.ClassMin || ship.ShipClassId > bay.ClassMax)
+                // Check if the docking bay is compatible with the race and get the required environment.
+                switch (ship.Race.ToUpper())
+                {
+                    case "HUMAN":
                         {
-                            compatibleBay = false;
-                        }
-
-                        // Check if the docking bay is compatible with the race and get the required environment.
-                        if (compatibleBay)
-                        {
-                            switch (ship.Race.ToUpper())
-                            {
-                                case "HUMAN":
-                                    {
-                                        requiredEnvironment = "O";
-                                        if (!bay.SupportsHuman)
-                                        {
-                                            compatibleBay = false;
-                                        }
-                                        break;
-                                    }
-                                case "MEGA":
-                                    {
-                                        requiredEnvironment = "O";
-                                        if (!bay.SupportsMega)
-                                        {
-                                            compatibleBay = false;
-                                        }
-
-                                        break;
-                                    }
-                                case "AMPHIBIAN":
-                                    {
-                                        requiredEnvironment = "A";
-                                        if (!bay.SupportsAqua)
-                                        {
-                                            compatibleBay = false;
-                                        }
-                                        break;
-                                    }
-                                default:
-                                    {
-                                        throw new Exception($"Ship race {ship.Race} is not recognized");
-                                    }
-                            }
-                        }
-
-                        // Check if the docking bay environment is compatible with the required environment.
-                        if (compatibleBay)
-                        {
-                            if (requiredEnvironment != bay.CurrentEnvironment)
+                            if (!bay.SupportsHuman)
                             {
                                 compatibleBay = false;
-
-                                if (bay.DualEnvironment)
-                                {
-                                    // Save this bay in case we need a convertible bay.
-                                    convertibleBay = bay;
-                                }
                             }
+                            break;
+                        }
+                    case "MEGA":
+                        {
+                            if (!bay.SupportsMega)
+                            {
+                                compatibleBay = false;
+                            }
+
+                            break;
+                        }
+                    case "AMPHIBIAN":
+                        {
+                            if (!bay.SupportsAqua)
+                            {
+                                compatibleBay = false;
+                            }
+                            break;
+                        }
+                    default:
+                        {
+                            throw new Exception($"Ship race {ship.Race} is not recognized");
+                        }
+                }
+
+                return compatibleBay;
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error in SpaceStation.IsBayCompatible() - {ex.Message}");
+                Console.ResetColor();
+                Console.WriteLine("Press Enter to continue");
+                Console.ReadLine();
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Check if the bay is can be converted for the ship.
+        /// </summary>
+        /// <param name="bay">The bay to check.</param>
+        /// <param name="ship">The ship used to check the bay.</param>
+        /// <returns>True if the bay can be converted for the ship.</returns>
+        private bool IsBayConvertible(Bay bay, Ship ship)
+        {
+            string shipEnvironment = "";
+            bool convertibleBay = true;
+
+            try
+            {
+                // Only dual environment bays are convertible.
+                if (bay.DualEnvironment)
+                {
+                    // Check if the docking bay is compatible with the ship class.
+                    if (ship.ShipClassId < bay.ClassMin || ship.ShipClassId > bay.ClassMax)
+                    {
+                        convertibleBay = false;
+                    }
+                    else
+                    {
+                        // Get the ship's environment
+                        switch (ship.Race.ToUpper())
+                        {
+                            case "HUMAN":
+                                {
+                                    shipEnvironment = "O";
+                                    break;
+                                }
+                            case "MEGA":
+                                {
+                                    shipEnvironment = "O";
+                                    break;
+                                }
+                            case "AMPHIBIAN":
+                                {
+                                    shipEnvironment = "A";
+                                    break;
+                                }
+                            default:
+                                {
+                                    throw new Exception($"Ship race {ship.Race} is not recognized");
+                                }
                         }
 
-                        // If a bay is compatible to the ship and race, use this bay and exit loop
-                        if (compatibleBay)
+                        if (bay.CurrentEnvironment == shipEnvironment)
                         {
-                            dockingBay = bay;
-                            break;
+                            // Only different environments can be converted.
+                            convertibleBay = false;
                         }
                     }
                 }
-
-                if (dockingBay != null)
-                {
-                    // We found a compatible docking bay.
-                    dockingBay.ConvertEnvironment = false;
-
-                    return dockingBay;
-                }
-                else if (convertibleBay != null)
-                {
-                    // We didn't find a compatible docking bay. But we did find a convertible docking bay.
-                    convertibleBay.ConvertEnvironment = true;
-
-                    return convertibleBay;
-                }
                 else
                 {
-                    // No usable docking bays are available.
-                    return null;
+                    convertibleBay = false;
                 }
+
+                return convertibleBay;
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error in SpaceStation.IsBayCompatible() - {ex.Message}");
+                Console.ResetColor();
+                Console.WriteLine("Press Enter to continue");
+                Console.ReadLine();
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Responsible for selecting a docking bay from a list of docking bays.
+        /// </summary>
+        /// <param name="bays">The docking bays to select from. The key is the DockId.</param>
+        /// <returns>The selected docking bay.</returns>
+        private Bay SelectDockingBay(Dictionary<int, string> bays)
+        {
+            Bay selectedBay = null;
+            int choice;
+
+            try
+            {
+                while (true)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    foreach (KeyValuePair<int, string> item in bays)
+                    {
+                        Console.WriteLine(item.Value);
+                    }
+                    Console.ResetColor();
+
+                    Console.Write("\nEnter Dock ID to select a bay: ");
+                    int.TryParse(Console.ReadLine(), out choice);
+
+                    if (bays.ContainsKey(choice))
+                    {
+                        // Get the selected bay from the List of docking bays.
+                        foreach (Bay bay in _dockingBays)
+                        {
+                            if (bay.DockId == choice)
+                            {
+                                selectedBay = bay;
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Invalid entry");
+                        Console.ResetColor();
+                        Console.WriteLine("Press Enter to continue");
+                        Console.ReadLine();
+                    }
+                }
+
+                return selectedBay;
             }
             catch (Exception ex)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Error in SpaceStation.SelectDockingBay() - {ex.Message}");
                 Console.ResetColor();
+                Console.WriteLine("Press Enter to continue");
+                Console.ReadLine();
                 return null;
             }
         }
@@ -845,13 +838,6 @@ namespace SpaceStationSystem
                     }
                 }
 
-                // Check to see if this was the last ship in the queue.
-                if (_lastShipServiced == ship.ShipName)
-                {
-                    // Allow the Monitor Queue thread to complete.
-                    _lastShipComplete = true;
-                }
-
                 // Fire the Service Complete event.
                 ServiceComplete(dockingBay.DockId, ship.ShipFedId);
             }
@@ -946,6 +932,7 @@ namespace SpaceStationSystem
                         Console.WriteLine($"\n{dockingBay.ShipName} has completed service, left Dock Bay {dockingBay.DockId}");
                         Console.ResetColor();
                         dockingBay.InUse = false;
+                        dockingBay.ShipName = "";
                         break;
                     }
                 }

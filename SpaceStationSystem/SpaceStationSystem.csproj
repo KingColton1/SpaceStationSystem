@@ -64,7 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ShipClasses.json.txt" />
-    <None Include="Resources\ShipQueue2019.json.txt" />
+    <None Include="Resources\ShipQueue2019.txt" />
     <None Include="Resources\Docks2019.json.txt" />
     <None Include="Resources\FinalShips2019.json.txt" />
   </ItemGroup>
@@ -72,6 +72,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

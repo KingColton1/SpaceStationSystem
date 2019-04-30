@@ -61,7 +61,10 @@ namespace SpaceStationSystem.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [{&quot;dockOperations&quot;:null,&quot;IsOccupied&quot;:false,&quot;CurrentShipID&quot;:null,&quot;DockId&quot;:1,&quot;ConvertibleEnvironment&quot;:false,&quot;CurrentEnvironment&quot;:&quot;O&quot;,&quot;MetalicFloor&quot;:false,&quot;PsychoShield&quot;:false,&quot;ClassMin&quot;:1,&quot;ClassMax&quot;:4},{&quot;dockOperations&quot;:null,&quot;IsOccupied&quot;:false,&quot;CurrentShipID&quot;:null,&quot;DockId&quot;:2,&quot;ConvertibleEnvironment&quot;:false,&quot;CurrentEnvironment&quot;:&quot;O&quot;,&quot;MetalicFloor&quot;:false,&quot;PsychoShield&quot;:false,&quot;ClassMin&quot;:1,&quot;ClassMax&quot;:4},{&quot;dockOperations&quot;:null,&quot;IsOccupied&quot;:false,&quot;CurrentShipID&quot;:null,&quot;DockId&quot;:3,&quot;ConvertibleEnvironment&quot;:false,&quot;Current [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to [{&quot;DockId&quot;:1,&quot;DualEnvironment&quot;:false,&quot;CurrentEnvironment&quot;:&quot;O&quot;,&quot;SupportsHuman&quot;:true,&quot;SupportsAqua&quot;:false, &quot;SupportsMega&quot;:false,&quot;ClassMin&quot;:1,&quot;ClassMax&quot;:4},
+        ///{&quot;DockId&quot;:2,&quot;DualEnvironment&quot;:false,&quot;CurrentEnvironment&quot;:&quot;O&quot;,&quot;SupportsHuman&quot;:true,&quot;SupportsAqua&quot;:false,&quot;SupportsMega&quot;:false,&quot;ClassMin&quot;:1,&quot;ClassMax&quot;:4},
+        ///{&quot;DockId&quot;:3,&quot;DualEnvironment&quot;:false,&quot;CurrentEnvironment&quot;:&quot;O&quot;,&quot;SupportsHuman&quot;:true,&quot;SupportsAqua&quot;:false,&quot;SupportsMega&quot;:true,&quot;ClassMin&quot;:1,&quot;ClassMax&quot;:7},
+        ///{&quot;DockId&quot;:4,&quot;DualEnvironment&quot;:false,&quot;CurrentEnvironm [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Docks2019_json {
             get {
@@ -70,31 +73,7 @@ namespace SpaceStationSystem.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [
-        ///  {
-        ///    &quot;ShipClassId&quot;: 1,
-        ///    &quot;ShipName&quot;: &quot;Tyrant&quot;,
-        ///    &quot;ShipFedId&quot;: &quot;1000&quot;,
-        ///    &quot;CaptainName&quot;: &quot;Brian Aldiss&quot;,
-        ///    &quot;FuelCapacity&quot;: 100,
-        ///    &quot;FuelOnBoard&quot;: 90,
-        ///    &quot;CargoToUnload&quot;: 100,
-        ///    &quot;CargoToLoad&quot;: 50,
-        ///    &quot;WasteCapacity&quot;: 100,
-        ///    &quot;CurrentWaste&quot;: 55,
-        ///    &quot;Docked&quot;: false,
-        ///    &quot;RepairCode&quot;: 4,
-        ///    &quot;FoodCode&quot;: 1,
-        ///    
-        ///    &quot;DefensesPowerLevel&quot;: 2,
-        ///    &quot;Race&quot;: &quot;Human&quot;
-        ///  },
-        ///  {
-        ///    &quot;ShipClassId&quot;: 2,
-        ///    &quot;ShipName&quot;: &quot;Triumph&quot;,
-        ///    &quot;ShipFedId&quot;: &quot;1001&quot;,
-        ///    &quot;CaptainName&quot;: &quot;R.M. Meluch&quot;,
-        ///    &quot;FuelCapacity&quot;: [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to [{&quot;ShipClassId&quot;:1,&quot;ShipName&quot;:&quot;Tyrant&quot;,&quot;ShipFedId&quot;:1000,&quot;CaptainName&quot;:&quot;Brian Aldiss&quot;,&quot;FuelCapacity&quot;:100,&quot;FuelOnBoard&quot;:90,&quot;CargoToUnload&quot;:100,&quot;WasteCapacity&quot;:100,&quot;CurrentWaste&quot;:55,&quot;Docked&quot;:false,&quot;RepairCode&quot;:4,&quot;FoodCode&quot;:1,&quot;CurrentPower&quot;:23,&quot;Race&quot;:&quot;Human&quot;,&quot;CargoToLoad&quot;:149},{&quot;ShipClassId&quot;:2,&quot;ShipName&quot;:&quot;Triumph&quot;,&quot;ShipFedId&quot;:1001,&quot;CaptainName&quot;:&quot;R.M. Meluch&quot;,&quot;FuelCapacity&quot;:200,&quot;FuelOnBoard&quot;:180,&quot;CargoToUnload&quot;:200,&quot;WasteCapacity&quot;:200,&quot;CurrentWaste&quot;:110,&quot;Docked&quot;:false,&quot;RepairCode&quot;:5,&quot;FoodCode&quot;:0,&quot;CurrentPower&quot;:13 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string FinalShips2019_json {
             get {
@@ -200,9 +179,9 @@ namespace SpaceStationSystem.Properties {
         ///1493
         ///11 [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string ShipQueue2019_json {
+        internal static string ShipQueue2019 {
             get {
-                return ResourceManager.GetString("ShipQueue2019.json", resourceCulture);
+                return ResourceManager.GetString("ShipQueue2019", resourceCulture);
             }
         }
     }
