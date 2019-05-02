@@ -8,6 +8,17 @@ using Newtonsoft.Json;
 
 namespace SpaceStationSystem
 {
+
+    /* Programmer: Colton Bailiff
+        * Course: Programming Fundamental II: Mobile Domain - NMAD.181
+        * Date: April 22, 2019
+        * 
+        * Assignment: Final Project
+        * Purpose: The Space Station is going to use new system, so Colton have developed new system for Commander David to allow Commander to
+        * manage the ship by assigning them to their dock and convert if needed. The system would take over the service part and let them go after
+        * the service on a ship is finished.
+        */
+
     public enum ShipClass
     {
         Runabout = 1,

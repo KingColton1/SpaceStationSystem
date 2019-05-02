@@ -260,8 +260,9 @@ namespace SpaceStationSystem
             string message;
             int defensePower;
             int powerNeeded;
+            int timeCycles;
             int time;
-            decimal timeCycles;
+            decimal timeCyclesCalc;
 
             try
             {
@@ -336,18 +337,17 @@ namespace SpaceStationSystem
                 // Calculate power needed for full charge.
                 powerNeeded = defensePower - ship.CurrentPower;
 
-                // It takes 5 time cycles for each 100 units of charge.
                 // Calculate how many times 100 goes into the amount of charge needed. Cast int to decimal to keep the remainder.
-                timeCycles = (decimal)ship.CargoToUnload / 100;
+                timeCyclesCalc = (decimal)powerNeeded / 100;
+
+                // Round up to make sure we calculate enough time for entire recharge.
+                timeCycles = (int)Math.Ceiling(timeCyclesCalc);
 
                 // Multiply by 5 to get the number of time cycles required.
                 timeCycles = timeCycles * 5;
 
                 // Multiply by 1000 to convert time cycles to seconds
-                timeCycles = timeCycles * 1000;
-
-                // Round up to make sure we calculate enough time for entire recharge.
-                time = (int)Math.Ceiling(timeCycles);
+                time = timeCycles * 1000;
 
                 Thread.Sleep(time);
 
